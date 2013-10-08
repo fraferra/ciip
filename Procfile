@@ -1,1 +1,1 @@
-web: gunicorn ciip.wsgi
+web: gunicorn mysite.wsgi
