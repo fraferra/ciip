@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     last_name= models.CharField(max_length = 20, null=True)
     email = models.EmailField(null=True)
     file_cv = models.FileField(upload_to='cvs/%Y/%m/%d')
-
+    file_name = models.CharField(max_length=50, null=True)
     UNIVERSITY_CHOICES = (
         ('UCL', 'UCL'),
         ('Kent', 'Kent'),

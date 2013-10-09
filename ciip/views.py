@@ -116,7 +116,6 @@ def home(request):
             #status_profile = StatusUpdateForm(instance=request.user.get_profile())
             #status=status_profile['status']
             current_pk = request.user.pk
-            
             user_name = User.objects.get(pk=current_pk).username
             
             status = UserProfile.objects.get(pk=current_pk).status
@@ -125,111 +124,46 @@ def home(request):
 
 def eligibility(request):
     return render(request,'ciip/eligibility.html')
-
-
-
 '''
 
 def upload_file(request):
+    f=''
+    if request.method=='POST':
+        f=request.FILES['f']
+        a=UserProfile()
+        a.user=request.user
+        a.file_cv.save(f)
+    return render(request, 'ciip/upload_file.html', {'f': f,})
+'''
+def upload_file(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
-
-    else:
-        current_pk = request.user.pk
-        user_name = User.objects.get(pk=current_pk).username
-        if request.method == 'POST':
-            form = UploadFileForm(request.POST, request.FILES, instance=request.user.get_profile())
-            if form.is_valid():
+    else: 
+       current_pk = request.user.pk
+       user_name = User.objects.get(pk=current_pk).username
+       if request.method == 'POST':
+           form = UploadFileForm(request.POST, request.FILES, instance=request.user.get_profile())
+           if form.is_valid():
             # file is saved
-                form.save()
-                return HttpResponseRedirect('/ciip/home/')
-        else:
-            form = UploadFileForm(instance = request.user.get_profile()).file_cv
-    return render(request, 'ciip/upload_file.html', {'form': form, 'user_name':user_name})
+               form.save()
+               return HttpResponseRedirect('/success/url/')
+       else:
+           form = UploadFileForm(instance=request.user.get_profile())
+    return render(request, 'ciip/upload_file.html', {'form': form,'user_name':user_name})
+'''
 
 
 def upload_file(request):
-    current_pk = request.user.pk
-    user_name = User.objects.get(pk=current_pk).username
-    p = UserProfile.objects.get(pk=current_pk)
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
-
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/ciip/home/')
     else:
-        user=UserProfile
-        if request.method == 'POST':
-            #u=UserProfile.objects.get(pk=current_pk)
-            new_file = UserProfile(user=request.user)
-            form = UploadFileForm(request.POST, request.FILES)
-            if form.is_valid():
-                
-                
-            # file is saved
-                #instance = UserProfile(user_id=current_pk)
-                #u.file_cv=request.FILES['file'].save()
-                instance = UserProfile(file_cv=request.FILES['file'])
-                instance.save(force_insert=True)
-                return HttpResponseRedirect('/ciip/home/')
-        else:
-            form = UploadFileForm()
-    return render(request, 'ciip/upload_file.html', {'form': form, 'user_name':user_name,})
+        form = UploadFileForm()
+    return render(request, 'ciip/upload_file.html', {'form': form})
 
-
-def upload_file(request):
-    current_pk = request.user.pk
-    user_name = User.objects.get(pk=current_pk).username
-    p = UserProfile.objects.get(pk=current_pk)
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
-
-    else:
-        if request.method == 'POST':
-            form = UploadFileForm(request.POST, request.FILES)
-            if form.is_valid():
-                handle_uploaded_file(request.FILES['file'])
-                return HttpResponseRedirect('/success/url/')
-        else:
-            form = UploadFileForm()
-    return render_to_response('upload.html', {'form': form})
-
-   def change_password(request):
-    new_password=''
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
-    else:
-        current_pk = request.user.pk
-        user_name = User.objects.get(pk=current_pk).username
-        if request.method=='POST':
-
-           u = User.objects.get(username__exact=user_name)
-           new_password = request.POST['new_password']
-           u.set_password(new_password)
-           u.save() 
-           return HttpResponseRedirect('/ciip/home/')
-    return render(request, 'ciip/change_password.html', {'user_name': user_name, 'new_password':new_password,})'''
-
-
-
-
-
-'''def password_change(request,
-                    template_name='/ciip/change_password.html',
-                    post_change_redirect='/ciip/home/',
-                    password_change_form=ChangePassword,
-                    current_app='ciip',
-                     ):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
-    else:
-        current_pk = request.user.pk
-        user_name = User.objects.get(pk=current_pk).username
-         
-        if request.method == 'POST':
-            form = ChangePassword(request.POST)
-            if form.is_valid():
-                form.save()
-        else:
-            form=ChangePassword(instance=request.user)
-
-    return render(request, 'ciip/change_password.html',{'form':form,'user_name':user_name,} )'''
-
+def handle_uploaded_file(f):
+    with open('cv.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)'''

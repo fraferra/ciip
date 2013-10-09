@@ -14,21 +14,18 @@ class StatusUpdateForm(ModelForm):
 		model= UserProfile
         fields = ('status')
 
-class UploadFileForm(forms.Form):
+class UploadFileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields =('file_name', 'file_cv')
+
+    
+
+'''class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
     file  = forms.FileField()
-
-
-
-
-
-
-
-
 '''
 
-class UploadFileForm(ModelForm):
-	class Meta:
-		model=UserProfile
-        #exclude =('first_name','last_name','user','university','email','status')
-        fields = ('file_cv')'''
+
+
+

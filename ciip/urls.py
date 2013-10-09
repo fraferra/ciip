@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^home/$', views.home, name='home'),
     url(r'^eligibility/$', views.eligibility, name='eligibility'),
-    #url(r'^upload_file/$', views.upload_file, name='upload_file'),
+    url(r'^upload_file/$', views.upload_file, name='upload_file'),
    
 
 )
