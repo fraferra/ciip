@@ -87,21 +87,24 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
+         <div class="span9">
           <div class="hero-unit">
            
-              <form  method = "post">{% csrf_token %}
-              <h1>Edit Contact Info</h1>
+              <form  method = "get">{% csrf_token %}
+              <h1>Academic Info</h1>
               
-            
-            <p><input type="submit" href="/ciip/profile_contact_info/" class="btn btn-primary btn-large" value="Save Changes"></p>
+            </form> 
+            <p><a href="/ciip/edit_academic_info/" class="btn btn-primary btn-large">Edit Info &raquo;</a></p>
           </div>
           <div class="row-fluid">
-        <div class="span4">
-          
+            <div class="span4">
+              
+ <form action="" method="get">{% csrf_token %}
  
- 
- <p>{{ form.as_p }}</p>
+ <p>University: {{university}}</p>
+ <p>Year of graduation: {{year_of_graduation}}</p>
+ <p>Degree: {{degree}}</p>
+ <p>average: {{average}}</p>
 
 
 
@@ -118,6 +121,7 @@
       <hr>
 
       <footer>
+        
         <p>&copy; Cisco International Internship Program 2013</p>
       </footer>
 

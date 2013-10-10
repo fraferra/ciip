@@ -52,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="http://www.ciip4me.com/">CIIP</a>
+            <a class="brand" href="http://www.ciip4me.com/">CIIP</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
@@ -60,7 +60,7 @@
             </p>
             <ul class="nav">
               <li class="active"><a href="/ciip/home/">Home</a></li>
-              <li><a href="/ciip/contact_us/">Contact Us</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
             </ul>
           </div><!--/.nav-collapse --></form>
         </div>
@@ -74,14 +74,13 @@
             <ul class="nav nav-list">
               <li class="nav-header">Settings</li>
               
-              <li><a href="/ciip/change_password/">Change Password</a></li>
               <li><a href="/ciip/logout/">Logout</a></li>
               
               <li class="nav-header">User Info</li>
               <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
-              <li><a href="#">Academic Info</a></li>
-              <li><a href="#">Motivational Question</a></li>
-              <li><a href="#">CV</a></li>
+              <li><a href="/ciip/academic_info/">Academic Info</a></li>
+              <li><a href="/ciip/motivational_questions/">Motivational Question</a></li>
+              <li><a href="/ciip/upload_file/">CV</a></li>
               
             </ul>
           </div><!--/.well -->
