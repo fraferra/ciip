@@ -176,10 +176,10 @@ def send_email(request):
        if request.method=='POST':
            subject = request.POST.get('subject','')
            message = request.POST.get('message','')+' sent by '+user_name+'. Copy and paste address to answer.'
-           #from_email = request.POST.get('from_email','')
+           from_email = 'ciip.team.1@gmail.com'
            if subject and message and from_email:
                try:
-                   send_mail(subject, message, 'ciip.team.1@gmail.com', ['fraferra@cisco.com'])
+                   send_mail(subject, message, from_email, ['fraferra@cisco.com'])
                except BadHeaderError:
                    return HttpResponse('Invalid header found.')
                return HttpResponseRedirect('/ciip/home/')
