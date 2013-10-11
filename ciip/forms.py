@@ -8,7 +8,8 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ('gender','first_name',
-            'last_name','birth_date_day','birth_date_month','birth_date_year', 'email',
+            'last_name','birth_date_day','birth_date_month',
+            'birth_date_year', 'email',
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
@@ -36,10 +37,9 @@ class AcademicForm(ModelForm):
         model=UserProfile
         fields=('university','year_of_graduation', 'degree','average')
 
-'''class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    file  = forms.FileField()
-'''
+#class UploadFileForm(forms.Form):
+  #  title = forms.CharField(max_length=50)
+  #  file  = forms.FileField()
 
 
 

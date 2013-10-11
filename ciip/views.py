@@ -2,7 +2,7 @@
 import smtplib
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import UserProfileForm, StatusUpdateForm, UploadFileForm, AcademicForm, MotivationalQuestionForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -157,7 +157,7 @@ def upload_file(request):
            form = UploadFileForm(request.POST, request.FILES, instance=request.user.get_profile())
            if form.is_valid():
             # file is saved
-               form.save()
+               new_user=form.save()
                return HttpResponseRedirect('/ciip/upload_file/')
        else:
            form = UploadFileForm(instance=request.user.get_profile())
@@ -176,10 +176,10 @@ def send_email(request):
        if request.method=='POST':
            subject = request.POST.get('subject','')
            message = request.POST.get('message','')+' sent by '+user_name+'. Copy and paste address to answer.'
-           from_email = 'ciip.team.1@gmail.com'
+           #from_email = request.POST.get('from_email','')
            if subject and message and from_email:
                try:
-                   send_mail(subject, message, from_email, ['fraferra@cisco.com'])
+                   send_mail(subject, message, 'ciip.team.1@gmail.com', ['fraferra@cisco.com'])
                except BadHeaderError:
                    return HttpResponse('Invalid header found.')
                return HttpResponseRedirect('/ciip/home/')

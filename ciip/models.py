@@ -12,6 +12,22 @@ class UserProfile(models.Model):
     #user = models.OneToOneField(User)
     user=models.ForeignKey(User, unique=True)
     #user=models.CharField(max_length=20, null=True)
+
+    STATUS_UPDATES = (
+       ('In consideration', 'In consideration'),
+       ('First Interview Scheduled','First Interview Scheduled'),
+       ('First Interview Passed', 'First Interview Passed'),
+       ('Interview with Manager Scheduled', 'Interview with Manager Scheduled'),
+       ('On Hold', 'On Hold'),
+      )
+    status=models.CharField(max_length=100, choices= STATUS_UPDATES, default='In consideration', null=True)
+    
+
+   
+
+    
+    
+
     GENDER= (('male', 'male'),('female','female'),)
     gender=models.CharField(max_length=6, choices=GENDER, default='male', null=True)
     
@@ -278,6 +294,9 @@ class UserProfile(models.Model):
     country=models.CharField(max_length=2, choices=COUNTRIES,
                              default='ZZ', null=True)
 
+    objects=UserManager()
+ 
+
 
 
 
@@ -303,28 +322,19 @@ class UserProfile(models.Model):
     question_2=models.CharField(max_length=1000, null=True)
 
 
-    file_cv = models.FileField(upload_to='cvs/%Y/%m/%d')
+    file_cv = models.FileField(upload_to='media/%Y/%m/%d')
     file_name = models.CharField(max_length=50, null=True)
+    
 
-    STATUS_UPDATES = (
-       ('In consideration', 'In consideration'),
-       ('First Interview Scheduled','First Interview Scheduled'),
-       ('First Interview Passed', 'First Interview Passed'),
-       ('Interview with Manager Scheduled', 'Interview with Manager Scheduled'),
-       ('On Hold', 'On Hold'),
-      )
-    status=models.CharField(max_length=100, choices= STATUS_UPDATES, default='In consideration', null=True)
-    objects=UserManager()
- 
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            UserProfile.objects.create(user=instance)
+    
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
 
-    post_save.connect(create_user_profile, sender=User)
+post_save.connect(create_user_profile, sender=User)
 
-
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return self.last_name
+def __unicode__(self):  # Python 3: def __str__(self):
+    return self.last_name
 
 
 
