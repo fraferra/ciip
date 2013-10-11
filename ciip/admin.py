@@ -23,7 +23,9 @@ class CiipAdmin(admin.ModelAdmin):
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country','university','year_of_graduation','degree','average','question_1', 'question_2','file_name']
     list_display = ('first_name', 'last_name','status','university')
-
+    list_filter=['status', 'university']
+    search_fields=['last_name']
+    
 
 admin.site.register(UserProfile, CiipAdmin)
 
