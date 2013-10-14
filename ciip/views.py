@@ -301,4 +301,4 @@ def push_picture_to_s3(id):
     # remove the file from the web server
     os.remove(fn)
   except:
-    ...
+      pass
