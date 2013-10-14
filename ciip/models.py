@@ -322,7 +322,7 @@ class UserProfile(models.Model):
     question_2=models.CharField(max_length=1000, null=True)
 
 
-    file_cv = models.FileField(upload_to='media/%Y/%m/%d')
+    file_cv = models.FileField(upload_to='media')
     file_name = models.CharField(max_length=50, null=True)
     
 

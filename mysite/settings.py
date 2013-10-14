@@ -22,6 +22,13 @@ DATABASES = {
 }
 
 
+
+BUCKET_NAME='bucket_name'
+AWS_ACCESS_KEY_ID='AKIAIKGQ5IBXP5TT4ZBA'
+AWS_SECRET_ACCESS_KEY='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'
+
+
+
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
