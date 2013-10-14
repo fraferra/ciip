@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     
     'ciip',
+    'storages',
     
     
 )
