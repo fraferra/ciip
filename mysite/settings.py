@@ -23,10 +23,10 @@ DATABASES = {
 
 
 
-AWS_BUCKET_NAME='ciip-cvs'
+AWS_S3_BUCKET_URL='ciip-cvs'
 AWS_ACCESS_KEY_ID='AKIAIKGQ5IBXP5TT4ZBA'
 AWS_SECRET_ACCESS_KEY='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'
-
+AWS_S3_BUCKET_NAME = AWS_S3_BUCKET_URL.split('.')[0].split('//')[1]
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 
 import dj_database_url
