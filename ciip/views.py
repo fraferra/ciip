@@ -158,7 +158,7 @@ def upload_file(request):
            if form.is_valid():
             # file is saved
                new_user=form.save()
-               push_picture_to_s3(request.FILES)
+               #push_picture_to_s3(request.FILES)
                return HttpResponseRedirect('/ciip/upload_file/')
        else:
            form = UploadFileForm(instance=request.user.get_profile())
@@ -274,7 +274,7 @@ def edit_motivational_questions(request):
     })
 
 
-
+'''
 
 
 def push_picture_to_s3(id):
@@ -302,3 +302,4 @@ def push_picture_to_s3(id):
     os.remove(fn)
   except:
       return HttpResponseRedirect('/ciip/home/')
+      '''
