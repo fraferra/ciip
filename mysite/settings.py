@@ -1,5 +1,5 @@
 # Django settings for mysite project.
-
+from s3utils import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
