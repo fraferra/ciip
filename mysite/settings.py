@@ -21,13 +21,11 @@ DATABASES = {
     }
 }
 
-AWS_STORAGE_BUCKET_NAME='ciip-cvs'
-AWS_ACCESS_KEY_ID='AKIAIKGQ5IBXP5TT4ZBA'
-AWS_SECRET_ACCESS_KEY='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'
+S3_BUCKET='ciip-cvs'
+AWS_ACCESS_KEY='AKIAIKGQ5IBXP5TT4ZBA'
+AWS_SECRET_ACCESS='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'
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 
-S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = S3_URL + MEDIA_ROOT
 
 
 
@@ -86,7 +84,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/media/'
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -97,6 +95,10 @@ MEDIA_ROOT = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
+S3_URL = 'http://s3.amazonaws.com/%s' % S3_BUCKET
+MEDIA_ROOT = '/media/'
+
+MEDIA_URL = S3_URL + MEDIA_ROOT
 
 # URL prefix for static files.
 # Example: "http://example.com# Additional locations of static files
