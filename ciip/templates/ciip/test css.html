@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+  <title>Cisco International Internship Program</title>
+  <meta http-equiv="Content-Language" content="en-us" />
+
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+
+  <meta name="description" content="Description" />
+  <meta name="keywords" content="keywords" />
+
+  <meta name="author" content="Enlighten Designs" />
+  <link rel="stylesheet" type="text/css" href="/static/ciip/brandcompliance.css">
+  <style type="text/css" media="all">@import "css/brandcompliance.css";</style>
+</head>
+
+  <body>
+
+    <div id="page-container">
+      
+      <div id="main-nav">
+     
+        <form  method = "get">{% csrf_token %}
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="#" class="navbar-link">{{ User}}</a>
+            </p>
+
+            <ul>
+              <li><a href="/ciip/contact_us/">Contact Us</a></li>
+              <li><a href="/ciip/ciipinfo/">CIIP Information</a></li>
+            </ul>
+
+          </div>
+        </form>
+      
+      </div>
+
+      <div id="header">
+        <h1><img src="logo.jpg"></h1>
+      </div>
+
+      <div id="sidebar-a">
+        <div class="padding">
+        <d1>
+          <dt class="nav-header">Settings</dt>
+          <dt><a href="/ciip/change_password/">Change Password</a></dt>
+          <dt><a href="/ciip/logout/">Logout</a></dt>
+          <br>
+          <dt class="nav-header">User Info</dt>
+          <dt><a href="/ciip/profile_contact_info/">Personal Info</a></dt>
+          <dt><a href="#">Academic Info</a></dt>
+          <dt><a href="#">Motivational Question</a></dt>
+          <dt><a href="/ciip/resume/">CV</a></dt>
+        </d1>
+        </div>
+      </div>
+
+      <div id="content">
+        <h2>About</h2>
+        <p>
+        CIIP is an internship program which offers top students from select international partner universities an opportunity to come to USA for a year to gain industry experience as part of their education. Interns work alongside Cisco employees on next-generation development projects and learn critical technical and business skills appropriate for a future in tomorrow's global workforce.</p>
+        <p>
+        Apart from the workplace skills, interns return to their home country to complete their degrees with a much greater appreciation of global cultural issues and increased motivation to succeed in their academic and subsequent professional careers.</p>
+
+        <form  method = "get">{% csrf_token %}
+              <h1>Welcome {{user_name}}</h1>
+              <p>Current Status: {{status}}</p>
+        </form> 
+
+      </div>
+
+      <div id="footer">
+        <div id="altnav">
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Eligibility</a>
+      </div id="copyright">
+      &copy; Cisco Systems, Cisco International Internship Program 2013
+      </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+          </div><!--/.well -->
+        </div><!--/span-->
+
+          </div>
+    </div>
+  </body>
+</html>

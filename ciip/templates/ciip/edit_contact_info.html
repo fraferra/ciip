@@ -44,31 +44,36 @@
   </head>
 
   <body>
-
+    <div class="container">
+    <div class="row">
+    <div class="span12">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container-fluid" >
+          <a class="brand"><img src="/static/img/logocopy.png" width="90px" height="50"></a>
+          <br>
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="http://www.ciip4me.com/">CIIP</a>
+          <a class="brand" href="http://www.ciip4me.com/">Cisco International Internship Program</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as {{user_name}}<a href="#" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="/ciip/home/">Home</a></li>
-              <li><a href="/ciip/contact_us/">Contact Us</a></li>
+              <li><a href="/ciip/home/">Home</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
             </ul>
           </div><!--/.nav-collapse --></form>
         </div>
       </div>
     </div>
+<br>
+   <br>
 
-    <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -92,7 +97,7 @@
            
               <form  method = "post">{% csrf_token %}
               <h1>Edit Contact Info</h1>
-              
+              <br>
             
             <p><input type="submit" href="/ciip/profile_contact_info/" class="btn btn-primary btn-large" value="Save Changes"></p>
           </div>

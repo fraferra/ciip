@@ -158,7 +158,6 @@ def upload_file(request):
            if form.is_valid():
             # file is saved
                new_user=form.save()
-               #push_picture_to_s3(request.FILES)
                return HttpResponseRedirect('/ciip/upload_file/')
        else:
            form = UploadFileForm(instance=request.user.get_profile())
@@ -177,10 +176,10 @@ def send_email(request):
        if request.method=='POST':
            subject = request.POST.get('subject','')
            message = request.POST.get('message','')+' sent by '+user_name+'. Copy and paste address to answer.'
-           #from_email = request.POST.get('from_email','')
+           from_email = 'ciip.team.1@gmail.com'
            if subject and message and from_email:
                try:
-                   send_mail(subject, message, 'ciip.team.1@gmail.com', ['fraferra@cisco.com'])
+                   send_mail(subject, message, from_email , ['fraferra@cisco.com'])
                except BadHeaderError:
                    return HttpResponse('Invalid header found.')
                return HttpResponseRedirect('/ciip/home/')
@@ -272,34 +271,3 @@ def edit_motivational_questions(request):
     return render( request, 'ciip/edit_motivational_questions.html', {
         'form': form, 'user_name':user_name,
     })
-
-
-'''
-
-
-def push_picture_to_s3(id):
-  try:
-    import boto
-    from boto.s3.key import Key
-    # set boto lib debug to critical
-    logging.getLogger('boto').setLevel(logging.CRITICAL)
-    bucket_name = settings.BUCKET_NAME
-    # connect to the bucket
-    conn = boto.connect_s3(settings.AWS_ACCESS_KEY_ID,
-                    settings.AWS_SECRET_ACCESS_KEY)
-    bucket = conn.get_bucket(bucket_name)
-    # go through each version of the file
-    key = '%s' % id
-    fn = '/media/%s' % id
-    # create a key to keep track of our file in the storage 
-    k = Key(bucket)
-    k.key = key
-    k.set_contents_from_filename(fn)
-    # we need to make it public so it can be accessed publicly
-    # using a URL like http://s3.amazonaws.com/bucket_name/key
-    k.make_public()
-    # remove the file from the web server
-    os.remove(fn)
-  except:
-      return HttpResponseRedirect('/ciip/home/')
-      '''

@@ -1,12 +1,12 @@
 /*!
- * Bootstrap v2.3.2
- *
- * Copyright 2013 Twitter, Inc
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Designed and built with all the love in the world by @mdo and @fat.
- */
+* Bootstrap v2.3.2
+*
+* Copyright 2013 Twitter, Inc
+* Licensed under the Apache License v2.0
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Designed and built with all the love in the world by @mdo and @fat.
+*/
 
 .clearfix {
   *zoom: 1;
@@ -206,7 +206,7 @@ textarea {
   img {
     max-width: 100% !important;
   }
-  @page  {
+  @page {
     margin: 0.5cm;
   }
   p,
@@ -2310,7 +2310,7 @@ table th[class*="span"],
 }
 
 .icon-glass {
-  background-position: 0      0;
+  background-position: 0 0;
 }
 
 .icon-music {
@@ -3360,13 +3360,13 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #006dcc;
-  *background-color: #0044cc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-color: #46A040;
+  *background-color: #46A040;
+  background-image: -moz-linear-gradient(top, #6fc369, #46A040);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6fc369), to(#46A040));
+  background-image: -webkit-linear-gradient(top, #6fc369, #46A040);
+  background-image: -o-linear-gradient(top, #6fc369, #46A040);
+  background-image: linear-gradient(to bottom, #6fc369, #46A040);
   background-repeat: repeat-x;
   border-color: #0044cc #0044cc #002a80;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -3380,8 +3380,8 @@ input[type="button"].btn-block {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  color: #ffffff;
-  background-color: #0044cc;
+  color: #C0C0C0;
+  background-color: #46A040;
   *background-color: #003bb3;
 }
 
@@ -4635,9 +4635,6 @@ input[type="submit"].btn.btn-mini {
   color: #555555;
   text-decoration: none;
   background-color: #e5e5e5;
-  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-     -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
 }
 
 .navbar .btn-navbar {
@@ -4791,41 +4788,47 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
-  background-color: #1b1b1b;
-  background-image: -moz-linear-gradient(top, #222222, #111111);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
-  background-image: -webkit-linear-gradient(top, #222222, #111111);
-  background-image: -o-linear-gradient(top, #222222, #111111);
-  background-image: linear-gradient(to bottom, #222222, #111111);
+  background-color: #0096D6;
+  background-image: -moz-linear-gradient(top, #24bdff, #0096D6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#24bdff), to(#0096D6));
+  background-image: -webkit-linear-gradient(top, #24bdff, #0096D6);
+  background-image: -o-linear-gradient(top, #24bdff, #0096D6);
+  background-image: linear-gradient(to bottom, #24bdff, #0096D6);;
   background-repeat: repeat-x;
-  border-color: #252525;
+  border-color: #0096D6;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
 }
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #999999;
+  color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .navbar-inverse .brand:hover,
 .navbar-inverse .nav > li > a:hover,
 .navbar-inverse .brand:focus,
 .navbar-inverse .nav > li > a:focus {
-  color: #ffffff;
+  color: #C0C0C0;
 }
 
 .navbar-inverse .brand {
-  color: #999999;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .navbar-inverse .nav > li > a:focus,
 .navbar-inverse .nav > li > a:hover {
-  color: #ffffff;
+  color: #C0C0C0;
   background-color: transparent;
 }
 
@@ -4833,7 +4836,9 @@ input[type="submit"].btn.btn-mini {
 .navbar-inverse .nav .active > a:hover,
 .navbar-inverse .nav .active > a:focus {
   color: #ffffff;
-  background-color: #111111;
+  background-color: #0096D6;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .navbar-inverse .navbar-link {
@@ -6165,3 +6170,5 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+

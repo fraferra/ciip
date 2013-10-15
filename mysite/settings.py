@@ -1,4 +1,7 @@
 # Django settings for mysite project.
+
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -20,9 +23,8 @@ DATABASES = {
     }
 }
 
-S3_BUCKET_NAME='ciip-cvs'
-AWS_ACCESS_KEY_ID='AKIAIKGQ5IBXP5TT4ZBA'
-AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='ciip-cvs'
+
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 
 
@@ -94,7 +96,7 @@ USE_TZ = True
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-S3_URL = 'http://s3.amazonaws.com/%s' % S3_BUCKET_NAME
+S3_URL = 'http://s3.amazonaws.com/%s' % AWS_STORAGE_BUCKET_NAME
 MEDIA_ROOT = '/media/'
 
 MEDIA_URL = S3_URL + MEDIA_ROOT
@@ -113,7 +115,7 @@ STATICFILES_FINDERS = (
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '@1pmzx)k3a054-6j=rm$uysl&ovu-j-kn312y5_w&abjm=qkt@'
-
+from mysite.s3utils import *
 # List of callables that know how to import templates from various sources.
 TEMPLATE_DIRS = (
     '/github/mysite/templates',
