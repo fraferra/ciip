@@ -318,13 +318,15 @@ class UserProfile(models.Model):
 
 
 
-    question_1=models.CharField(max_length=1000, null=True)
-    question_2=models.CharField(max_length=1000, null=True)
+    question_1=models.TextField(max_length=1000, null=True)
+    question_2=models.TextField(max_length=1000, null=True)
 
 
     file_cv = models.FileField(upload_to='media/%Y/%m/%d')
     file_name = models.CharField(max_length=50, null=True)
     
+
+    image = models.ImageField(upload_to='images/%Y/%m/%d')
 
     
 def create_user_profile(sender, instance, created, **kwargs):

@@ -18,6 +18,6 @@ urlpatterns = patterns('',
     url(r'^edit_motivational_questions/$', views.edit_motivational_questions, name='edit_motivational_questions'),
     url(r'^academic_info/$', views.academic_info, name='academic_info'),
     url(r'^edit_academic_info/$', views.edit_academic_info, name='edit_academic_info'),
- 
+    url(r'^upload_image/$', views.upload_image, name='upload_image'),
 )
 

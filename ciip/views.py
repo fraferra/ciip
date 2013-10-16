@@ -2,7 +2,7 @@
 import smtplib
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -271,3 +271,23 @@ def edit_motivational_questions(request):
     return render( request, 'ciip/edit_motivational_questions.html', {
         'form': form, 'user_name':user_name,
     })
+
+
+
+
+
+def upload_image(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else: 
+       current_pk = request.user.pk
+       user_name = User.objects.get(pk=current_pk).username
+       if request.method == 'POST':
+           form = ImageForm(request.POST, request.FILES, instance=request.user.get_profile())
+           if form.is_valid():
+            # file is saved
+               new_user=form.save()
+               return HttpResponseRedirect('/ciip/upload_image/')
+       else:
+           form = ImageForm(instance=request.user.get_profile())
+    return render(request, 'ciip/upload_image.html', {'form': form,'user_name':user_name})
