@@ -2,7 +2,7 @@
 import smtplib
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -16,7 +16,7 @@ from django.template import RequestContext
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         
         if form.is_valid():
             
@@ -24,7 +24,7 @@ def signup(request):
 
             return HttpResponseRedirect('/ciip/login/')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
         
     return render( request, 'ciip/signup.html', {
         'form': form, 

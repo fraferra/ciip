@@ -142,6 +142,7 @@ MIDDLEWARE_CLASSES = (
 
 
 AUTH_PROFILE_MODULE = 'ciip.UserProfile'
+AUTHENTICATION_BACKENDS = ('mysite.backends.EmailAuthBackend',)
 
 #AUTHENTICATION_BACKENDS=('ciip.auth_backends.UserProfileModelBackend',)
 
