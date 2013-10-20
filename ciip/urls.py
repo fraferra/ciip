@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^academic_info/$', views.academic_info, name='academic_info'),
     url(r'^edit_academic_info/$', views.edit_academic_info, name='edit_academic_info'),
     url(r'^upload_image/$', views.upload_image, name='upload_image'),
+    url(r'^info/$', views.info, name='info'),
+    url(r'^faq/$', views.faq, name='faq'),
 )
 

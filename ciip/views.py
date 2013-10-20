@@ -173,10 +173,11 @@ def send_email(request):
     else: 
        current_pk = request.user.pk
        user_name = User.objects.get(pk=current_pk).username
+       email = User.objects.get(pk=current_pk).email
        if request.method=='POST':
            subject = request.POST.get('subject','')
-           message = request.POST.get('message','')+' sent by '+user_name+'. Copy and paste address to answer.'
-           from_email = 'ciip.team.1@gmail.com'
+           message = request.POST.get('message','')+' sent by '+email+'. Copy and paste address to answer.'
+           from_email = email
            if subject and message and from_email:
                try:
                    send_mail(subject, message, from_email , ['fraferra@cisco.com'])
@@ -291,3 +292,12 @@ def upload_image(request):
        else:
            form = ImageForm(instance=request.user.get_profile())
     return render(request, 'ciip/upload_image.html', {'form': form,'user_name':user_name})
+
+
+
+
+def info(request):
+    return render(request,'ciip/info.html')
+
+def faq(request):
+    return render(request,'ciip/faq.html')

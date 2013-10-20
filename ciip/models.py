@@ -169,6 +169,7 @@ class UserProfile(models.Model):
     ('KW', _('Kuwait')),
     ('KY', _('Cayman Islands')),
     ('KZ', _('Kazakhstan')),
+    ('KS', _('Kosovo')),
     ('LA', _('Lao People\'s Democratic Republic')),
     ('LB', _('Lebanon')),
     ('LC', _('Saint Lucia')),
