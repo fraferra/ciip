@@ -1,8 +1,11 @@
 from django.conf.urls import patterns, url
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 
 from ciip import views
 
 urlpatterns = patterns('',
+    url(r'^$', RedirectView.as_view(url='info/', permanent=False), name='index'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', views.login ,name='login'),
     url(r'^notactive/$', views.notactive, name='notactive'),

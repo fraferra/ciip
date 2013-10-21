@@ -59,7 +59,7 @@ STATICFILES_DIRS = (
 TIME_ZONE = 'America/Chicago'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER='ciip.team.1'
+EMAIL_HOST_USER='ciip.team.1@gmail.com'
 EMAIL_HOST_PASSWORD='ciipiscool'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

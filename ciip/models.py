@@ -304,8 +304,15 @@ class UserProfile(models.Model):
 
     UNIVERSITY_CHOICES = (
         ('UCL', 'UCL'),
-        ('Kent', 'Kent'),
+        ('Kent University', 'Kent University'),
         ('EPFL', 'EPFL'),
+        ('Keio University','Keio University'),
+        ('MTUCI', 'MTUCI'),
+        ('BMSTU','BMSTU'),
+        ('SNU', 'SNU'),
+        ('KAIST', 'KAIST'),
+        ('Tsinghua University', 'Tsinghua University'),
+        ('SJTU', 'SJTU'),
     )
     university = models.CharField(max_length=20,
                                       choices=UNIVERSITY_CHOICES,

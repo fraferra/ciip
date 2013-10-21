@@ -1,5 +1,6 @@
 # Create your views here.
 import smtplib
+import re
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
 from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm
@@ -14,15 +15,18 @@ from django.template import RequestContext
 #from django.contrib.auth.decorators import login_required, permission_required
 
 
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         
         if form.is_valid():
-            
-            new_user = form.save()   
-
-            return HttpResponseRedirect('/ciip/login/')
+            email=request.POST['email']
+            if checkemail(email):
+                new_user = form.save() 
+                return HttpResponseRedirect('/ciip/login/')
+            else:
+                return HttpResponseRedirect('/ciip/notactive/')        
     else:
         form = SignUpForm()
         
@@ -301,3 +305,27 @@ def info(request):
 
 def faq(request):
     return render(request,'ciip/faq.html')
+
+
+def forgot_password(request):
+    email=''
+    if request.method == 'POST':
+        return password_reset(request, from_email=request.POST.get('email'))
+    else:
+        return render(request, 'ciip/forgot_password.html', {'email':email})
+
+
+
+
+def checkemail(address):
+    uni_list=['ucl.ac.uk','kent.ac.uk',
+               'zju.edu.cn','sjtu.edu.cn',
+               'student.bmstu.ru','fel.cvut.cz',
+               'a2.keio.jp','a5.keio.jp',
+               'ee.ucl.ac.uk','kaist.ac.kr',
+               'epfl.ch','zju.edu.cn']
+    match = re.search(r'([\w.-]+)@([\w.-]+)', address)
+    for uni in uni_list:
+        if match.group(2) == uni:
+            return True
+
