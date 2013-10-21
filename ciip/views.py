@@ -105,9 +105,9 @@ def profile_contact_info(request):
             last_name = profile.last_name
             email= profile.email
             gender=profile.gender
-            birth_date_day=profile.birth_date_day
-            birth_date_month=profile.birth_date_month
-            birth_date_year=profile.birth_date_year
+            #birth_date_day=profile.birth_date_day
+            #birth_date_month=profile.birth_date_month
+            #birth_date_year=profile.birth_date_year
             address_line1=profile.address_line1
             address_line2=profile.address_line2
             phone=profile.phone

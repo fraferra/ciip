@@ -71,8 +71,9 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ('gender','first_name',
-            'last_name','birth_date_day','birth_date_month',
-            'birth_date_year', 'email',
+            'last_name',#'birth_date_day','birth_date_month',
+            #'birth_date_year',
+             'email',
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
