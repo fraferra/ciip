@@ -77,7 +77,8 @@ class UserProfileForm(ModelForm):
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
-            'passport_number')
+           # 'passport_number'
+           )
 
 class StatusUpdateForm(ModelForm):
 	class Meta:

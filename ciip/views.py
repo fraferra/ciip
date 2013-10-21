@@ -114,16 +114,15 @@ def profile_contact_info(request):
             city=profile.city
             zip_code=profile.zip_code
             country=profile.country
-            passport_number=profile.passport_number
+            #passport_number=profile.passport_number
 
 
             contact_info={'user_name':user_name, 'first_name':first_name,'last_name':last_name,
-            'email':email,'birth_date_day':birth_date_day,
-            'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
+            'email':email,#'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
             'gender':gender, 'address_line1':address_line1,
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
-            'country':country, 'passport_number':passport_number,
+            'country':country, #'passport_number':passport_number,
             }
     return render(request, 'ciip/profile_contact_info.html', contact_info)
 
