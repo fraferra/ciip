@@ -24,7 +24,7 @@ def signup(request):
             email=request.POST['email']
             if checkemail(email):
                 new_user = form.save() 
-                return HttpResponseRedirect('/ciip/login/')
+                return HttpResponseRedirect('/ciip/home/')
             else:
                 return HttpResponseRedirect('/ciip/notactive/')        
     else:
@@ -172,7 +172,7 @@ def upload_file(request):
 def send_email(request):
     subject=message=from_email=''
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
+        return HttpResponseRedirect('/ciip/contact_us/')
     else: 
        current_pk = request.user.pk
        user_name = User.objects.get(pk=current_pk).username
@@ -304,6 +304,10 @@ def info(request):
 
 def faq(request):
     return render(request,'ciip/faq.html')
+
+
+def contact_us(request):
+    return render(request,'ciip/contact_us.html')
 
 
 def forgot_password(request):
