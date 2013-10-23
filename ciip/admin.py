@@ -1,7 +1,7 @@
 import logging
 from django.contrib import admin
 from ciip.models import UserProfile
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 #from django.contrib.auth.admin import UserAdmin
 
 #from django.contrib.auth.models import User
@@ -9,10 +9,12 @@ from ciip.models import UserProfile
 
 
 class CiipAdmin(admin.ModelAdmin):
-   
+  
+
     model=UserProfile
     
     fieldsets = [
+      
         ('Personal Information', {'fields':['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year']}),
         ('Contact Information',{'fields':['email','phone','address_line1','address_line2','city','zip_code','country']}),
         ('Academic Information', {'fields':['university','year_of_graduation','degree','average']}),
@@ -23,8 +25,13 @@ class CiipAdmin(admin.ModelAdmin):
     ]
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country','university','year_of_graduation','degree','average','question_1', 'question_2','file_name']
-    list_display = ('first_name', 'last_name','status','university')
+    list_display = ('first_name', 'last_name','status','university','user_email')
+    list_filter = ['last_name']
 
+
+    def user_email(self, instance):
+        return instance.user.email
+    
 
 admin.site.register(UserProfile, CiipAdmin)
 
