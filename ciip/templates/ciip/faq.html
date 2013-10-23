@@ -287,8 +287,8 @@
           <a class="brand" href="/ciip/info/">Cisco International Internship Program</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
-            <p href="/ciip/login/" class="navbar-text pull-right">
-              Login 
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
               <li><a href="/ciip/home/">Home</a></li>

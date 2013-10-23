@@ -61,12 +61,12 @@ def logout(request):
 
 def notactive(request):
     if request.method =='POST':
-        return HttpResponseRedirect('ciip/signup/')
+        return HttpResponseRedirect('ciip/eligibility/')
     return render(request, 'ciip/notactive.html')
 
 def notregistered(request):
     if request.method =='POST':
-        return HttpResponseRedirect('/ciip/signup/')
+        return HttpResponseRedirect('/ciip/eligibility/')
     return render(request, 'ciip/notregistered.html')
 
 def edit_contact_info(request):

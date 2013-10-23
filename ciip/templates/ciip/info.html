@@ -284,10 +284,10 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="/ciip/info/">Cisco International Internship Program</a>
-          <form  method = "get">{% csrf_token %}
+           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              <a href="/ciip/login/" class="navbar-link">Login</a>
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
               <li><a href="/ciip/home/">Home</a></li>

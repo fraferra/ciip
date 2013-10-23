@@ -285,10 +285,10 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="/ciip/info/">Cisco International Internship Program</a>
-          <form  method = "get">{% csrf_token %}
+           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
-            <p href="/ciip/login/" class="navbar-text pull-right">
-              Login 
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
               <li><a href="/ciip/home/">Home</a></li>
@@ -309,9 +309,6 @@
  <h1 class="featurette-heading">Contact Us.</span></h1>
       <hr class="featurette-divider">
  
-
-      <hr class="featurette-divider">
-
       <div id="1" class="featurette">
         <h3 class="featurette-heading"><span class="muted">Debbie Renteria</span></h3>
         <p class="lead">
