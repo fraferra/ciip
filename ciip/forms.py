@@ -90,6 +90,7 @@ class UploadFileForm(ModelForm):
         model = UserProfile
         fields =('file_name', 'file_cv')
 
+
 class ImageForm(ModelForm):
     class Meta:
         model=UserProfile
