@@ -35,7 +35,7 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="shortcut icon" href="/static/img/favicon.ico" >
+        <link rel="shortcut icon" href="/static/img/favicon.ico" >
 
   </head>
 
@@ -53,7 +53,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-      <a class="brand" href="/ciip/info/">CIIP Home</a>
+        <a class="brand" href="/ciip/info/">CIIP Home</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
@@ -94,41 +94,21 @@
           <div class="hero-unit">
            
               <form  method = "post">{% csrf_token %}
-              <h2>Edit Contact Info</h2>
+              <h2>Edit Skills and Interests</h2>
               <br>
             
-            <p><input type="submit" href="/ciip/profile_contact_info/" class="btn btn-primary btn-large" value="Save Changes"></p>
+            <p><input type="submit" href="/ciip/skill_interest/" class="btn btn-primary btn-large" value="Save Changes"></p>
           </div>
           <div class="row-fluid">
         <div class="span4">
           
  
- <h3>Personal Info</h3>
- <p>Gender:</p>
- <p>{{form.gender}}</p>
- <p>Do you have a valid passport?</p>
- <p>{{form.passport}}</p>
- <p>First name:</p>
- <p>{{ form.first_name }}</p>
- <p>Last name:</p>
- <p>{{ form.last_name }}</p>
-<h3>Contact Info</h3>
-<p>Alternative email address( different from the university email address):</p>
- <p>{{ form.email }}</p>
- <p>Phone number( insert country code as well):</p>
- <p>{{ form.phone }}</p>
- <p><strong>Current address</strong></p>
- <p>Address line 1:</p>
- <p>{{form.address_line1}}</p>
-  <p>Address line 2 (Insert None if it is only one line):</p>
- <p>{{form.address_line2}}</p>
-  <p>City:</p>
- <p>{{form.city}}</p>
-  <p>Zip code/Post code:</p>
- <p>{{form.zip_code}}</p>
-  <p>Country:</p>
- <p>{{form.country}}</p>
-
+ <h3>Technical Skills</h3>
+ <p>Please enter three techincal skills and your level of proficiency in those. Enter None if any.</p>
+ <p>{{ form.as_p }}</p>
+<h3>Interests</h3>
+<p>Please enter three interests and hobbies not strictly academic related.</p>
+ <p>{{ form2.as_p }}</p>
 
       
   </form>

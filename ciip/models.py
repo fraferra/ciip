@@ -31,15 +31,21 @@ class UserProfile(models.Model):
     GENDER= (('male', 'male'),('female','female'),)
     gender=models.CharField(max_length=6, choices=GENDER, default='male', null=True)
     
+    PASSPORT= (
+         ('Yes', 'Yes'),
+         ('No','No'),
+        )
+
+    passport=models.CharField(max_length=3, choices=PASSPORT, default='Yes',null=True)
     birth_date_day=models.CharField(max_length=2, null=True)
     birth_date_month=models.CharField(max_length=2,null=True)
     birth_date_year=models.CharField(max_length=4,null=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name= models.CharField(max_length = 20, null=True)
     email = models.EmailField(null=True)
-    phone=models.CharField(max_length=15, null=True)
+    phone=models.CharField(max_length=20, null=True, help_text="example: +44 7403 123456 ")
     #phone = models.DecimalField(max_digits=15, decimal_places=0, null=True)
-    address_line1= models.CharField(max_length=60, null=True)
+    address_line1= models.CharField(max_length=100, null=True)
     address_line2=models.CharField(max_length=60, null=True)
     city=models.CharField(max_length=60, null=True)
     zip_code= models.CharField(max_length=20, null=True)
@@ -304,15 +310,15 @@ class UserProfile(models.Model):
 
     UNIVERSITY_CHOICES = (
         ('UCL', 'UCL'),
-        ('Kent University', 'Kent University'),
+        ('Kent', 'Kent'),
         ('EPFL', 'EPFL'),
-        ('Keio University','Keio University'),
-        ('MTUCI', 'MTUCI'),
+        ('Keio','Keio'),
+        ('ZJU', 'ZJU'),
         ('BMSTU','BMSTU'),
-        ('SNU', 'SNU'),
-        ('KAIST', 'KAIST'),
-        ('Tsinghua University', 'Tsinghua University'),
-        ('SJTU', 'SJTU'),
+        ('CTU', 'CTU'),
+        ('Tsinghua', 'Tsinghua'),
+        ('UNSW', 'UNSW'),
+        ('Ottawa','Ottawa'),
     )
     university = models.CharField(max_length=20,
                                       choices=UNIVERSITY_CHOICES,
@@ -323,6 +329,29 @@ class UserProfile(models.Model):
     degree=models.CharField(max_length=60, null=True)
     average=models.CharField(max_length=2, null=True)
     #average=models.DecimalField(max_digits=2, decimal_places=0, null=True)
+
+    SKILL_LEVEL=(
+      ('Advanced','Advanced'),
+      ('Intermediate','Intermediate'),
+      ('Beginner','Beginner'),
+      ('None','None'),
+
+    )
+    skill_1=models.CharField(max_length=60, null=True)
+    skill_level_1=models.CharField(max_length=30,
+                                       choices=SKILL_LEVEL,
+                                       default='None', null=True)
+    skill_2=models.CharField(max_length=60, null=True)
+    skill_level_2=models.CharField(max_length=30,
+                                       choices=SKILL_LEVEL,
+                                       default='None', null=True)
+    skill_3=models.CharField(max_length=60, null=True)
+    skill_level_3=models.CharField(max_length=30,
+                                       choices=SKILL_LEVEL,
+                                       default='None', null=True)
+    interest_1=models.CharField(max_length=60, null=True)
+    interest_2=models.CharField(max_length=60, null=True)
+    interest_3=models.CharField(max_length=60, null=True)
 
 
 

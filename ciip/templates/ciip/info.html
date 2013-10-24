@@ -259,7 +259,8 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-   
+       <link rel="shortcut icon" href="/static/img/favicon.ico" >
+
   </head>
 
   <body>
@@ -283,16 +284,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/ciip/info/">Cisco International Internship Program</a>
+       <a class="brand" href="/ciip/info/">CIIP Home</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
-              <li><a href="/ciip/home/">Home</a></li>
+              <li><a href="/ciip/home/">My Account</a></li>
               <li><a href="/ciip/send_email/">Contact Us</a></li>
-               <li><a href="/ciip/faq/">FAQ</a></li>
+              <li><a href="/ciip/faq/">FAQ</a></li>
+
             </ul>
           </div><!--/.nav-collapse --></form>
         </div>
@@ -353,7 +355,7 @@
       <div class="row">
         <div class="span4">
           <img class="img-circle" src="/static/img/140-ucl.jpg">
-          <h2>14 Universities</h2>
+          <h2>10 Universities</h2>
           <p>Selected universities can take part in this program. The sinergy created between the universities and Cisco allows creation of value in both research and opportunities, for the institution, the students and Cisco. </p>
          <p><a class="btn" href="#university">View details &raquo;</a></p>
         </div><!-- /.span4 -->
@@ -408,13 +410,14 @@
 <ol>
 <li>UCL, UK</li>
 <li>University of Kent, UK</li>
-<li>MTUCI - Moscow Technical University of Communications & Informatics , Russia</li>
-<li>BMSTU - Bauman Moscow State Technical University , Russia</li>
+<li>BMSTU, Russia</li>
+<li>EPFL, Switzerland</li>
 <li>Keio University, Japan</li>
-<li>SNU – Seoul National University, South Korea</li>
-<li>KAIST – Korea Advanced Institute of Science & Technology, South Korea</li>
-<li>Tsinghua University , China</li>
-<li>SJTU – Shanghai Jiao Tong University  , China</li>
+<li>CTU, Czech Republic</li>
+<li>UNSW, Australia</li>
+<li>Tsinghua University, China</li>
+<li>ZJU, China</li>
+<li>University of Ottawa, Canada</li>
 
 </ol> </p>
       </div>

@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; CIIP</title>
+    <title>CIIP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -50,8 +50,7 @@
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
-       <link rel="shortcut icon" href="/static/img/favicon.ico" >
+    <link rel="shortcut icon" href="/static/img/favicon.ico" >
 
   </head>
 
@@ -88,18 +87,38 @@
 <br>
    <br>
 
- <form class="form-signin" action="" method="post">{% csrf_token %}
- <h2 class="form-signin-heading">Please sign up</h2>
- <b>The email address must be your university email address</b>      
-{{ form.as_p }}
+ <form class="form-signin" method="post">{% csrf_token %}
+ <h2 class="form-signin-heading">Alternative Sign Up</h2>
+ <b>The following informations will be sent to the CIIP team and notified to your university.</b> 
+ <p><strong>We strongly suggest to apply through the conventional sign up. Alternative sign up must be used only if a university email is not provided by default by one of the university in the <a href="/ciip/info#university">list</a>.</strong></p> 
+<br><br>
+University:<br>
+<input list="university" name= "university" value="{{university}}">
 
-<div>
- <br> 
-      <button class="btn btn-large btn-primary" type="submit">Create account</button>
-    
-</div>
+<datalist id="university">
+  <option value="UCL">
+  <option value="EPFL">
+  <option value="Kent">
+  <option value="Ottawa">
+  <option value="Keio">
+    <option value="CTU">
+      <option value="BMSTU">
+        <option value="ZJU">
+          <option value="Tsinghua">
+            
+</datalist> 
+
+
+<br>
+<br>
+First name: <input type="text" name="first_name" value="{{first_name}}"><br>
+Last name: <input type="text" name="last_name" value="{{last_name}}"><br>
+Email: <br><input type="email" name="email" value="{{email}}"><br>
+
+
+  <center><input class="btn btn-large btn-primary" type="submit" onClick="myFunction()" value="Send request"></center>
   </form>
-   <center><a href="/ciip/alternative_sign_up/">Your university is in the list but you do not have a university email?</a> </center>
+
 <br><br>
       <footer>
         
@@ -112,6 +131,12 @@
         $(document).ready(function () {  
             $('.dropdown-toggle').dropdown();  
         });  
-   </script>  
+   </script>
+             <script>
+function myFunction()
+{
+alert("Message sent! The CIIP team will contact you soon, please wait at least one week before being contact back.");
+}
+</script>  
   </body>
 </html>

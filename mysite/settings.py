@@ -23,7 +23,7 @@ DATABASES = {
     }
 }
 
-AWS_STORAGE_BUCKET_NAME='ciip.media'
+AWS_STORAGE_BUCKET_NAME='ciip.dev.media'
 
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 

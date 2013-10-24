@@ -25,5 +25,8 @@ urlpatterns = patterns('',
     url(r'^info/$', views.info, name='info'),
     url(r'^faq/$', views.faq, name='faq'),
     url(r'^contact_us/$', views.contact_us, name='contact_us'),
+    url(r'^skill_interest/$', views.skill_interest, name='skill_interest'),
+    url(r'^edit_skill_interest/$', views.edit_skill_interest, name='edit_skill_interest'),
+    url(r'^alternative_sign_up/$', views.alternative_sign_up, name='alternative_sign_up'),
 )
 

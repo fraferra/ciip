@@ -35,11 +35,8 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+       <link rel="shortcut icon" href="/static/img/favicon.ico" >
+
   </head>
 
   <body>
@@ -56,14 +53,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/ciip/info/">Cisco International Internship Program</a>
+          <a class="brand" href="/ciip/info/">CIIP Home</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
-              <li><a href="/ciip/home/">Home</a></li>
+              <li><a href="/ciip/home/">My Account</a></li>
               <li><a href="/ciip/send_email/">Contact Us</a></li>
               <li><a href="/ciip/faq/">FAQ</a></li>
 
@@ -86,6 +83,7 @@
               <li class="nav-header">User Info</li>
               <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
               <li><a href="/ciip/academic_info/">Academic Info</a></li>
+              <li><a href="/ciip/skill_interest/">Skills & Interests</a></li>
               <li><a href="/ciip/motivational_questions/">Motivational Questions</a></li>
               <li><a href="/ciip/upload_file/">CV</a></li>
               <li><a href="/ciip/upload_image/">Image</a></li>
@@ -105,9 +103,13 @@
             <div class="span4">
               
  <form action="" method="get">{% csrf_token %}
- 
- <p>Describe a situation outside your academic activities in which you pursed your interestes and took initiative in a team. Describe which role you took within the team and how you contributed to the success of the team: {{question_1}}</p>
- <p>Cisco is a company based on collaboration and communication between its workers. It is a fast changing environment in which people have to adapt quickly. Describe, using examples from previous experiences, how you would fit in the company's culture: {{question_2}}</p>
+ <b>Question 1</b>
+ <p>Describe a situation outside your academic activities in which you pursed your interestes and took initiative in a team. Describe which role you took within the team and how you contributed to the success of the team: </p> 
+ <p>{{question_1}}</p>
+ <br>
+ <b>Question 2</b>
+ <p>Cisco is a company based on collaboration and communication between its workers. It is a fast changing environment in which people have to adapt quickly. Describe, using examples from previous experiences, how you would fit in the company's culture:</p>
+ <p> {{question_2}}</p>
 
 
       

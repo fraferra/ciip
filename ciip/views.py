@@ -1,9 +1,10 @@
 # Create your views here.
 import smtplib
+import os
 import re
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm, SkillForm, InterestForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -24,7 +25,7 @@ def signup(request):
             email=request.POST['email']
             if checkemail(email):
                 new_user = form.save() 
-                return HttpResponseRedirect('/ciip/home/')
+                return HttpResponseRedirect('/ciip/login/')
             else:
                 return HttpResponseRedirect('/ciip/notactive/')        
     else:
@@ -105,6 +106,7 @@ def profile_contact_info(request):
             last_name = profile.last_name
             email= profile.email
             gender=profile.gender
+            passport=profile.passport
             #birth_date_day=profile.birth_date_day
             #birth_date_month=profile.birth_date_month
             #birth_date_year=profile.birth_date_year
@@ -117,7 +119,7 @@ def profile_contact_info(request):
             #passport_number=profile.passport_number
 
 
-            contact_info={'user_name':user_name, 'first_name':first_name,'last_name':last_name,
+            contact_info={'user_name':user_name,'passport':passport ,'first_name':first_name,'last_name':last_name,
             'email':email,#'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
             'gender':gender, 'address_line1':address_line1,
             'address_line2':address_line2, 'phone':phone,
@@ -184,7 +186,7 @@ def send_email(request):
            from_email = email
            if subject and message and from_email:
                try:
-                   send_mail(subject, message, from_email , ['fraferra@cisco.com'])
+                   send_mail(subject, message, from_email , ['ciip.team.1@gmail.com'])
                except BadHeaderError:
                    return HttpResponse('Invalid header found.')
                return HttpResponseRedirect('/ciip/home/')
@@ -298,6 +300,57 @@ def upload_image(request):
     return render(request, 'ciip/upload_image.html', {'form': form,'user_name':user_name})
 
 
+def edit_skill_interest(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+
+    else:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        if request.method == 'POST':
+
+            form = SkillForm(request.POST or None, instance=request.user.get_profile())
+            form2= InterestForm(request.POST or None, instance=request.user.get_profile())
+            if form.is_valid() and form2.is_valid:
+                new_user = form.save()
+                new_user2 = form2.save()
+                return HttpResponseRedirect('/ciip/skill_interest/')
+        else:
+            form = SkillForm(instance = request.user.get_profile())
+            form2 = InterestForm(instance= request.user.get_profile())
+    return render( request, 'ciip/edit_skill_interest.html', {
+        'form': form,'form2': form2, 'user_name':user_name,
+    })
+
+
+
+def skill_interest(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else:    
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username   
+        if request.method == 'GET':
+            
+            profile = UserProfile.objects.get(pk=current_pk)
+            skill_1= profile.skill_1
+            skill_2= profile.skill_2
+            skill_3= profile.skill_3
+            skill_level_1=profile.skill_level_1
+            skill_level_2=profile.skill_level_2
+            skill_level_3=profile.skill_level_3
+            interest_1=profile.interest_1
+            interest_2=profile.interest_2
+            interest_3=profile.interest_3
+
+            skill_interest={'skill_1':skill_1, 'skill_level_1':skill_level_1, 'skill_2':skill_2,
+            'skill_level_2':skill_level_2,'skill_3':skill_3, 'skill_level_3':skill_level_3, 
+            'interest_1':interest_1,'interest_2':interest_2,'interest_3':interest_3}
+
+
+    return render(request, 'ciip/skill_interest.html', skill_interest)
+
+
 
 
 def info(request):
@@ -305,6 +358,37 @@ def info(request):
 
 def faq(request):
     return render(request,'ciip/faq.html')
+
+def alternative_sign_up(request):
+    university = ''
+    first_name = ''
+    last_name = ''
+    email=''
+    if request.method=='POST':
+           university = request.POST['university']
+           first_name = request.POST['first_name']
+           last_name = request.POST['last_name']
+           email=request.POST['email']
+           from_email = email
+           if university and first_name and last_name and from_email:
+               try:
+                   message = first_name + ' '+ last_name + ' from '+ university+' applied through the alternative sign up. Please notify '+university+'. '+first_name+"'s email is "+email
+                   send_mail(last_name+' '+ first_name, message, from_email , ['ciip.team.1@gmail.com'])
+                   student_message='Dear '+first_name+', your request has been sent. Please wait until further notice from the CIIP Team. The process might take up to one week. Thank you!'
+                   to_email=[email]
+                   send_mail('message sent!', student_message, 'ciip.team.1@gmail.com', to_email)
+               except BadHeaderError:
+                   return HttpResponse('Invalid header found.')
+               return HttpResponseRedirect('/ciip/info/')
+       #else:
+        # In reality we'd use a form class
+        # to get proper validation errors.
+         #  return HttpResponse('Make sure all fields are entered and valid.')
+    return render(request,'/ciip/alternative_sign_up.html', {'university':university,
+                                                    'first_name':first_name,
+                                                    'last_name':last_name, 
+                                                    'email':email,
+                                                    })
 
 
 def contact_us(request):
@@ -323,13 +407,14 @@ def forgot_password(request):
 
 def checkemail(address):
     uni_list=['ucl.ac.uk','kent.ac.uk',
-               'zju.edu.cn','sjtu.edu.cn',
+               'tsinghua.edu.cn',
+               'zju.edu.cn','sfc.wide.ad.jp',
+               'sfc.keio.ac.jp','unsw.edu.au',
                'student.bmstu.ru','fel.cvut.cz',
-               'a2.keio.jp','a5.keio.jp',
-               'ee.ucl.ac.uk','kaist.ac.kr',
+               'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
+               'ee.ucl.ac.uk', 'uottawa.ca',
                'epfl.ch','zju.edu.cn']
     match = re.search(r'([\w.-]+)@([\w.-]+)', address)
     for uni in uni_list:
         if match.group(2) == uni:
             return True
-

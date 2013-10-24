@@ -73,6 +73,7 @@ class UserProfileForm(ModelForm):
         fields = ('gender','first_name',
             'last_name',#'birth_date_day','birth_date_month',
             #'birth_date_year',
+            'passport',
              'email',
             'phone','address_line1',
             'address_line2','city',
@@ -112,7 +113,16 @@ class AcademicForm(ModelForm):
   #  file  = forms.FileField()
 
 
+class SkillForm(ModelForm):
+    class Meta:
+        model=UserProfile
+        fields=('skill_1','skill_level_1','skill_2',
+            'skill_level_2','skill_3','skill_level_3',)
 
+class InterestForm(ModelForm):
+    class Meta:
+        model=UserProfile
+        fields=('interest_1','interest_2','interest_3')
 
 class SignUpForm(UserCreationForm):
     """ Require email address when a user signs up """
