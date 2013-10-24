@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CIIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/ciip/bootstrap.css" rel="stylesheet">
+    <link href="/static/ciip/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin-top: 20px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        width: auto;
+        height: 500px;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+      .carousel .container {
+
+      }
+      .carousel .item {
+        height: 300px;
+      }
+      .carousel img {
+        height: 300px;
+      }
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+   
+  </head>
+
+  <body>
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+ <div class="container" >
+ 
+    <div class="row">
+    <div class="span12">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+      
+          <a class="brand" href = "http://www.cisco.com"><img src="/static/img/logocopy.png" width="90px" height="50"></a>
+          <br>
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <a class="brand" href="/ciip/info/">CIIP Home</a>
+          <form  method = "get">{% csrf_token %}
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
+              <li><a href="/ciip/faq/">FAQ</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse --></form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+   <div class="container" >
+
+ <hr class="featurette-divider">
+ <div class="featurette">
+<center><h2 class="featurette-heading">Intern profiles</h2>
+
+ </div>
+
+      <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+    <div id="program" class="featurette">      
+    <h2>Shijie Jin</h2>
+    <img src="/static/img/shijie.jpg" align="right" width="400px" height="800px"></img><p class="lead"><strong>University & Country: Zhejiang University, China
+    <br>Projects: Inventory Parsing and Profiling.</p>
+    <p class="lead" style="color:#0096D6;">What do you like most about Cisco work culture?</p>
+    <p class="lead">
+    I like the remote working environment most, employees don’t need to sit together physically. Several Cisco products like Webex and Jabber Video make people work together from different locations, and such technologies also make working from home a reality.</p>
+    <p class="lead" style="color:#0096D6;">What has been your best experience so far?</p>
+    <p class="lead">The best experience I’ve been through was a trip to San Francisco. The Golden Gate Bridge is great, and driving up and down the super steep Lombard street was also very exciting.</p>
+    <p class="lead" style="color:#0096D6;">What work related events have you attended?</p>
+    <p class="lead">I’ve attended the Yahoo hackathon and developed a Chrome extension with my teammates. I was also very lucky to have a short conversation with Yahoo CEO, Marissa Mayer (see picture). I told her that Yahoo should have a International Internship Program as well, and she said she will consider it.</p>
+    <p class="lead" style="color:#0096D6;">How is American culture different to your home country?</p>
+    <p class="lead">American people are more open minded and like to share their feelings with others. If you want to speak to someone, just say it, even if he or she is your manager.</p>
+    <p class="lead" style="color:#0096D6;">7. What were some of the first things that shocked you when coming to America?</p>
+    <p class="lead">The weather here is amazing, since it was extremely hot in China when I left. The Woods Apartment was also beyond my expectations, with pools, spas, gyms and other awesome facilities. Living there is really enjoying. Cisco Campus is so large, and there is even a street called Cisco Way! 
+
+    </p>
+      </div>
+
+    <hr class="featurette-divider">
+    <div id="program" class="featurette">      
+    <h2>Amna Asghar</h2>
+    <img src="/static/img/amna.jpg" align="right" width="400px" height="800px"></img><p class="lead"><strong>University & Country: University College London – London
+    <br>Project: Cisco.com</p>
+    <p class="lead" style="color:#0096D6;">What work related events did you attend and what did you enjoy most about it/them?</p>
+    <p class="lead">
+    Being in Silicon Valley gives you the chance to attend events, which are not only knowledgeable but also provide a great opportunity to network. During my time at Cisco, I attended conferences held by my team, which had guest speakers from various different companies, along with attending team outings. One of the events that I enjoyed the most was the chance visit to Stanford’s Design School with my team to brainstorm various ideas to improve the processes and procedures in my current team. It was a very creative and thought-provoking experience, which made us think outside the box. </p>
+    <p class="lead" style="color:#0096D6;">What were some of the first things that shocked you when coming to America?</p>
+    <p class="lead">The working culture in the US is quite different from the UK, this was something new to me but I was pleasantly surprised to experience it. Also driving on the right hand side was something different initially but as time passed by I became used to it. </p>
+    <p class="lead" style="color:#0096D6;">What was the most difficult part of coming to US?</p>
+    <p class="lead">Leaving behind family and friends for a year, along with taking a break from studies was something I hadn’t done before. It was initially difficult but it did not take me long at all to adjust to the new work-life experience and start making the most out of it.</p>
+    <p class="lead" style="color:#0096D6;">Any recommendations and advice for current and future CIIP interns?</p>
+    <p class="lead">CIIP is a great opportunity and the future interns should make the most out of it by learning new things at work, experiencing a new culture and exploring the Bay Area. It gives tremendous opportunities to network, acquire new knowledge and broaden current skills set. 
+    </p>
+
+      </div>
+
+    <hr class="featurette-divider">
+    <div id="program" class="featurette">      
+    <h2>Zach Antonas</h2>
+    <img src="/static/img/zach.jpg" align="right"></img><p class="lead"><strong>The University of Kent, United Kingdom
+    <br>Projects: Cloud storage. Storage monitoring, management and alerting. Storage automation. HackIT (hackathon events).</p>
+    <p class="lead" style="color:#0096D6;">Reflecting back on your internship in the US, what was your best experience while in the States?</p>
+    <p class="lead">
+    Honestly I can’t really pick out “my best experience”. Everything about my year was incredible.My work was enjoyable, my colleagues were great, the social life was amazing.</p>
+    <p class="lead" style="color:#0096D6;">How did your internship affect the way you work, live, learn and play?</p>
+    <p class="lead">This is an easy question. The CIIP definitely enhanced the way I work, because I learnt so much from so many intelligent experts. It’s also changed the way I live because it taught me to look at the world from a different “global” perspective. Finally… when you work hard, you have to make sure you have a good work/life balance to make the most of the experience.</p>
+    <p class="lead" style="color:#0096D6;">Do you believe that CIIP was a life-changing experience? If so, in what way?</p>
+    <p class="lead">I have definitely grown both as a professional and as a person. It’s not something you can really explain, it has to be lived. I strongly suggest you apply and find out for yourself.</p>
+    <p class="lead" style="color:#0096D6;">What are you working on now that you are a full-time employee for Cisco UK?</p>
+    <p class="lead">I am working on a few projects currently. I am developing a monitoring and alerting tool for an open source cloud storage system (Ceph) which is in production within the CITEIS stack. I am also working on storage automation for NAS and SAN within CITEIS. Finally, I work alongside Sergios and Phil on organizing hackathon events within cisco and across different universities in the UK.</p>
+    <p class="lead" style="color:#0096D6;">Any recommendations and advice for current and future CIIP interns?</p>
+    <p class="lead">Put 100% in and you will gain so much from it – both personally and professionally. Work hard and don’t be afraid to say yes to things that you are unsure of. Make use of your time outside of work too, California is a great place to explore and (within silicon valley especially) meet leaders in technology.
+    </p>
+
+      </div>
+ 
+          <hr class="featurette-divider">
+
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; Cisco 2013 </p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/transition.js"></script>
+    <script src="/static/js/alert.js"></script>
+    <script src="/static/js/modal.js"></script>
+    <script src="/static/js/dropdown.js"></script>
+    <script src="/static/js/scrollspy.js"></script>
+    <script src="/static/js/tab.js"></script>
+    <script src="/static/js/tooltip.js"></script>
+    <script src="/static/js/popover.js"></script>
+    <script src="/static/js/button.js"></script>
+    <script src="/static/js/collapse.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="/static/assets/js/holder.js"></script>
+  </body>
+</html>
+

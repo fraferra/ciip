@@ -58,7 +58,8 @@ def logout(request):
     #eturn render(request, 'ciip/login.html')
     return HttpResponseRedirect('/ciip/login/')
 
-
+def intern_profiles(request):
+    return render(request, 'ciip/intern_profiles.html')
 
 def notactive(request):
     if request.method =='POST':

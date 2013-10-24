@@ -28,5 +28,6 @@ urlpatterns = patterns('',
     url(r'^skill_interest/$', views.skill_interest, name='skill_interest'),
     url(r'^edit_skill_interest/$', views.edit_skill_interest, name='edit_skill_interest'),
     url(r'^alternative_sign_up/$', views.alternative_sign_up, name='alternative_sign_up'),
+    url(r'^intern_profiles/$', views.intern_profiles, name='intern_profiles'),
 )
 
