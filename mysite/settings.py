@@ -1,8 +1,16 @@
 # Django settings for mysite project.
+#import os
+#import os
+#PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+#STATIC_ROOT = 'staticfiles'
+#STATIC_URL = '/static/'
+
+#STATICFILES_DIRS = (
+ #   os.path.join(PROJECT_PATH, 'static'),
+#)
 
 
-
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -23,7 +31,7 @@ DATABASES = {
     }
 }
 
-AWS_STORAGE_BUCKET_NAME='ciip.media'
+AWS_STORAGE_BUCKET_NAME='ciip.dev.media'
 
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 
@@ -48,6 +56,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
