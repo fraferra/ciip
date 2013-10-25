@@ -13,6 +13,19 @@ class UserProfile(models.Model):
     user=models.ForeignKey(User, unique=True)
     #user=models.CharField(max_length=20, null=True)
 
+
+    UNIVERSITY_ENDORSEMENT = (
+          ('Approved','Approved'),
+          ('Not Approved','Not Approved'),
+          ('On Hold', 'On Hold'),
+
+
+        )
+
+    university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, default='On Hold', null=True)
+
+
+
     STATUS_UPDATES = (
        ('In consideration', 'In consideration'),
        ('First Interview Scheduled','First Interview Scheduled'),
