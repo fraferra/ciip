@@ -174,7 +174,8 @@ def upload_file(request):
 
 
 def send_email(request):
-    subject=message=from_email=''
+    return render(request,'ciip/contact_us.html')
+    '''subject=message=from_email=''
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/contact_us/')
     else: 
@@ -198,7 +199,7 @@ def send_email(request):
     return render(request,'/ciip/send_email.html', {'subject':subject,
                                                     'user_name':user_name, 
                                                     'message':message,
-                                                    })
+                                                    })'''
 
 
 
