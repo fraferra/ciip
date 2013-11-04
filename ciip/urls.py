@@ -6,7 +6,7 @@ from ciip import views
 
 urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='info/', permanent=False), name='index'),
-    url(r'send_email/^$', RedirectView.as_view(url='contact_us/', permanent=False), name='contact_us'),
+    url(r'send_email/^$', RedirectView.as_view(url='contact_us/', permanent=False), name='index'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', views.login ,name='login'),
     url(r'^notactive/$', views.notactive, name='notactive'),
