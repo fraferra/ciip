@@ -352,7 +352,8 @@ def skill_interest(request):
     return render(request, 'ciip/skill_interest.html', skill_interest)
 
 
-
+def video(request):
+    return render(request,'ciip/video.html')
 
 def info(request):
     return render(request,'ciip/info.html')

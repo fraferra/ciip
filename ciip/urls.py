@@ -6,6 +6,7 @@ from ciip import views
 
 urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url='info/', permanent=False), name='index'),
+    url(r'send_email^$', RedirectView.as_view(url='contact_us/', permanent=False), name='contact_us'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', views.login ,name='login'),
     url(r'^notactive/$', views.notactive, name='notactive'),
@@ -29,5 +30,7 @@ urlpatterns = patterns('',
     url(r'^edit_skill_interest/$', views.edit_skill_interest, name='edit_skill_interest'),
     url(r'^alternative_sign_up/$', views.alternative_sign_up, name='alternative_sign_up'),
     url(r'^intern_profiles/$', views.intern_profiles, name='intern_profiles'),
+    url(r'^video/$', views.video, name='video'),
+
 )
 
