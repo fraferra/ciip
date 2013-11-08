@@ -18,6 +18,11 @@ from django.template import RequestContext
 
 
 def signup(request):
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         
@@ -32,11 +37,16 @@ def signup(request):
         form = SignUpForm()
         
     return render( request, 'ciip/signup.html', {
-        'form': form, 
+        'form': form, 'user_name':user_name 
     })
 
 
 def login(request):
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
     username=password=''
     if request.method == 'POST':
         username = request.POST['username']
@@ -50,7 +60,7 @@ def login(request):
                 return HttpResponseRedirect('ciip/notactive/')
         else:
             return HttpResponseRedirect('/ciip/notregistered/')
-    return render(request, 'ciip/login.html', {'username':username, 'password':password})
+    return render(request, 'ciip/login.html', {'username':username, 'password':password,'user_name':user_name})
 
 
 def logout(request):
@@ -59,17 +69,32 @@ def logout(request):
     return HttpResponseRedirect('/ciip/login/')
 
 def intern_profiles(request):
-    return render(request, 'ciip/intern_profiles.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request, 'ciip/intern_profiles.html',{'user_name':user_name})
 
 def notactive(request):
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
     if request.method =='POST':
         return HttpResponseRedirect('ciip/eligibility/')
-    return render(request, 'ciip/notactive.html')
+    return render(request, 'ciip/notactive.html',{'user_name':user_name})
 
 def notregistered(request):
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
     if request.method =='POST':
         return HttpResponseRedirect('/ciip/eligibility/')
-    return render(request, 'ciip/notregistered.html')
+    return render(request, 'ciip/notregistered.html','user_name':user_name)
 
 def edit_contact_info(request):
     if not request.user.is_authenticated():
@@ -151,7 +176,12 @@ def home(request):
 
 
 def eligibility(request):
-    return render(request,'ciip/eligibility.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request,'ciip/eligibility.html',{'user_name':user_name})
 
 def upload_file(request):
     if not request.user.is_authenticated():
@@ -354,13 +384,28 @@ def skill_interest(request):
 
 
 def video(request):
-    return render(request,'ciip/video.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request,'ciip/video.html', {'user_name':user_name})
 
 def info(request):
-    return render(request,'ciip/info.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request,'ciip/info.html', {'user_name':user_name})
 
 def faq(request):
-    return render(request,'ciip/faq.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request,'ciip/faq.html',{'user_name':user_name})
 
 def alternative_sign_up(request):
     university = ''
@@ -395,7 +440,12 @@ def alternative_sign_up(request):
 
 
 def contact_us(request):
-    return render(request,'ciip/contact_us.html')
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request,'ciip/contact_us.html',{'user_name':user_name})
 
 
 def forgot_password(request):
