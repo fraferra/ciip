@@ -2,6 +2,8 @@
 import smtplib
 import os
 import re
+from django.core.exceptions import ObjectDoesNotExist
+
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
 from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm, SkillForm, InterestForm
