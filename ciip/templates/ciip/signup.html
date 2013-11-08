@@ -72,11 +72,11 @@
       <a class="brand" href="/ciip/info/">CIIP Home</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
-                  <p class="navbar-text pull-right">
+             <p class="navbar-text pull-right">
             {% if user_name == 'none' %}
-            <a href="/ciip/login/"><font color='#FFFFFF'>Login</font></a>/<a href="/ciip/eligibility/"><font color='#FFFFFF'>Sign up</form></a>
+            <a href="/ciip/login/"><font color='#FFFFFF'>Login</font></a>/<a href="/ciip/eligibility/"><font color='#FFFFFF'>Sign up</font></a>
 {% else %}
-    Logged in as {{user_name}} (<a href="/ciip/login/"><font color='#FFFFFF'>Logout</form></a>)
+    Logged in as {{user_name}} (<a href="/ciip/login/"><font color='#FFFFFF'>Logout</font></a>)
 {% endif %}
             <!-- Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a> -->
             </p>
