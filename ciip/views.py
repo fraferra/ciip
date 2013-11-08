@@ -94,7 +94,7 @@ def notregistered(request):
         user_name='none'
     if request.method =='POST':
         return HttpResponseRedirect('/ciip/eligibility/')
-    return render(request, 'ciip/notregistered.html','user_name':user_name)
+    return render(request, 'ciip/notregistered.html',{'user_name':user_name})
 
 def edit_contact_info(request):
     if not request.user.is_authenticated():
