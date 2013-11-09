@@ -493,7 +493,7 @@ def alternative_sign_up(request):
            if university and first_name and last_name and from_email:
                try:
                    message = first_name + ' '+ last_name + ' from '+ university+' applied through the alternative sign up. Please notify '+university+'. '+first_name+"'s email is "+email
-                   send_mail(last_name+' '+ first_name, message, from_email , ['ciip-office@cisco.com'])
+                   send_mail(last_name+' '+ first_name, message, from_email , ['francesco.ferrari.11@ucl.ac.uk'])
                    student_message='Dear '+first_name+', your request has been sent. Please wait until further notice from the CIIP Team. The process might take up to one week. Thank you!'
                    to_email=[email]
                    send_mail('message sent!', student_message, 'ciip-office@cisco.com', to_email)
