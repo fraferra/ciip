@@ -156,7 +156,7 @@ def profile_contact_info(request):
 
 
             contact_info={'user_name':user_name,'passport':passport ,'first_name':first_name,'last_name':last_name,
-            'email':email,'birth_date':birth_date,#'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
+            'email':email,#'birth_date':birth_date,'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
             'gender':gender, 'address_line1':address_line1,
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
