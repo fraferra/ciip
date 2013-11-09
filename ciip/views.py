@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm, SkillForm, InterestForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm,  SkillForm, InterestForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -144,12 +144,12 @@ def profile_contact_info(request):
             city=profile.city
             zip_code=profile.zip_code
             country=profile.country
-            passport_number=profile.passport_number
+            #passport_number=profile.passport_number
             full_name_emergency=profile.full_name_emergency
-            birth_date=profile.birth_date
-            date_issued=profile.date_issued
-            country_issued=profile.country_issued
-            date_expiration=profile.date_expiration
+            #birth_date=profile.birth_date
+            #date_issued=profile.date_issued
+            #country_issued=profile.country_issued
+            #date_expiration=profile.date_expiration
             email_emergency=profile.email_emergency
             phone_emergency=profile.phone_emergency
             relationship=profile.relationship
@@ -357,8 +357,8 @@ def motivational_questions(request):
             profile = UserProfile.objects.get(pk=current_pk)
             question_1= profile.question_1
             question_2 = profile.question_2
-            
-            contact_info={'user_name':user_name,'question_1':question_1,'question_2':question_2}
+            question_3 = profile.question_3
+            contact_info={'user_name':user_name,'question_1':question_1,'question_2':question_2,'question_3':question_3}
     return render(request, 'ciip/motivational_questions.html', contact_info)
 
 
@@ -386,7 +386,7 @@ def edit_motivational_questions(request):
 
 
 
-
+'''
 def upload_image(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
@@ -402,7 +402,7 @@ def upload_image(request):
        else:
            form = ImageForm(instance=request.user.get_profile())
     return render(request, 'ciip/upload_image.html', {'form': form,'user_name':user_name})
-
+'''
 
 def edit_skill_interest(request):
     if not request.user.is_authenticated():

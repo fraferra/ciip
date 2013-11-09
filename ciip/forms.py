@@ -80,16 +80,13 @@ class UserProfileForm(ModelForm):
         model = UserProfile
         fields = ('gender','first_name',
             'last_name',#'birth_date_day','birth_date_month',
-            'birth_date',
+            #'birth_date',
             'passport',
              'email',
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
-           'passport_number',
-           'date_issued',
-           'date_expiration',
-           'country_issued',
+         
            'full_name_emergency','relationship','phone_emergency','email_emergency'
            )
 
@@ -103,17 +100,17 @@ class UploadFileForm(ModelForm):
         model = UserProfile
         fields =('file_name', 'file_cv')
 
-
+'''
 class ImageForm(ModelForm):
     class Meta:
         model=UserProfile
         fields= ('image',)
-
+'''
 
 class MotivationalQuestionForm(ModelForm):
     class Meta:
         model=UserProfile
-        fields=('question_1', 'question_2')
+        fields=('question_1', 'question_2','question_3')
 
 class AcademicForm(ModelForm):
     class Meta:
