@@ -271,6 +271,14 @@
   </head>
 
   <body>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="overlayDiv" id='loading'>
 
@@ -449,6 +457,7 @@
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
+        <center><div class="fb-like" data-href="https://www.facebook.com/pages/CIIP-Cisco-International-Internship-Program/336892583099014" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></center>
         <p>&copy; Cisco 2013 </p>
       </footer>
 
