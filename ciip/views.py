@@ -493,10 +493,10 @@ def alternative_sign_up(request):
            if university and first_name and last_name and from_email:
                try:
                    message = first_name + ' '+ last_name + ' from '+ university+' applied through the alternative sign up. Please notify '+university+'. '+first_name+"'s email is "+email
-                   send_mail(last_name+' '+ first_name, message, from_email , ['ciip.team.1@gmail.com'])
+                   send_mail(last_name+' '+ first_name, message, from_email , ['ciip-team@cisco.com'])
                    student_message='Dear '+first_name+', your request has been sent. Please wait until further notice from the CIIP Team. The process might take up to one week. Thank you!'
                    to_email=[email]
-                   send_mail('message sent!', student_message, 'ciip.team.1@gmail.com', to_email)
+                   send_mail('message sent!', student_message, 'ciip-team@cisco.com', to_email)
                except BadHeaderError:
                    return HttpResponse('Invalid header found.')
                return HttpResponseRedirect('/ciip/info/')
