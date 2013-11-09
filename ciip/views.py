@@ -160,9 +160,9 @@ def profile_contact_info(request):
             'gender':gender, 'address_line1':address_line1,
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
-            'country':country, 'passport_number':passport_number,
-            'full_name_emergency':full_name_emergency, 'date_expiration':date_expiration,
-            'date_issued':date_issued, 'country_issued':country_issued,
+            'country':country,# 'passport_number':passport_number,
+            'full_name_emergency':full_name_emergency, #'date_expiration':date_expiration,
+            #'date_issued':date_issued, 'country_issued':country_issued,
             'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
             'relationship':relationship,
             }
