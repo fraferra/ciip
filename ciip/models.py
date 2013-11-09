@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date
 from django import forms
 from django.contrib.auth.models import User,UserManager, AbstractBaseUser, BaseUserManager
 from django.utils import timezone
@@ -12,62 +12,6 @@ class UserProfile(models.Model):
     #user = models.OneToOneField(User)
     user=models.ForeignKey(User, unique=True)
     #user=models.CharField(max_length=20, null=True)
-
-
-    UNIVERSITY_ENDORSEMENT = (
-          ('Approved','Approved'),
-          ('Not Approved','Not Approved'),
-          ('On Hold', 'On Hold'),
-
-
-        )
-
-    university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, default='On Hold', null=True)
-
-
-
-    STATUS_UPDATES = (
-       ('In consideration', 'In consideration'),
-       ('First Interview Scheduled','First Interview Scheduled'),
-       ('First Interview Passed', 'First Interview Passed'),
-       ('Interview with Manager Scheduled', 'Interview with Manager Scheduled'),
-       ('On Hold', 'On Hold'),
-      )
-    status=models.CharField(max_length=100, choices= STATUS_UPDATES, default='In consideration', null=True)
-    
-
-   
-
-    
-    
-
-    GENDER= (('male', 'male'),('female','female'),)
-    gender=models.CharField(max_length=6, choices=GENDER, default='male', null=True)
-    
-    PASSPORT= (
-         ('Yes', 'Yes'),
-         ('No','No'),
-        )
-
-    passport=models.CharField(max_length=3, choices=PASSPORT, default='Yes',null=True)
-    birth_date_day=models.CharField(max_length=2, null=True)
-    birth_date_month=models.CharField(max_length=2,null=True)
-    birth_date_year=models.CharField(max_length=4,null=True)
-    first_name = models.CharField(max_length=20, null=True)
-    last_name= models.CharField(max_length = 20, null=True)
-    email = models.EmailField(null=True)
-    phone=models.CharField(max_length=20, null=True, help_text="example: +44 7403 123456 ")
-    #phone = models.DecimalField(max_digits=15, decimal_places=0, null=True)
-    address_line1= models.CharField(max_length=100, null=True)
-    address_line2=models.CharField(max_length=60, null=True)
-    city=models.CharField(max_length=60, null=True)
-    zip_code= models.CharField(max_length=20, null=True)
-    passport_number=models.CharField(max_length=20, null=True)
-
-  
-
-
-# http://xml.coverpages.org/country3166.html
     COUNTRIES = (
     ('AD', _('Andorra')),
     ('AE', _('United Arab Emirates')),
@@ -311,13 +255,87 @@ class UserProfile(models.Model):
     ('ZZ', _('Unknown or unspecified country')),
 )
 
+    UNIVERSITY_ENDORSEMENT = (
+          ('Approved','Approved'),
+          ('Not Approved','Not Approved'),
+          ('On Hold', 'On Hold'),
+
+
+        )
+
+    university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, default='On Hold', null=True)
+
+
+
+    STATUS_UPDATES = (
+       ('In consideration', 'In consideration'),
+       ('First Interview Scheduled','First Interview Scheduled'),
+       ('First Interview Passed', 'First Interview Passed'),
+       ('Interview with Manager Scheduled', 'Interview with Manager Scheduled'),
+       ('On Hold', 'On Hold'),
+      )
+    status=models.CharField(max_length=100, choices= STATUS_UPDATES, default='In consideration', null=True)
+    
+
+   
+
+    
+    
+
+    GENDER= (('male', 'male'),('female','female'),)
+    gender=models.CharField(max_length=6, choices=GENDER, default='male', null=True)
+   
+    PASSPORT= (
+         ('Yes', 'Yes'),
+         ('No','No'),
+        )
+    good_university=models.CharField(max_length=3, choices=PASSPORT, default='Yes',null=True)
+    passport=models.CharField(max_length=3, choices=PASSPORT, default='Yes',null=True)
+    birth_date_day=models.CharField(max_length=2, null=True)
+    birth_date_month=models.CharField(max_length=2,null=True)
+    birth_date_year=models.CharField(max_length=4,null=True)
+
+    birth_date = models.DateField(_("Date"), default=date.today)
+
+
+    first_name = models.CharField(max_length=20, null=True)
+    last_name= models.CharField(max_length = 20, null=True)
+    email = models.EmailField(null=True)
+    phone=models.CharField(max_length=20, null=True, help_text="example: +44 7403 123456 ")
+    #phone = models.DecimalField(max_digits=15, decimal_places=0, null=True)
+    address_line1= models.CharField(max_length=100, null=True)
+    address_line2=models.CharField(max_length=60, null=True)
+    city=models.CharField(max_length=60, null=True)
+    zip_code= models.CharField(max_length=20, null=True)
+
+    passport_number=models.CharField(max_length=20, null=True)
+    country_issued=models.CharField(max_length=2, choices=COUNTRIES,
+                             default='ZZ', null=True)
+
+    date_issued=models.DateField(_("Date"), default=date.today)
+
+    date_expiration=models.DateField(_("Date"), default=date.today)
+
+# http://xml.coverpages.org/country3166.html
+
+
     country=models.CharField(max_length=2, choices=COUNTRIES,
                              default='ZZ', null=True)
 
     objects=UserManager()
  
 
+    full_name_emergency=models.CharField(max_length=100, null=True)
+    relationship = models.CharField(max_length=60, null=True)
+    phone_emergency=models.CharField(max_length=20, null=True, help_text="example: +44 7403 123456 ")
+    email_emergency = models.EmailField(null=True)
 
+    experience_1=models.TextField(max_length=1000, null=True)
+    experience_2=models.TextField(max_length=1000, null=True)
+    internship_1=models.TextField(max_length=1000, null=True)
+    internship_2=models.TextField(max_length=1000, null=True)
+
+    cover_letter=models.FileField(upload_to='media/%Y/%m/%d')
 
 
 

@@ -54,16 +54,24 @@ class PasswordField(forms.CharField):
 
 
 
+class WorkForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('experience_1','experience_2','internship_1','internship_2')
 
 
 
+class EmergencyForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('full_name_emergency','relationship','phone_emergency','email_emergency')
 
 
 
-
-
-
-
+class CoverForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('cover_letter',)
 
 
 
@@ -72,13 +80,17 @@ class UserProfileForm(ModelForm):
         model = UserProfile
         fields = ('gender','first_name',
             'last_name',#'birth_date_day','birth_date_month',
-            #'birth_date_year',
+            'birth_date',
             'passport',
              'email',
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
-           # 'passport_number'
+           'passport_number',
+           'date_issued',
+           'date_expiration',
+           'country_issued',
+           'full_name_emergency','relationship','phone_emergency','email_emergency'
            )
 
 class StatusUpdateForm(ModelForm):
@@ -106,7 +118,7 @@ class MotivationalQuestionForm(ModelForm):
 class AcademicForm(ModelForm):
     class Meta:
         model=UserProfile
-        fields=('university','year_of_graduation', 'degree','average')
+        fields=('university','year_of_graduation', 'degree','average','good_university')
 
 #class UploadFileForm(forms.Form):
   #  title = forms.CharField(max_length=50)

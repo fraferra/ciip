@@ -31,6 +31,9 @@ urlpatterns = patterns('',
     url(r'^alternative_sign_up/$', views.alternative_sign_up, name='alternative_sign_up'),
     url(r'^intern_profiles/$', views.intern_profiles, name='intern_profiles'),
     url(r'^video/$', views.video, name='video'),
+    url(r'^work_internship/$', views.work_internship, name='work_internship'),
+    url(r'^edit_work_internship/$', views.edit_work_internship, name='edit_work_internship'),
+    url(r'^cover_letter/$', views.cover_letter, name='cover_letter'),
 
 )
 

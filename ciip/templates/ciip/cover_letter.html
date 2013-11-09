@@ -80,7 +80,7 @@
               
               <li><a href="/ciip/logout/">Logout</a></li>
               
-             <li class="nav-header">User Info</li>
+              <li class="nav-header">User Info</li>
               <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
               <li><a href="/ciip/academic_info/">Academic Info</a></li>
               <li><a href="/ciip/work_internship/">Work & Internship Info</a></li>
@@ -98,7 +98,7 @@
              <form  enctype="multipart/form-data" method = "post"  action="">{% csrf_token %}
  
  
-              <h2>Upload your CV</h2>
+              <h2>Upload a cover letter</h2>
               
             <br>
 
@@ -106,8 +106,8 @@
           </div>
           <div class="row-fluid">
         <div class="span4">
-          <b>Please follow the template provided with this link. The CV should not be more than 2 pages long.</b>
-          <p>       <a href="https://s3-us-west-2.amazonaws.com/ciip.media/cv_sample.docx" ><strong>CV sample</strong></a></p>
+          <b>OPTIONAL: uploading a cover letter is optional.</b>
+          
 
  <p>{{ form }}</p> 
 

@@ -371,7 +371,7 @@
       <div class="row">
         <div class="span4">
           <img class="img-circle" src="/static/img/140-ucl.jpg">
-          <h2>10 Universities</h2>
+          <h2>Universities</h2>
           <p>Select universities can take part in this program. The sinergy created between the universities and Cisco allows creation of value in both research and opportunities for the institution, the students and Cisco. </p>
          <p><a class="btn" href="#university">View details &raquo;</a></p>
         </div><!-- /.span4 -->
@@ -383,7 +383,7 @@
         </div><!-- /.span4 -->
         <div class="span4">
           <img class="img-circle" src="/static/img/140-silicon.jpg">
-          <h2>1 unique internship</h2>
+          <h2>A Unique Internship</h2>
           <p>Cisco is a worldwide leader in networking and is shaping the Internet with its technology. Cisco is constantly developing new, innovative products and technologies, and transforming the way that people work, live, learn, and play. This internship is the gateway, you just need to apply.</p>
          <p><a class="btn" href="#program">View details &raquo;</a></p>
         </div><!-- /.span4 -->
@@ -405,7 +405,7 @@
 
       <div id="program" class="featurette">
        
-        <h2 class="featurette-heading">Cisco International Internship Program. <span class="muted">It opens opportunities.</span></h2>
+        <h2 class="featurette-heading">Cisco International Internship Program Opens Opportunities</h2>
         <p class="lead">CIIP is a 12-month internship program which offers top students from select international partner universities an opportunity to come to the USA for a year to gain industry experience as part of their education. Interns work alongside Cisco employees on next-generation development projects and learn critical technical and business skills necessary for a future in tomorrow's global workforce. Aside from workplace skills, interns will return to their home countries to complete their degrees with a much greater appreciation of global cultural issues and an increased motivation to succeed in their academic and subsequent professional careers. </p>
       </div>
 
@@ -413,9 +413,9 @@
 
       <div id="projects" class="featurette">
        
-        <h2 class="featurette-heading">The projects. <span class="muted">Work to make an <strong>impact</strong>.</span></h2>
-        <p class="lead">Every student is assigned to a specific hiring manager who will guide throughout their internship.
-          The projects that are assigned have a real impact on the company and span from Engineering, Security, Marketing and many other departments. From software to business. Check out the interns experiences <a href="/ciip/intern_profiles/"><strong>here</strong>.</a></p>
+        <h2 class="featurette-heading">Projects That Work To Make An <strong>Impact</strong></h2>
+        <p class="lead">Every student is assigned to a hiring manager who will guide them throughout their internship.
+          The projects that are assigned have a real impact on the company and span from Engineering, Security, Marketing and many other departments. From software to business. Check out current and past intern's experiences <a href="/ciip/intern_profiles/"><strong>here</strong>.</a></p>
           
       </div>
 
@@ -423,8 +423,8 @@
 
       <div id="university" class="featurette">
        
-        <h2 class="featurette-heading">The universities. <span class="muted">Promoting research in the Industry.</span></h2>
-        <p class="lead">The Program has direct relations with all of the select the universities from which the students come from. At the moment the following universities are part of the program:
+        <h2 class="featurette-heading">Universities Promoting Research In The Industry.</span></h2>
+        <p class="lead">The Program has a direct relationship with the following universities:
   <ol>
   <li><a href="http://www.ucl.ac.uk/">University College London, UK</a></li>
   <li><a href="http://www.kent.ac.uk/">University of Kent, UK</a></li>
@@ -472,6 +472,7 @@
     <script src="/static/js/collapse.js"></script>
     <script src="/static/js/carousel.js"></script>
     <script src="/static/js/typeahead.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
     <script>
       !function ($) {
         $(function(){
@@ -482,15 +483,25 @@
     </script>
   
       <script type="text/javascript">
-  $("#loading").show();
-setTimeout(function() { $("#loading").fadeOut(); }, 5000);</script>
+setTimeout(function() {
+  if ($.cookie('hasVisited')) { $("#loading").hide()} 
+  else {
+  $.cookie('hasVisitied', 'true');
+    $("#loading").show();
+   $("#loading").fadeOut();
+}}, 5000);</script>
     <script src="/static/assets/js/holder.js"></script>
 <!--<script type="text/javascript">
 setTimeout(function() { $(".navbar-wrapper").hide();
   $(".navbar-wrapper").show();}, 5000);
 });
 
-
+if ($.cookie('hasVisited')) {
+  
+} else {
+  $.cookie('hasVisitied', 'true');
+   $("#loading").fadeOut();
+}
 </script>
   <script type="text/javascript">
   setTimeout(function() { $("#hidetemp").hide();

@@ -83,9 +83,11 @@
               <li class="nav-header">User Info</li>
               <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
               <li><a href="/ciip/academic_info/">Academic Info</a></li>
+              <li><a href="/ciip/work_internship/">Work & Internship Info</a></li>
               <li><a href="/ciip/skill_interest/">Skills & Interests</a></li>
               <li><a href="/ciip/motivational_questions/">Motivational Questions</a></li>
               <li><a href="/ciip/upload_file/">CV</a></li>
+              <li><a href="/ciip/cover_letter/">Cover Letter</a></li>
               <li><a href="/ciip/upload_image/">Image</a></li>
             </ul>
           </div><!--/.well -->
@@ -108,10 +110,31 @@
  <p>{{form.gender}}</p>
  <p>Do you have a valid passport?</p>
  <p>{{form.passport}}</p>
- <p>First name:</p>
+ <p>First name (as it appears on the passport):</p>
  <p>{{ form.first_name }}</p>
- <p>Last name:</p>
+ <p>Last name (as it appears on the passport):</p>
  <p>{{ form.last_name }}</p>
+<p>Birth date:</p>
+ <p>{{ form.birth_date }}</p>
+
+
+
+ <h3>Passport Information:</h3>
+ <p>Do you have a valid passport?</p>
+ <p>{{form.passport}}</p>
+<p>Passport Number:</p>
+ <p>{{form.passport_number}}</p>
+ <p>Date issued:</p>
+ <p>{{form.date_issued}}</p>
+  <p>Date of expiration:</p>
+ <p>{{form.date_expiration}}</p>
+  <p>Country that issued the passport:</p>
+ <p>{{form.country_issued}}</p>
+
+<p><strong>Disclaimer:</strong> your passport must be valid from the time of application and origin of your country through end of proposed internship. Valid through July 2015 to be considered for this program. </p>
+
+
+
 <h3>Contact Info</h3>
 <p>Alternative email address( different from the university email address):</p>
  <p>{{ form.email }}</p>
@@ -129,7 +152,15 @@
   <p>Country:</p>
  <p>{{form.country}}</p>
 
-
+<h3>Emergency Contact:</h3>
+<p>Full name of the emergency contact:</p>
+ <p>{{form.full_name_emergency}}</p>
+ <p>Relationship to you:</p>
+ <p>{{form.relationship}}</p>
+ <p>Emergency contact phone number:</p>
+ <p>{{form.phone_emergency}}</p>
+ <p>Emergency contact email:</p>
+ <p>{{form.email_emergency}}</p>
       
   </form>
 

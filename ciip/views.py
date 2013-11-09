@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm, SkillForm, InterestForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm, ImageForm, SkillForm, InterestForm
 from django.http import HttpResponseRedirect, HttpResponse
 from ciip.models import UserProfile
 #from django import forms
@@ -144,15 +144,27 @@ def profile_contact_info(request):
             city=profile.city
             zip_code=profile.zip_code
             country=profile.country
-            #passport_number=profile.passport_number
+            passport_number=profile.passport_number
+            full_name_emergency=profile.full_name_emergency
+            birth_date=profile.birth_date
+            date_issued=profile.date_issued
+            country_issued=profile.country_issued
+            date_expiration=profile.date_expiration
+            email_emergency=profile.email_emergency
+            phone_emergency=profile.phone_emergency
+            relationship=profile.relationship
 
 
             contact_info={'user_name':user_name,'passport':passport ,'first_name':first_name,'last_name':last_name,
-            'email':email,#'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
+            'email':email,'birth_date':birth_date,#'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
             'gender':gender, 'address_line1':address_line1,
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
-            'country':country, #'passport_number':passport_number,
+            'country':country, 'passport_number':passport_number,
+            'full_name_emergency':full_name_emergency, 'date_expiration':date_expiration,
+            'date_issued':date_issued, 'country_issued':country_issued,
+            'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
+            'relationship':relationship,
             }
     return render(request, 'ciip/profile_contact_info.html', contact_info)
 
@@ -202,6 +214,23 @@ def upload_file(request):
     return render(request, 'ciip/upload_file.html', {'form': form,'user_name':user_name})
 
 
+def cover_letter(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else: 
+       current_pk = request.user.pk
+       user_name = User.objects.get(pk=current_pk).username
+       if request.method == 'POST':
+           form = CoverForm(request.POST, request.FILES, instance=request.user.get_profile())
+           if form.is_valid():
+            # file is saved
+               new_user=form.save()
+               return HttpResponseRedirect('/ciip/cover_letter/')
+       else:
+           form = CoverForm(instance=request.user.get_profile())
+    return render(request, 'ciip/cover_letter.html', {'form': form,'user_name':user_name})
+
+
 
 
 
@@ -248,7 +277,8 @@ def academic_info(request):
             degree = profile.degree
             average= profile.average
             university = profile.university
-            contact_info={'user_name':user_name, 'year_of_graduation':year_of_graduation,'degree':degree,'average':average,'university':university}
+            good_university=profile.good_university
+            contact_info={'user_name':user_name,'good_university':good_university, 'year_of_graduation':year_of_graduation,'degree':degree,'average':average,'university':university}
     return render(request, 'ciip/academic_info.html', contact_info)
 
 
@@ -273,6 +303,46 @@ def edit_academic_info(request):
     return render( request, 'ciip/edit_academic_info.html', {
         'form': form, 'user_name':user_name,
     })
+
+
+def work_internship(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else:    
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username   
+        if request.method == 'GET':
+            
+            profile = UserProfile.objects.get(pk=current_pk)
+            experience_1= profile.experience_1
+            experience_2 = profile.experience_2
+            internship_1 = profile.internship_1
+            internship_2 = profile.internship_2
+            
+            contact_info={'user_name':user_name,'internship_1':internship_1,'internship_2':internship_2, 'experience_1':experience_1,'experience_2':experience_2}
+    return render(request, 'ciip/work_internship.html', contact_info)
+
+def edit_work_internship(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+
+    else:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        if request.method == 'POST':
+
+            form = WorkForm(request.POST or None, instance=request.user.get_profile())
+            #print("request user %s" % (request.user.id))
+            # form.user_id = request.user.id
+            if form.is_valid():
+                new_user = form.save()
+                return HttpResponseRedirect('/ciip/work_internship/')
+        else:
+            form =WorkForm(instance = request.user.get_profile())
+    return render( request, 'ciip/edit_work_internship.html', {
+        'form': form, 'user_name':user_name,
+    })
+
 
 
 
