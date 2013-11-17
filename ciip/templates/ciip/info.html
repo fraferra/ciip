@@ -268,6 +268,24 @@
     <!-- Fav and touch icons -->
        <link rel="shortcut icon" href="/static/img/favicon.ico" >
 
+<script src="/static/js/jquery.cookie.js"></script>
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        var cookie = $.cookie("cookieMonster");
+        alert(cookie);
+        if (cookie == null || cookie == 0) {
+          $.cookie("cookieMonster",1);
+        }
+        else {
+          $("#loading").remove();
+        }
+      });
+    </script>
+
+
+
+
   </head>
 
   <body>
@@ -529,7 +547,7 @@
     <script src="/static/js/collapse.js"></script>
     <script src="/static/js/carousel.js"></script>
     <script src="/static/js/typeahead.js"></script>
-    <script src="/static/js/jquery.cookie.js"></script>
+    
     <script>
       !function ($) {
         $(function(){
@@ -549,17 +567,7 @@
 //}}, 1000);</script>
     <script src="/static/assets/js/holder.js"></script>
 
-    <script type="text/javascript">
-      $(document).ready(function() {
-        var cookie = $.cookie("cookieMonster");
-        if (cookie == null || cookie == 0) {
-          $.cookie("cookieMonster",1);
-        }
-        else {
-          $("#loading").remove();
-        }
-      });
-    </script>
+
 
 
 
