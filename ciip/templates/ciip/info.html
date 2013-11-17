@@ -545,6 +545,22 @@ setTimeout(function() {
    $("#loading").fadeOut();
 }}, 1000);</script>
     <script src="/static/assets/js/holder.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var cookie = $.cookie("cookieMonster");
+        if (cookie == null || cookie == 0) {
+          $.cookie("cookieMonster",1);
+        }
+        else {
+          $("#loading").hide();
+        }
+      });
+    </script>
+
+
+
+
 <!--<script type="text/javascript">
 setTimeout(function() { $(".navbar-wrapper").hide();
   $(".navbar-wrapper").show();}, 5000);
