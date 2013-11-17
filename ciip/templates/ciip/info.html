@@ -530,11 +530,11 @@
 <script type="text/javascript">
       $(document).ready(function() {
         var cookie = $.cookie("cookieMonster");
-        if (cookie == null || cookie == 0) {
-          $.cookie("cookieMonster",1);
+        if (cookie != null) {
+          $("#loading").remove();
         }
         else {
-          $("#loading").remove();
+          $.cookie("cookieMonster",1);
         }
       });
     </script>
