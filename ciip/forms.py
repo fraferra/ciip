@@ -136,8 +136,8 @@ class InterestForm(ModelForm):
 class SignUpForm(UserCreationForm):
     """ Require email address when a user signs up """
     email = forms.EmailField(label='Email address', max_length=75)
-    password1=PasswordField(label='Password')
-    password2=PasswordField(label='Confirm password')
+    password1=PasswordField()
+    password2=PasswordField()
     class Meta:
         model = User
         fields = ('username', 'email',) 
