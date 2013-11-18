@@ -138,7 +138,7 @@ class SignUpForm(UserCreationForm):
     """ Require email address when a user signs up """
     email = forms.EmailField(label='Email address', max_length=75)
     password1=PasswordField()
-    password2=PasswordField()
+    password2=forms.CharField(widget=forms.PasswordInput(), label="Repeat your password")
     class Meta:
         model = User
         fields = ('username', 'email',) 
