@@ -531,10 +531,12 @@
       $(document).ready(function() {
         var cookie = $.cookie("cookieMonster");
         if (cookie != null) {
-          $("#loading").remove();
+          $("#loading").hide();
         }
         else {
           $.cookie("cookieMonster",1);
+          $("#loading").show();
+          $("#loading").fadeOut();
         }
       });
     </script>
