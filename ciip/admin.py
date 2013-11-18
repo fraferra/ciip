@@ -23,6 +23,7 @@ class CiipAdmin(admin.ModelAdmin):
         ('Motivational Questions', {'fields':['question_1', 'question_2','question_3']}),
         ('Status Update',{'fields':['status']}),
         ('CV',{'fields':['file_name','file_cv']}),
+        ('Cover Letter',{'fields':['cover_letter']}),
        # ('Image', {'fields':['image']}),
         ('Skills',{'fields':['skill_1','skill_level_1','skill_2',
             'skill_level_2','skill_3','skill_level_3']}),
