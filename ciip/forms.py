@@ -52,6 +52,43 @@ class PasswordField(forms.CharField):
 
         return super(PasswordField, self).clean(value)
 
+class PasswordField2(forms.CharField):
+    
+    # Setup the Field
+    def __init__(self, *args, **kwargs):
+        super(PasswordField, self).__init__(min_length = 7, required = True,
+                        label = u'Confirm Password',
+                        widget = forms.PasswordInput(render_value = False),       
+                        *args, **kwargs)
+    
+    # Validate - 1+ Numbers, 1+ Letters
+    def clean (self, value):
+        
+        # Setup Our Lists of Characters and Numbers
+        characters = list(string.letters)
+        numbers = [str(i) for i in range(10)]
+        
+        # Assume False until Proven Otherwise
+        numCheck = False
+        charCheck = False
+
+        # Loop until we Match        
+        for char in value: 
+            if not charCheck:
+                if char in characters:
+                    charCheck = True
+            if not numCheck:
+                if char in numbers:
+                    numCheck = True
+            if numCheck and charCheck:
+                break
+        
+        if not numCheck or not charCheck:
+            raise forms.ValidationError(u'Your password must include at least \
+                                          one letter and at least one number.')
+
+        return super(PasswordField, self).clean(value)
+
 
 
 class WorkForm(ModelForm):
@@ -137,7 +174,7 @@ class SignUpForm(UserCreationForm):
     """ Require email address when a user signs up """
     email = forms.EmailField(label='Email address', max_length=75)
     password1=PasswordField()
-    password2=PasswordField()
+    password2=PasswordField2()
     class Meta:
         model = User
         fields = ('username', 'email',) 
