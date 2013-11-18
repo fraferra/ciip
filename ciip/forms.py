@@ -88,7 +88,7 @@ class UserProfileForm(ModelForm):
             'address_line2','city',
             'zip_code','country',
          
-           'full_name_emergency','relationship','phone_emergency','email_emergency'
+           #'full_name_emergency','relationship','phone_emergency','email_emergency'
            )
 
 class StatusUpdateForm(ModelForm):

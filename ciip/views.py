@@ -145,14 +145,14 @@ def profile_contact_info(request):
             zip_code=profile.zip_code
             country=profile.country
             #passport_number=profile.passport_number
-            full_name_emergency=profile.full_name_emergency
+            #full_name_emergency=profile.full_name_emergency
             #birth_date=profile.birth_date
             #date_issued=profile.date_issued
             #country_issued=profile.country_issued
             #date_expiration=profile.date_expiration
-            email_emergency=profile.email_emergency
-            phone_emergency=profile.phone_emergency
-            relationship=profile.relationship
+            #email_emergency=profile.email_emergency
+            #phone_emergency=profile.phone_emergency
+            #relationship=profile.relationship
 
 
             contact_info={'user_name':user_name,'passport':passport ,'first_name':first_name,'last_name':last_name,
@@ -161,10 +161,10 @@ def profile_contact_info(request):
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
             'country':country,# 'passport_number':passport_number,
-            'full_name_emergency':full_name_emergency, #'date_expiration':date_expiration,
+            #'full_name_emergency':full_name_emergency, 'date_expiration':date_expiration,
             #'date_issued':date_issued, 'country_issued':country_issued,
-            'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
-            'relationship':relationship,
+            #'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
+            #'relationship':relationship,
             }
     return render(request, 'ciip/profile_contact_info.html', contact_info)
 
