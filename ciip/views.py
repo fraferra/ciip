@@ -538,7 +538,7 @@ def checkemail(address):
                'student.bmstu.ru','fel.cvut.cz',
                'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
                'ee.ucl.ac.uk', 'uottawa.ca',
-               'epfl.ch','zju.edu.cn']
+               'epfl.ch','zju.edu.cn', 'cst.zju.edu.cn']
     match = re.search(r'([\w.-]+)@([\w.-]+)', address)
     for uni in uni_list:
         if match.group(2) == uni:
