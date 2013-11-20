@@ -532,7 +532,7 @@ def forgot_password(request):
 
 def checkemail(address):
     uni_list=['ucl.ac.uk','kent.ac.uk',
-               'tsinghua.edu.cn',
+               'tsinghua.edu.cn', 'mails.tsinghua.edu.cn',
                'zju.edu.cn','sfc.wide.ad.jp',
                'sfc.keio.ac.jp','unsw.edu.au',
                'student.bmstu.ru','fel.cvut.cz',
