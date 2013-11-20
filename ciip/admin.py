@@ -24,6 +24,8 @@ class CiipAdmin(admin.ModelAdmin):
         ('Status Update',{'fields':['status']}),
         ('CV',{'fields':['file_name','file_cv']}),
         ('Cover Letter',{'fields':['cover_letter']}),
+        ('Work',{'fields':['experience_1','experience_2']}),
+        ('Internships',{'fields':['internship_1', 'internship_2']}),
        # ('Image', {'fields':['image']}),
         ('Skills',{'fields':['skill_1','skill_level_1','skill_2',
             'skill_level_2','skill_3','skill_level_3']}),
