@@ -1,0 +1,4 @@
+--2013-11-22 08:31:30--  ftp://heroku%20pgbackups/url
+           => `url'
+Resolving heroku pgbackups (heroku pgbackups)... failed: Name or service not known.
+wget: unable to resolve host address `heroku pgbackups'
