@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^work_internship/$', views.work_internship, name='work_internship'),
     url(r'^edit_work_internship/$', views.edit_work_internship, name='edit_work_internship'),
     url(r'^cover_letter/$', views.cover_letter, name='cover_letter'),
+    url(r'^current_project/$', views.current_project, name='current_project'),
 
 )
 

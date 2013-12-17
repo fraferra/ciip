@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CIIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/ciip/bootstrap.css" rel="stylesheet">
+    <link href="/static/ciip/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin-top: 20px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 200px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 80px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        width: auto;
+        height: 500px;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+      .carousel .container {
+
+      }
+      .carousel .item {
+        height: 300px;
+      }
+      .carousel img {
+        height: 300px;
+      }
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+          <link rel="shortcut icon" href="/static/img/favicon.ico" >
+
+  </head>
+
+  <body>
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+ <div class="container" >
+ 
+    <div class="row">
+    <div class="span12">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+      
+          <a class="brand" href = "http://www.cisco.com"><img src="/static/img/logocopy.png" width="90px" height="50"></a>
+          <br>
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <a class="brand" href="/ciip/info/">CIIP Home</a>
+          <form  method = "get">{% csrf_token %}
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
+              <li><a href="/ciip/faq/">FAQ</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse --></form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+ <div class='container'>
+      <!-- START THE FEATURETTES -->
+      <hr class="featurette-divider">
+ <h1 class="featurette-heading">Roles</span></h1>
+      <hr class="featurette-divider">
+ 
+<p class="lead"> CIIP offers a wide variety of projects ranging from Engineering & IT to Business. Your internship may require a certain degree of technical skills, but a lot depends on the needs of the project given by the Hiring Manager, as well as your personal strengths. Be sure that your resume and application mentions your specific skills, experience, and interests. Projects current interns work on include, but are not limited to, the following:</p>
+ <ul> 
+  <li><a href="#1" class="lead">Engineering</a></li>
+  <li><a href="#2" class="lead">IT</a></li>
+  <li><a href="#3" class="lead">Marketing</a></li>
+  <li><a href="#4" class="lead">Sales</a></li>
+  <li><a href="#5" class="lead">Technology scouting</a></li>
+  <li><a href="#6" class="lead">CIIP Office</a></li>
+</ul> 
+
+</p>
+
+      <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+    <div id="1" class="featurette">      
+    <h2>Engineering</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>OpenStack and Big Data R&D</strong></p>
+    <p class="lead">Work with OpenStack, Hadoop, CEPH and other cutting edge cloud technologies. Responsibilities include working on OpenStack storage, research and development. Integrating Ceph, a mature distributed storage system, with OpenStack and Hadoop and run benchmarks to check if Ceph can improve overall storage performance.</p>
+    <p class="lead" style="color:#0096D6;"><strong>Enterprise Networking Group</strong></p>
+    <p class="lead">Software development for multiple services of enterprise SDN (Software Defined Network). SDN is a future network management and service platform that separates the data plane and control plane, by abstracting the physical devices. Responsibilities include LAB operation and maintenance including installing new devices, maintaining the topology, troubleshooting issues in the lab, creating end-to-end test environment for SDN controller testing. Quality assurance and testing Automation for SDN controller services and writing test cases in Python for identity service and policy services.</p>
+    <p class="lead" style="color:#0096D6;"><strong>Confidential Cloud Platform (CSMTG)</strong></p>
+    <p class="lead">The main focus of the project is the creation of a platform that will offer cloud services to service providers, tenants and organizations residing in tenants. Responsibilities include creating a software that is responsible for the communication between the webpage that the user/service provider/tenant has access to.</p>
+    <p class="lead" style="color:#0096D6;"><strong>Security Services and Cloud Operations (SGG-SCO)</strong></p>
+    <p class="lead">Cloud Big Data Backend (Skym) providing data transformation services and data access layer, a part of "Chopin" which aims at Threat Defense for Cloud Web Services. Responsibilities include design and implementation of web visualization for Skym big data. Implement API requirements for customer incidents and activities.</p>
+    
+      </div>
+
+   <hr class="featurette-divider">
+    <div id="2" class="featurette">      
+    <h2>IT</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>Data Centre Network Implementations (DCNI)</strong></p>
+    <p class="lead">This project is split up into three subdivisions foundational, functional and cases. Foundational work is concerned with the commissioning and decommissioning of new devices (e.g. switches, servers, routers etc.) within the data center. Functional work on the other hand deals with the current devices in the data center to enable new connection to areas in the network, such as when a new application wants to use several existing servers to extract data and to store them in a new data the environment. Finally casework is for smaller changes needed in the network (e.g. when an existing application needs access to an area in the network).</p>
+    <p class="lead" style="color:#0096D6;"><strong>Connected IT Services (CITS) - Business Operations/IT Risk Management</strong></p>
+    <p class="lead">Vendor analysis of CMMC, HRMS and FETCH data to ensure critical business decisions are made with accurate data and a single source of truth (Business Operations). CASPR engagement liaison (Risk Management). CITS risk management liaison (Risk Management). Responsibilities include working with CITS managers to ensure that their vendor locations are accurate within CMMC, HRMS and FETCH. Provide weekly updates on applications with no host assignments to service leads and work with them to ensure application dependency mapping is completed.</p>
+
+      </div>
+
+    <hr class="featurette-divider">
+    <div id="3" class="featurette">      
+    <h2>Marketing</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>Digital Marketing</strong></p>
+    <p class="lead">Mobile: App scorecard project and mobile apps Promotion. Metrics: Center Of Excellence project / SIteCatalyst restructuration. Responsibilities include App Score Card Management, content research for app promotion. Creation of IWE page dedicated for promotion and analysis and strategy of SiteCatalyst.</p>
+    <p class="lead" style="color:#0096D6;"><strong>GMCC-GCMB-Web Marketing & Strategy</strong></p>
+    <p class="lead">Apps: Search Engine Optimization (organic/natural) and Site Search Strategy for www.cisco.com + the migration of all the cisco.com pages to a new web publishing platform (Adobe's CQ5). Responsibilities include working on SEO (Search Engine Optimization) and WEM (Web Experience Management) for www.cisco.com, metrics reporting creation and maintenance, keyword research, as well as spot and UAT testing for content migration to a new web platform.</p>
+
+      </div>
+
+      <hr class="featurette-divider">
+    <div id="4" class="featurette">      
+    <h2>Sales</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>Competitive Insight</strong></p>
+    <p class="lead">Engaged with teams to effectively align people with expert information in order to enhance competitive capacity at Cisco. Responsibilities include developing and maintaining tools to support field sales teams with technical information of Cisco and competitors' products. Analyzing corporate deals in order to identify and act on trends supporting future competitive strategy at Cisco.</p>
+
+      </div>
+    <hr class="featurette-divider">
+    <div id="5" class="featurette">      
+    <h2>Technologies scouting (CTG)</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>Corporate technology Group</strong></p>
+    <p class="lead">Work with Corporate Technology Group on Techradar that are designed to track new technologies related with Cisco. Techradar shows current information about the technology. Responsibilities include the implementation of better visualization, Create algorithm to automate the process of discovering new technologies.</p>
+
+      </div>
+
+      <hr class="featurette-divider">
+    <div id="6" class="featurette">      
+    <h2>CIIP Office</h2>
+
+    <p class="lead" style="color:#0096D6;"><strong>CIIP Tools Developers</strong></p>
+    <p class="lead">The project involves working on the CIIP program to develop the application website and tools for internal as well as external communication. Responsibilities include working with Hadoop, Django, HTML, Github, Java, and other coding languages to suit the needs and demands of the application procedure.</p>
+
+    <p class="lead" style="color:#0096D6;"><strong>CIIP Office Marketing & Communications</strong></p>
+    <p class="lead">Work revolves around communicating with the different stakeholders of the program (interns, hiring managers, universities, Cisco HR, etc.) for internal and external improvement of the program for current and future interns. Focus is also on marketing initiatives and social media webpages.</p>
+    
+    </div>
+ 
+          <hr class="featurette-divider">
+
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; Cisco 2013 </p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/transition.js"></script>
+    <script src="/static/js/alert.js"></script>
+    <script src="/static/js/modal.js"></script>
+    <script src="/static/js/dropdown.js"></script>
+    <script src="/static/js/scrollspy.js"></script>
+    <script src="/static/js/tab.js"></script>
+    <script src="/static/js/tooltip.js"></script>
+    <script src="/static/js/popover.js"></script>
+    <script src="/static/js/button.js"></script>
+    <script src="/static/js/collapse.js"></script>
+    <script src="/static/js/carousel.js"></script>
+    <script src="/static/js/typeahead.js"></script>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="/static/assets/js/holder.js"></script>
+  </body>
+</html>
+
+

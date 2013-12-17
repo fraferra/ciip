@@ -527,6 +527,13 @@ def forgot_password(request):
     else:
         return render(request, 'ciip/forgot_password.html', {'email':email})
 
+def current_project(request):
+    try:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+    except ObjectDoesNotExist:
+        user_name='none'
+    return render(request, 'ciip/current_project.html', {'user_name':user_name})
 
 
 
