@@ -53,23 +53,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-       <a class="brand" href="/ciip/info/#home">CIIP Home</a>
+          <a class="brand" href="/ciip/info/">CIIP Home</a>
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+              Logged in as Uni Admin: {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
-              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/home_uniadmin/">My Account</a></li>
               <li><a href="/ciip/send_email/">Contact Us</a></li>
               <li><a href="/ciip/faq/">FAQ</a></li>
-              <li><a href="/ciip/info/#social">#CIIPLife</a></li>
 
             </ul>
           </div><!--/.nav-collapse --></form>
         </div>
       </div>
+            <div class="alert alert-success"><center><strong>University Administrator</strong></center></div>
+
     </div>
+    <br>
 <br>
    <br>
 
@@ -81,15 +83,10 @@
               
               <li><a href="/ciip/logout/">Logout</a></li>
               
-             <li class="nav-header">User Info</li>
-              <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
-              <li><a href="/ciip/academic_info/">Academic Info</a></li>
-              <li><a href="/ciip/work_internship/">Work & Internship Info</a></li>
-              <li><a href="/ciip/skill_interest/">Skills & Interests</a></li>
-              <li><a href="/ciip/motivational_questions/">Motivational Questions</a></li>
-              <li><a href="/ciip/upload_file/">CV</a></li>
-              <li><a href="/ciip/cover_letter/">Cover Letter</a></li>
-     
+              <li class="nav-header">User Info</li>
+              <li><a href="/ciip/uniadmin_info/">General Info</a></li>
+              <li><a href="/ciip/list_student/">Students' List</a></li>
+              
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -99,9 +96,7 @@
            
               <form  method = "get">{% csrf_token %}
               <h1>Welcome {{user_name}}</h1>
-              <p>Current Status: {{status}}</p>
-               <h2><strong><font color="#B00000 ">Application deadline: 10th January.</font></strong></h2>
-              <h2><strong><font color="#B00000 ">Please, complete your application by this time.</font></strong></h2>
+             
             </form> 
             
           </div>

@@ -36,5 +36,24 @@ urlpatterns = patterns('',
     url(r'^cover_letter/$', views.cover_letter, name='cover_letter'),
     url(r'^current_project/$', views.current_project, name='current_project'),
 
+
+
+
+
+
+
+
+
+
+    url(r'^home_uniadmin/$', views.home_uniadmin, name='home_uniadmin'),
+    url(r'^uniadmin_info/$', views.uniadmin_info, name='uniadmin_info'),
+    url(r'^uniadmin_edit_info/$', views.uniadmin_edit_info, name='uniadmin_edit_info'),
+    url(r'^uniadmin_login/$', views.uniadmin_login ,name='uniadmin_login'),
+    url(r'^list_student/$', views.list_student ,name='list_student'),
+    url(r'^student_info/$', views.student_info ,name='student_info'),
+    url(r'^signup_uniadmin/$', views.signup_uniadmin, name='signup_uniadmin'),
+    url(r'^save_unicomment/$', views.save_unicomment, name='save_unicomment'),
+
+
 )
 

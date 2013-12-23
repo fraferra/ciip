@@ -182,6 +182,8 @@ INSTALLED_APPS = (
     'ciip',
     'storages',
     'boto',
+    'south',
+
     
     
 )

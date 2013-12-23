@@ -6,9 +6,9 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
-from ciip.forms import  StatusUpdateForm  ,UserProfileForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm,  SkillForm, InterestForm
+from ciip.forms import  StatusUpdateForm  ,UserProfileForm , EndorsementForm, UnicommentForm, SignUpFormAdmin, UniAdminForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm,  SkillForm, InterestForm
 from django.http import HttpResponseRedirect, HttpResponse
-from ciip.models import UserProfile
+from ciip.models import UserProfile, UniversityAdmin
 #from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -105,8 +105,9 @@ def edit_contact_info(request):
     else:
         current_pk = request.user.pk
         user_name = User.objects.get(pk=current_pk).username
-        if request.method == 'POST':
+        profile = UserProfile.objects.get(user = request.user)
 
+        if request.method == 'POST':
             form = UserProfileForm(request.POST or None, instance=request.user.get_profile())
             #print("request user %s" % (request.user.id))
             # form.user_id = request.user.id
@@ -114,7 +115,7 @@ def edit_contact_info(request):
                 new_user = form.save()
                 return HttpResponseRedirect('/ciip/profile_contact_info/')
         else:
-            form = UserProfileForm(instance = request.user.get_profile())
+            form = UserProfileForm(instance=request.user.get_profile())
     return render( request, 'ciip/edit_contact_info.html', {
         'form': form, 'user_name':user_name,
     })
@@ -129,7 +130,7 @@ def profile_contact_info(request):
         user_name = User.objects.get(pk=current_pk).username   
         if request.method == 'GET':
             
-            profile = UserProfile.objects.get(pk=current_pk)
+            profile = UserProfile.objects.get(user = request.user)
             first_name= profile.first_name
             last_name = profile.last_name
             email= profile.email
@@ -161,7 +162,7 @@ def profile_contact_info(request):
             'address_line2':address_line2, 'phone':phone,
             'city':city, 'zip_code':zip_code,
             'country':country,# 'passport_number':passport_number,
-            #'full_name_emergency':full_name_emergency, 'date_expiration':date_expiration,
+            #'full_name_emergency':full_name_emergency, #'date_expiration':date_expiration,
             #'date_issued':date_issued, 'country_issued':country_issued,
             #'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
             #'relationship':relationship,
@@ -177,7 +178,7 @@ def home(request):
     else:
         current_pk = request.user.pk
         user_name = User.objects.get(pk=current_pk).username
-        status = UserProfile.objects.get(pk=current_pk).status 
+        status = UserProfile.objects.get(user = request.user).status 
         #if request.method =='GET':
             #profile = UserProfileForm(instance=request.user.get_profile())
             #user_name=str(profile['first_name'])
@@ -272,7 +273,7 @@ def academic_info(request):
         user_name = User.objects.get(pk=current_pk).username   
         if request.method == 'GET':
             
-            profile = UserProfile.objects.get(pk=current_pk)
+            profile = UserProfile.objects.get(user = request.user)
             year_of_graduation= profile.year_of_graduation
             degree = profile.degree
             average= profile.average
@@ -313,7 +314,7 @@ def work_internship(request):
         user_name = User.objects.get(pk=current_pk).username   
         if request.method == 'GET':
             
-            profile = UserProfile.objects.get(pk=current_pk)
+            profile = UserProfile.objects.get(user = request.user)
             experience_1= profile.experience_1
             experience_2 = profile.experience_2
             internship_1 = profile.internship_1
@@ -354,7 +355,7 @@ def motivational_questions(request):
         user_name = User.objects.get(pk=current_pk).username   
         if request.method == 'GET':
             
-            profile = UserProfile.objects.get(pk=current_pk)
+            profile = UserProfile.objects.get(user = request.user)
             question_1= profile.question_1
             question_2 = profile.question_2
             question_3 = profile.question_3
@@ -436,7 +437,7 @@ def skill_interest(request):
         user_name = User.objects.get(pk=current_pk).username   
         if request.method == 'GET':
             
-            profile = UserProfile.objects.get(pk=current_pk)
+            profile = UserProfile.objects.get(user = request.user)
             skill_1= profile.skill_1
             skill_2= profile.skill_2
             skill_3= profile.skill_3
@@ -527,6 +528,7 @@ def forgot_password(request):
     else:
         return render(request, 'ciip/forgot_password.html', {'email':email})
 
+
 def current_project(request):
     try:
         current_pk = request.user.pk
@@ -536,17 +538,333 @@ def current_project(request):
     return render(request, 'ciip/current_project.html', {'user_name':user_name})
 
 
-
 def checkemail(address):
     uni_list=['ucl.ac.uk','kent.ac.uk',
-               'tsinghua.edu.cn', 'mails.tsinghua.edu.cn',
+               'tsinghua.edu.cn',
                'zju.edu.cn','sfc.wide.ad.jp',
                'sfc.keio.ac.jp','unsw.edu.au',
                'student.bmstu.ru','fel.cvut.cz',
-               'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp', 'a7.keio.jp',
-               'ee.ucl.ac.uk', 'uottawa.ca', 'z5.keio.jp','bmstu.ru',
-               'epfl.ch','zju.edu.cn', 'cst.zju.edu.cn']
+               'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
+               'z5.keio.jp',
+               'ee.ucl.ac.uk', 'uottawa.ca',
+               'epfl.ch','zju.edu.cn']
     match = re.search(r'([\w.-]+)@([\w.-]+)', address)
     for uni in uni_list:
         if match.group(2) == uni:
             return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def signup_uniadmin(request):
+    usertype=''
+    if request.method == 'POST':
+        form = SignUpFormAdmin(request.POST)
+        
+        if form.is_valid():
+            email=request.POST['email']
+            
+            if checkemail(email):
+                new_user = form.save()
+                
+                #UniversityAdmin.objects.create(user=instance) 
+                #post_save.connect(models.create_uni_profile, sender=User)  
+                return HttpResponseRedirect('/ciip/uniadmin_login/')
+            else:
+                return HttpResponseRedirect('/ciip/notactive/')        
+    else:
+        form = SignUpFormAdmin()
+        
+    return render( request, 'ciip/signup_uniadmin.html', {
+        'form': form, 
+    })
+
+
+
+def uniadmin_login(request):
+    username=password=''
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username =username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                return HttpResponseRedirect('/ciip/home_uniadmin/')
+            else:
+                return HttpResponseRedirect('ciip/notactive/')
+        else:
+            return HttpResponseRedirect('/ciip/notregistered/')
+    return render(request, 'ciip/uniadmin_login.html', {'username':username, 'password':password})
+
+
+
+
+
+def uniadmin_info(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+    else:    
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        
+        try:
+            profile = UniversityAdmin.objects.get(user=current_user)
+            if request.method == 'GET':
+            
+                
+                university = profile.university
+                first_name = profile.first_name
+                last_name = profile.last_name
+                contact_info={'user_name':user_name,'university':university, 'first_name':first_name, 'last_name':last_name}
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect('/ciip/uniadmin_login/')
+
+
+
+    return render(request, 'ciip/uniadmin_info.html', contact_info)
+
+
+def uniadmin_edit_info(request):
+
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+
+    else:
+        first_name = last_name = ''
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        profile = UniversityAdmin.objects.get(user=request.user)
+        if request.method == 'POST':
+            #form = UniAdminForm(request.POST or None, instance=profile.get_profile())
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            profile.first_name = first_name
+            profile.last_name = last_name
+            profile.save()
+            #print("request user %s" % (request.user.id))
+            # form.user_id = request.user.idf
+            #if form.is_valid():
+                #new_user = form.save()
+            return HttpResponseRedirect('/ciip/uniadmin_info/')
+        #else:
+            #form = UniAdminForm(instance = profile.get_profile())
+          
+        #except ObjectDoesNotExist:
+            #return HttpResponseRedirect('/ciip/login/')
+
+
+    return render( request, 'ciip/uniadmin_edit_info.html', {
+         'user_name':user_name,'last_name':last_name, 'first_name':first_name,
+    })
+
+
+
+
+def home_uniadmin(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        #for uni_object in UniversityAdmin.objects.all():
+        #u = UniversityAdmin.objects.get(user=request.user)
+
+
+
+        try:
+        #import sys
+        #print >> sys.stderr, "********* User Current PK %s" %(current_pk)
+            uniadmin_profile = UniversityAdmin.objects.get(user=request.user)
+            email = User.objects.get(pk=current_pk).username
+            
+            getUniAdmin(email, current_user)
+
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect('/ciip/login/')
+        #if request.method =='GET':
+            #profile = UserProfileForm(instance=request.user.get_profile())
+            #user_name=str(profile['first_name'])
+            #status_profile = StatusUpdateForm(instance=request.user.get_profile())
+            #status=status_profile['status']
+            
+            
+            
+    return render(request, 'ciip/home_uniadmin.html', {'user_name': user_name,})
+
+
+
+def list_student(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+    else:    
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        try:
+            profile = UniversityAdmin.objects.get(user=request.user)
+            if request.method == 'GET':
+                uni_list=[]
+                particular_student = ''
+                list_student= UserProfile.objects.all()
+                for student in list_student:
+                    if student.university == profile.university:
+                            #form = EndorsementForm(request.POST or None, instance=student)
+                            uni_list.append(student)
+                            #university_endorsement=student.university_endorsement
+                            #form = EndorsementForm(request.GET or None, instance=student)
+
+                                #university_endorsement = request.POST['student.university_endorsement']
+                            #if form.is_valid:
+                                #new_user = form.save()
+                                #university_endorsement = form.cleaned_data['university_endorsement']
+            #else:
+                #form = EndorsementForm(instance = student)
+            #if request.method == 'POST':       
+                #particular_student = request.POST['particular_student']
+                #request.session['particular_student'] = particular_student
+                #return HttpResponseRedirect('/ciip/student_info/')
+
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect('/ciip/login/')
+
+
+
+    return render(request, 'ciip/list_student.html', {'uni_list':uni_list, 'user_name':user_name, 'particular_student':particular_student})
+
+
+def student_info(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+    else:    
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+
+        try:
+            profile = UniversityAdmin.objects.get(user=request.user)
+            #particular_student = request.session.get('particular_student')
+            particular_student = request.GET['id']
+            
+            profile_student = UserProfile.objects.get( pk=particular_student)            
+            request.session['particular_student'] = profile_student.id
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect('/ciip/login/')
+
+    return render(request, 'ciip/student_info.html', {'user_name':user_name,
+                             'particular_student':particular_student, 'profile_student':profile_student})
+
+
+
+def save_unicomment(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/uniadmin_login/')
+
+    else:
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        #particular_student = request.session.get('particular_student')
+        particular_student = request.GET['id']
+        profile_student = UserProfile.objects.get(pk=particular_student)
+     
+        if request.method == 'POST':
+            form = UnicommentForm(request.POST or None, instance=profile_student)
+            form2 = EndorsementForm(request.POST or None, instance=profile_student)
+          
+            if form.is_valid() and form2.is_valid:
+                new_user = form.save()
+                new_user2 = form2.save()
+                return HttpResponseRedirect('/ciip/student_info/?id='+particular_student)
+        else:
+            form = UnicommentForm(instance=profile_student)
+            form2 = EndorsementForm(instance=profile_student)
+    return render( request, 'ciip/save_unicomment.html', {'form':form, 'form2':form2, 'user_name':user_name,
+     'particular_student':particular_student, 'profile_student':profile_student})
+
+
+
+
+
+    
+def getUniAdmin(email, current_user):
+    match = re.search(r'([\w.-]+)@([\w.-]+)', email)
+    newemail = match.group(2).replace (".", " ")
+    profile = UniversityAdmin.objects.get(user=current_user)
+    uni = newemail.split()
+    for word in uni:
+        if word == 'ucl':
+            #uni_origin = University.objects.get(name='UCL')
+            profile.university = 'UCL'
+            profile.save()
+        if word == 'kent':
+            #uni_origin = University.objects.get(name='Kent')
+            profile.university = 'Kent'
+            profile.save()
+        if word == 'tsinghua':
+            #uni_origin = University.objects.get(name='Tsinghua')
+            profile.university = 'Tsinghua'
+            profile.save()
+        if word == 'zju':
+            #uni_origin = University.objects.get(name='ZJU')
+            profile.university = 'ZJU'
+            profile.save()
+        if word == 'wide' or word == 'keio':
+            #uni_origin = University.objects.get(name='Keio')
+            profile.university = 'Keio'
+            profile.save()
+        if word == 'cvut':
+            #uni_origin = University.objects.get(name='CTU')
+            profile.university = '  CTU'
+            profile.save()
+        if word == 'bmstu':
+            #uni_origin = University.objects.get(name='BMSTU')
+            profile.university = 'BMSTU'
+            profile.save()
+        if word == 'epfl':
+            #uni_origin = University.objects.get(name='EPFL')
+            profile.university = 'EPFL'
+            profile.save()
+        if word == 'unsw':
+            #uni_origin = University.objects.get(name='UNSW')
+            profile.university = 'UNSW'
+            profile.save()
+
