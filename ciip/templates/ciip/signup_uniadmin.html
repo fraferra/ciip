@@ -52,6 +52,7 @@
 
     <!-- Fav and touch icons -->
        <link rel="shortcut icon" href="/static/img/favicon.ico" >
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
   </head>
 
@@ -97,6 +98,14 @@
 {{ form.as_p }}
 <!--<input type="text" id='usertype' name="FirstName" value="university or student?"><br>-->
 <div>
+   <div class="panel panel-info">
+  <div class="panel-body">
+<p><strong>Please, enter the authentication number sent by the CIIP team.</strong></p>
+<p><input type="text" class="input-block-level" placeholder="Authentication Number" name="passcode" id="passcode"></p>
+
+</div>
+</div>
+<center><span></span></center>
  <br> 
       <button class="btn btn-large btn-primary" type="submit">Create account</button>
     
@@ -115,6 +124,34 @@
         $(document).ready(function () {  
             $('.dropdown-toggle').dropdown();  
         });  
+   </script>
+   <script type="text/javascript">
+   function checkPasscode () {
+      var passcode = parseInt(document.getElementById("passcode").value);
+      
+      if(passcode == {{passcode}}) {
+
+        return true;
+      }
+      else {
+       
+        return false;
+      }
+    }
+
+
    </script>  
+   <script>
+$( "form" ).submit(function( event ) {
+if ( checkPasscode()) {
+$( "span" ).text( "Validated..." ).show();
+return;
+}
+$( "span" ).text( "Passcode is not valid!" ).show().fadeOut( 2000 );
+event.preventDefault();
+});
+</script>
+  <script type="text/javascript" src="/static/js/jquery.js"></script> 
+
   </body>
 </html>

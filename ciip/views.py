@@ -596,6 +596,7 @@ def checkemail(address):
 
 def signup_uniadmin(request):
     usertype=''
+    passcode=312943
     if request.method == 'POST':
         form = SignUpFormAdmin(request.POST)
         
@@ -614,7 +615,7 @@ def signup_uniadmin(request):
         form = SignUpFormAdmin()
         
     return render( request, 'ciip/signup_uniadmin.html', {
-        'form': form, 
+        'form': form, 'passcode':passcode,
     })
 
 
