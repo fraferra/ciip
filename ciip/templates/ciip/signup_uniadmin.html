@@ -100,8 +100,8 @@
 <div>
    <div class="panel panel-info">
   <div class="panel-body">
-<p><strong>Please, enter the authentication number sent by the CIIP team.</strong></p>
-<p><input type="text" class="input-block-level" placeholder="Authentication Number" name="passcode" id="passcode"></p>
+<!--<p><strong>Please, enter the authentication number sent by the CIIP team.</strong></p>
+<p><input type="text" class="input-block-level" placeholder="Authentication Number" name="passcode" id="passcode"></p>-->
 
 </div>
 </div>
@@ -125,11 +125,11 @@
             $('.dropdown-toggle').dropdown();  
         });  
    </script>
-   <script type="text/javascript">
+   <!--<script type="text/javascript">
    function checkPasscode () {
       var passcode = parseInt(document.getElementById("passcode").value);
       
-      if(passcode == {{passcode}}) {
+      if(passcode ) {
 
         return true;
       }
@@ -150,7 +150,7 @@ return;
 $( "span" ).text( "Passcode is not valid!" ).show().fadeOut( 2000 );
 event.preventDefault();
 });
-</script>
+</script>-->
   <script type="text/javascript" src="/static/js/jquery.js"></script> 
 
   </body>

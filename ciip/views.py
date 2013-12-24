@@ -596,28 +596,32 @@ def checkemail(address):
 
 def signup_uniadmin(request):
     usertype=''
-    passcode=2860486313
+    passcode='2860486313'
     if request.method == 'POST':
         form = SignUpFormAdmin(request.POST)
         
         if form.is_valid():
             email=request.POST['email']
-            
-            if checkemail(email):
+            user_passcode = request.POST['passcode']
+            #import sys
+            #print >> sys.stderr, "********* User Current PK %s" %(user_passcode)
+            if checkemail(email) and user_passcode==passcode:
                 new_user = form.save()
                 
                 #UniversityAdmin.objects.create(user=instance) 
                 #post_save.connect(models.create_uni_profile, sender=User)  
                 return HttpResponseRedirect('/ciip/uniadmin_login/')
             else:
-                return HttpResponseRedirect('/ciip/notactive/')        
+                '''import Tkinter
+                import tkMessageBox
+                tkMessageBox.showinfo("Say Hello", "Hello World")'''
+                return HttpResponseRedirect('/ciip/signup_uniadmin/')        
     else:
         form = SignUpFormAdmin()
         
     return render( request, 'ciip/signup_uniadmin.html', {
         'form': form, 'passcode':passcode,
     })
-
 
 
 def uniadmin_login(request):

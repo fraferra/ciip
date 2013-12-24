@@ -190,6 +190,7 @@ class SignUpFormAdmin(UserCreationForm):
     
     ('University Admin', 'University Admin'),
     ))
+    passcode = forms.CharField(label='Please enter the passcode sent by the CIIP Team:', max_length=10)
     class Meta:
         model = User
         fields = ('username','email','user_type',) 
