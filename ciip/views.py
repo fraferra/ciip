@@ -176,9 +176,12 @@ def home(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
     else:
-        current_pk = request.user.pk
-        user_name = User.objects.get(pk=current_pk).username
-        status = UserProfile.objects.get(user = request.user).status 
+        try:
+            current_pk = request.user.pk
+            user_name = User.objects.get(pk=current_pk).username
+            status = UserProfile.objects.get(user = request.user).status
+        except ObjectDoesNotExist:
+            return HttpResponseRedirect('/ciip/uniadmin_login/') 
         #if request.method =='GET':
             #profile = UserProfileForm(instance=request.user.get_profile())
             #user_name=str(profile['first_name'])
