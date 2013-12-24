@@ -38,7 +38,7 @@ class CiipAdmin(admin.ModelAdmin):
     'interest_1','interest_2','interest_3','university_endorsement','full_name_emergency','relationship','phone_emergency','email_emergency','birth_date']
     list_display = ('first_name', 'last_name','status','university','user_email')
     list_filter = ['university', 'status','university_endorsement']
-
+    search_fields=['first_name','last_name']
 
     def user_email(self, instance):
         return instance.user.email
