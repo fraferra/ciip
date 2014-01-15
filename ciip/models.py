@@ -290,10 +290,8 @@ class UserProfile(Profile):
 )
 
     UNIVERSITY_ENDORSEMENT = (
-          ('Excellent Candidate','Excellent Candidate'),
-          ('Good Candidate','Good Candidate'),
-          ('Average Candidate','Average Candidate'),
-          ('Sufficient','Sufficient'),
+          ('Strongly recommended','Strongly recommended'),
+          ('Recommended','Recommended'),
           ('Not recommended','Not recommended'),
           ('On Hold', 'On Hold'),
 
@@ -301,8 +299,14 @@ class UserProfile(Profile):
         )
 
     university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, default='On Hold', null=True)
-
-
+    UNIVERSITY_ROLE = (
+       ('Tutor', 'Tutor'),
+       ('Mentor','Mentor'),
+       ('University Professor', 'University Professor'),
+       ('Employeer', 'Employeer'),
+      )
+    university_role=models.CharField(max_length=100, choices= UNIVERSITY_ROLE, default='In consideration', null=True)
+    university_role_name=models.CharField(max_length=100, null=True)
 
     STATUS_UPDATES = (
        ('In consideration', 'In consideration'),
@@ -314,8 +318,17 @@ class UserProfile(Profile):
     status=models.CharField(max_length=100, choices= STATUS_UPDATES, default='In consideration', null=True)
     
 
-   
+    INTERVIEW_RESPONSE=(
+       ('Tutor', 'Tutor'),
+       ('Mentor','Mentor'),
+       ('University Professor', 'University Professor'),
+       ('Employeer', 'Employeer'),
+      )
+    webex_link = models.TextField(max_length=200, null=True)
 
+    interview_response = models.CharField(max_length=100,
+                                            choices=INTERVIEW_RESPONSE,
+                                            default='None', null=True)
     
     
 
