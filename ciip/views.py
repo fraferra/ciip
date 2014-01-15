@@ -200,7 +200,7 @@ def eligibility(request):
     except ObjectDoesNotExist:
         user_name='none'
     return render(request,'ciip/eligibility.html',{'user_name':user_name})
-
+'''
 def upload_file(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
@@ -216,6 +216,20 @@ def upload_file(request):
        else:
            form = UploadFileForm(instance=request.user.get_profile())
     return render(request, 'ciip/upload_file.html', {'form': form,'user_name':user_name})
+'''
+
+
+def upload_file(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else: 
+       current_pk = request.user.pk
+       user_name = User.objects.get(pk=current_pk).username
+       if request.method == 'GET':
+           profile = UserProfile.objects.get(user = request.user)
+           cv=profile.file_cv
+    return render(request, 'ciip/upload_file.html', {'cv': cv,'user_name':user_name})
+
 
 
 def cover_letter(request):
