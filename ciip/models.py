@@ -305,7 +305,7 @@ class UserProfile(Profile):
        ('University Professor', 'University Professor'),
        ('Employeer', 'Employeer'),
       )
-    university_role=models.CharField(max_length=100, choices= UNIVERSITY_ROLE, default='In consideration', null=True)
+    university_role=models.CharField(max_length=100, choices= UNIVERSITY_ROLE, default='Tutor', null=True)
     university_role_name=models.CharField(max_length=100, null=True)
 
     STATUS_UPDATES = (
