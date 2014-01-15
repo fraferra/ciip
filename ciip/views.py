@@ -830,16 +830,16 @@ def save_unicomment(request):
      
         if request.method == 'POST':
             form = UnicommentForm(request.POST or None, instance=profile_student)
-            form2 = EndorsementForm(request.POST or None, instance=profile_student)
+            #form2 = EndorsementForm(request.POST or None, instance=profile_student)
           
             if form.is_valid() and form2.is_valid:
                 new_user = form.save()
-                new_user2 = form2.save()
+                #new_user2 = form2.save()
                 return HttpResponseRedirect('/ciip/student_info/?id='+particular_student)
         else:
             form = UnicommentForm(instance=profile_student)
-            form2 = EndorsementForm(instance=profile_student)
-    return render( request, 'ciip/save_unicomment.html', {'form':form, 'form2':form2, 'user_name':user_name,
+            #form2 = EndorsementForm(instance=profile_student)
+    return render( request, 'ciip/save_unicomment.html', {'form':form,  'user_name':user_name,
      'particular_student':particular_student, 'profile_student':profile_student})
 
 

@@ -115,18 +115,17 @@
             <div class="span8" >
 
               <form action= "" method="get">{% csrf_token %}
-                <p><strong>Student ID: </strong><span class="number">{{ particular_student }}</span></p>
+                <p><strong>Email: </strong><span class="degree">{{ profile_student.user.email }}</span></p>
                 <p><strong>Degree: </strong><span class="degree">{{ profile_student.degree }}</span></p>
                 <p><strong>Average: </strong><span class="average">{{ profile_student.average }}</span></p>
 
                 <p><strong>Student comments:</strong></p>
                 <p> {{ profile_student.uni_comment }}</p>
+                <p><strong>Endorsement: </strong>{{ profile_student.university_endorsement }}</p>
+                <p><strong>Endorsed by: </strong>{{ profile_student.university_role }} {{ profile_student.university_role_name}}</p>
 
               </form>
 
-              <form action="" method="get">{% csrf_token %}
-                <p><strong>University Endorsement: </strong>{{ profile_student.university_endorsement }}</p>
-              </form>
             
              
             <!--    <textarea class="form-textarea validate[required] form-validation-error" rows="9" cols="150" placeholder="Comments" name="uni_comment" value="{{ message }}" style="width: 500px;">{{ form.uni_comment }}</textarea>

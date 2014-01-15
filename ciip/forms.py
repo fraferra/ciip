@@ -169,7 +169,7 @@ class EndorsementForm(ModelForm):
 class UnicommentForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('uni_comment',)
+        fields = ('uni_comment','university_role','university_role_name','university_endorsement')
 
 
 
