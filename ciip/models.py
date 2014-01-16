@@ -293,19 +293,19 @@ class UserProfile(Profile):
           ('Strongly recommended','Strongly recommended'),
           ('Recommended','Recommended'),
           ('Not recommended','Not recommended'),
-          ('On Hold', 'On Hold'),
+         
 
 
         )
 
-    university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, default='On Hold', null=True)
+    university_endorsement=models.CharField(max_length=20, choices=UNIVERSITY_ENDORSEMENT, null=True)
     UNIVERSITY_ROLE = (
        ('Tutor', 'Tutor'),
        ('Mentor','Mentor'),
        ('University Professor', 'University Professor'),
        ('Employeer', 'Employeer'),
       )
-    university_role=models.CharField(max_length=100, choices= UNIVERSITY_ROLE, default='Tutor', null=True)
+    university_role=models.CharField(max_length=100, choices= UNIVERSITY_ROLE,  null=True)
     university_role_name=models.CharField(max_length=100, null=True)
 
     STATUS_UPDATES = (
