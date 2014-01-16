@@ -113,8 +113,14 @@
 
           <div class="row-fluid">
             <div class="span8" >
-
-                <p> {{ form }}</p>
+                <p>Please write a short comment for the endorsement of {{ profile_student.first_name }} {{ profile_student.last_name }}:</p>
+                <p> {{ form.uni_comment }}</p>
+                <p>Enter the role of who wrote the endorsement for the student:</p>
+                <p>{{ form.university_role}}</p>
+                <p>Enter the name of who wrote the endorsement for the student:</p>
+                <p>{{ form.university_role_name}}</p>
+                <p>Please enter one of the option for the student:</p>
+                <p>{{ form.university_endorsement}}</p>
 
     
       
