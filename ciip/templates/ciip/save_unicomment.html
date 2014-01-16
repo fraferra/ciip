@@ -104,7 +104,7 @@
 
           <div class="hero-unit">
            
-              <form  method = "post">{% csrf_token %}
+              
                 <h2>Student: {{ profile_student.first_name }} {{ profile_student.last_name }}</h2>
                     
                 <p><input type="submit" onclick =" location.href = '/ciip/student_info?id={{ particular_student }}' ;" class="btn btn-primary btn-large" value="Save Changes"></p>
@@ -113,6 +113,7 @@
 
           <div class="row-fluid">
             <div class="span8" >
+              <form  method = "post">{% csrf_token %}
                 <p>Please write a short comment for the endorsement of {{ profile_student.first_name }} {{ profile_student.last_name }}:</p>
                 <p> {{ form.uni_comment }}</p>
                 <p>Enter the role of who wrote the endorsement for the student:</p>
