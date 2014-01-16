@@ -765,6 +765,7 @@ def list_student(request):
         user_name = User.objects.get(pk=current_pk).username
         try:
             profile = UniversityAdmin.objects.get(user=request.user)
+            university=profile.university
             if request.method == 'GET':
                 uni_list=[]
                 particular_student = ''
@@ -792,7 +793,7 @@ def list_student(request):
 
 
 
-    return render(request, 'ciip/list_student.html', {'uni_list':uni_list, 'user_name':user_name, 'particular_student':particular_student})
+    return render(request, 'ciip/list_student.html', {'university':university,'uni_list':uni_list, 'user_name':user_name, 'particular_student':particular_student})
 
 
 def student_info(request):
