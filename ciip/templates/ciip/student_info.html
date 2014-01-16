@@ -115,11 +115,17 @@
             <div class="span8" >
 
               <form action= "" method="get">{% csrf_token %}
+                <h3>Academic Info</h3>
                 <p><strong>Email: </strong><span class="degree">{{ profile_student.user.email }}</span></p>
                 <p><strong>Degree: </strong><span class="degree">{{ profile_student.degree }}</span></p>
                 <p><strong>Average: </strong><span class="average">{{ profile_student.average }}</span></p>
-
-                <p><strong>Student comments:</strong></p>
+                <h3>Skills</h3>
+                <p><strong>Skill:</strong></p>
+                <p><strong>Student comments:</strong> {{profile_student.skill_1}} <strong>Proficiency:</strong>{{profile_student.skill_level_1}} </p>
+                <p><strong>Student comments:</strong> {{profile_student.skill_2}} <strong>Proficiency:</strong>{{profile_student.skill_level_2}} </p>
+                <p><strong>Student comments:</strong> {{profile_student.skill_3}} <strong>Proficiency:</strong>{{profile_student.skill_level_3}} </p>
+                <h3>Endorsement</h3>
+      
                 <p> {{ profile_student.uni_comment }}</p>
                 <p><strong>Endorsement: </strong>{{ profile_student.university_endorsement }}</p>
                 <p><strong>Endorsed by: </strong>{{ profile_student.university_role }} {{ profile_student.university_role_name}}</p>
