@@ -832,7 +832,7 @@ def save_unicomment(request):
             form = UnicommentForm(request.POST or None, instance=profile_student)
             #form2 = EndorsementForm(request.POST or None, instance=profile_student)
           
-            if form.is_valid() and form2.is_valid:
+            if form.is_valid():
                 new_user = form.save()
                 #new_user2 = form2.save()
                 return HttpResponseRedirect('/ciip/student_info/?id='+particular_student)
