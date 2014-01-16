@@ -134,9 +134,12 @@
        <li>
            <h4> <a href = "/ciip/student_info?id={{student.id}}"  ><span class="name">{{ student.last_name }}</span><pan class="first"> {{ student.first_name }}</span></a></h4>  
            
-           <p><strong>Student ID: <span class="number">{{ student.id }}</span></strong></p>
-                      <p>University endorsement: <span class="endorsement">{{student.university_endorsement}}</span></p>
+           
+                      <p>University endorsement: <span class="endorsement"><i>{{student.university_endorsement}}</i></span></p>
+
        </li>
+      <hr class="featurette-divider">
+
     {% endfor %}
     </ul>
 </div>
