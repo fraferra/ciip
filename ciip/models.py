@@ -329,7 +329,8 @@ class UserProfile(Profile):
     interview_response = models.CharField(max_length=100,
                                             choices=INTERVIEW_RESPONSE,
                                             default='None', null=True)
-    
+    interviewer_comment = models.TextField(max_length=1000, null=True, default=None)
+    interviewer_name = models.CharField(max_length=100, null=True, default=None)
     
 
     GENDER= (('male', 'male'),('female','female'),)
