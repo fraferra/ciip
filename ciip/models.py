@@ -329,6 +329,18 @@ class UserProfile(Profile):
     interview_response = models.CharField(max_length=100,
                                             choices=INTERVIEW_RESPONSE,
                                             default='None', null=True)
+    OPTION=(
+        ('Yes','Yes'),
+        ('No','No')
+        )
+    leadership=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    initiative=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    innovation=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    adaptability=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    team_player=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    cisco_fit=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    technical_skill=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
+    motivation=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
     interviewer_comment = models.TextField(max_length=1000, null=True, default=None)
     interviewer_name = models.CharField(max_length=100, null=True, default=None)
     

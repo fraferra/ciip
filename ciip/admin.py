@@ -14,7 +14,7 @@ class CiipAdmin(admin.ModelAdmin):
     model=UserProfile
     
     fieldsets = [
-        ('Interview',{'fields':['interviewer_comment','interviewer_name']}),
+        ('Interview',{'fields':['interviewer_comment','interviewer_name','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('University Endorsement',{'fields':['university_endorsement', 'uni_comment', 'university_role','university_role_name']}),
         ('Personal Information', {'fields':['gender','passport','first_name','last_name']}),#'passport_number','birth_date','birth_date_day','birth_date_month','birth_date_year']}),
 
@@ -32,7 +32,8 @@ class CiipAdmin(admin.ModelAdmin):
     ]
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     
-    readonly_fields=['gender','passport', 'uni_comment',#'first_name','last_name','university',
+    readonly_fields=['gender','passport', 'uni_comment','first_name','last_name','university',
+    'university_role','university_role_name',
     'birth_date_day','birth_date_month','birth_date_year','email','phone',
     'address_line1','address_line2','city','zip_code','country','experience_1','experience_2','internship_1','internship_2',
     'year_of_graduation','degree','average','question_1', 'question_2','question_3','file_name',
