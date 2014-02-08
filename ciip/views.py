@@ -554,6 +554,24 @@ def current_project(request):
         user_name='none'
     return render(request, 'ciip/current_project.html', {'user_name':user_name})
 
+def interview(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else:    
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        profile = UserProfile.objects.get(user = request.user)
+        date_interview = profile.date_interview
+        webex_link = profile.webex_link
+        interview_response = profile.interview_response  
+        if request.method == 'POST':
+            interview_response=request.POST['interview_response']
+            profile.interview_response=interview_response
+            profile.save()
+            return HttpResponseRedirect('/ciip/interview/')
+            
+    return render(request, 'ciip/interview.html', {'user_name':user_name, 'date_interview':date_interview,
+     'webex_link':webex_link, 'interview_response':interview_response})
 
 def checkemail(address):
     uni_list=['ucl.ac.uk','kent.ac.uk',

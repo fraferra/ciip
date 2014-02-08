@@ -325,10 +325,9 @@ class UserProfile(Profile):
        ('Employeer', 'Employeer'),
       )
     webex_link = models.TextField(max_length=200, null=True)
-
+    date_interview = models.DateTimeField( null=True)
     interview_response = models.CharField(max_length=100,
-                                            choices=INTERVIEW_RESPONSE,
-                                            default='None', null=True)
+                                            default=None, null=True)
     OPTION=(
         ('Yes','Yes'),
         ('No','No')

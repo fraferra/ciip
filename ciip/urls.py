@@ -49,6 +49,7 @@ urlpatterns = patterns('',
 
     url(r'^cover_letter/$', views.cover_letter, name='cover_letter'),
     url(r'^current_project/$', views.current_project, name='current_project'),
+    url(r'^interview/$', views.interview, name='interview'),
 
 
 
