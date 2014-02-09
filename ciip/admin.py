@@ -38,9 +38,9 @@ class CiipAdmin(admin.ModelAdmin):
     'birth_date_day','birth_date_month','birth_date_year','email','phone',
     'address_line1','address_line2','city','zip_code','country','experience_1','experience_2','internship_1','internship_2',
     'year_of_graduation','degree','average','question_1', 'question_2','question_3','file_name',
-    #'skill_1','skill_level_1','skill_2','skill_level_2','skill_3','skill_level_3',
+    'skill_1','skill_level_1','skill_2','skill_level_2','skill_3','skill_level_3',
     'good_university',
-    #'interest_1','interest_2','interest_3',
+    'interest_1','interest_2','interest_3',
     'university_endorsement','full_name_emergency','relationship','phone_emergency','email_emergency','birth_date']
     
 
