@@ -15,6 +15,7 @@ class CiipAdmin(admin.ModelAdmin):
     
     fieldsets = [
         ('Interview',{'fields':['interviewer_comment','interviewer_name','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
+        ('Status Update',{'fields':['status','date_interview','interview_response']}),
         ('University Endorsement',{'fields':['university_endorsement', 'uni_comment', 'university_role','university_role_name']}),
         ('Personal Information', {'fields':['gender','passport','first_name','last_name']}),#'passport_number','birth_date','birth_date_day','birth_date_month','birth_date_year']}),
 
@@ -23,7 +24,7 @@ class CiipAdmin(admin.ModelAdmin):
         ('Academic Information', {'fields':['university','year_of_graduation','degree','average', 'good_university']}),
         ('Work and Internship experiences', {'fields':['experience_1','experience_2','internship_1','internship_2']}),    
         ('Motivational Questions', {'fields':['question_1', 'question_2','question_3']}),
-        ('Status Update',{'fields':['status']}),
+        
         ('CV',{'fields':['file_name','file_cv']}),
        # ('Image', {'fields':['image']}),
         ('Skills',{'fields':['skill_1','skill_level_1','skill_2',
