@@ -580,7 +580,7 @@ def checkemail(address):
                'sfc.keio.ac.jp','unsw.edu.au',
                'student.bmstu.ru','fel.cvut.cz',
                'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
-               'z5.keio.jp',
+               'z5.keio.jp','bmstu.ru',
                'ee.ucl.ac.uk', 'uottawa.ca',
                'epfl.ch','zju.edu.cn']
     match = re.search(r'([\w.-]+)@([\w.-]+)', address)
