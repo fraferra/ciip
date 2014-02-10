@@ -34,6 +34,7 @@ class CiipAdmin(admin.ModelAdmin):
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     
     readonly_fields=['gender','passport', 'first_name','last_name','university',
+    'date_interview',
     #'university_role','university_role_name','uni_comment',
     'birth_date_day','birth_date_month','birth_date_year','email','phone',
     'address_line1','address_line2','city','zip_code','country','experience_1','experience_2','internship_1','internship_2',
