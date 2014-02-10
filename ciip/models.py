@@ -342,7 +342,7 @@ class UserProfile(Profile):
     motivation=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
     interviewer_comment = models.TextField(max_length=1000, null=True, default=None)
     interviewer_name = models.CharField(max_length=100, null=True, default=None)
-    
+    position_suggested = models.CharField(max_length=100, null=True, default=None)
 
     GENDER= (('male', 'male'),('female','female'),)
     gender=models.CharField(max_length=6, choices=GENDER, default='male', null=True)

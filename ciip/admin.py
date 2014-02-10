@@ -14,7 +14,7 @@ class CiipAdmin(admin.ModelAdmin):
     model=UserProfile
     
     fieldsets = [
-        ('Interview',{'fields':['interviewer_comment','interviewer_name','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
+        ('Interview',{'fields':['interviewer_comment','interviewer_name','position_suggested','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('Status Update',{'fields':['status','date_interview','interview_response']}),
         ('University Endorsement',{'fields':['university_endorsement', 'uni_comment', 'university_role','university_role_name']}),
         ('Personal Information', {'fields':['gender','passport','first_name','last_name']}),#'passport_number','birth_date','birth_date_day','birth_date_month','birth_date_year']}),

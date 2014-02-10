@@ -18,7 +18,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
 '''
 
 DATABASES = {
