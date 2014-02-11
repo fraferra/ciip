@@ -1,6 +1,6 @@
 import logging
 from django.contrib import admin
-from ciip.models import UserProfile, UniversityAdmin, Profile
+from ciip.models import *
 from django.contrib.auth.models import User
 #from django.contrib.auth.admin import UserAdmin
 
