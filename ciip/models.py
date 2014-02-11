@@ -38,7 +38,7 @@ class Profile(models.Model):
 
 post_save.connect(create_user_profile, sender=User)
 class ManagerProfile(Profile):
-    business_unit=models.CharField(max_length=100, choices=constants.PROJECTS ,null=True)
+    business_unit=models.CharField(max_length=100, choices=constants.PROJECTS, default=None ,null=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name= models.CharField(max_length = 20, null=True)
     skill_1=models.CharField(max_length=60, null=True)
