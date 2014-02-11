@@ -19,7 +19,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -50,7 +50,7 @@ DATABASES = {
 
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
-'''
+
 
 AWS_STORAGE_BUCKET_NAME='ciip.media'
 
