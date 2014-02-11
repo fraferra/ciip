@@ -22,7 +22,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             #UserProfile(user = instance).save()
                 UserProfile.objects.create(user=instance) 
         except AttributeError:
-            UserProfile.objects.create(user=instance) 
+            pass 
 
 class Profile(models.Model):
     user=models.ForeignKey(User, unique=True)

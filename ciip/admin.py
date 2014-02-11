@@ -14,6 +14,7 @@ class CiipAdmin(admin.ModelAdmin):
     model=UserProfile
     
     fieldsets = [
+        ('User',{'fields':['user']}),
         ('Interview',{'fields':['interviewer_comment','interviewer_name','position_suggested','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('Status Update',{'fields':['status','date_interview','interview_response']}),
         ('University Endorsement',{'fields':['university_endorsement', 'uni_comment', 'university_role','university_role_name']}),
@@ -61,7 +62,7 @@ admin.site.register(UserProfile, CiipAdmin)
 
 class UniAdmin(admin.ModelAdmin):
     model=UniversityAdmin
-    fieldsets= [('University',{'fields':['university','first_name','last_name']}),]
+    fieldsets= [('user',{'fields':['user']}),('University',{'fields':['university','first_name','last_name']}),]
     readonly_fields=['university','first_name','last_name']
     list_display = ( 'last_name','university','user_email')
     def user_email(self, instance):
