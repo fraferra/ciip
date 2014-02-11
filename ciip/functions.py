@@ -45,7 +45,7 @@ class functions:
         max_score=0
         for student in UserProfile.objects.all():
             score=0
-            match_field = re.search(str(obj_field).lower() ,str(student.position_suggested).lower())
+            match_field = re.search(unicode(obj_field).lower() ,unicode(student.position_suggested).lower())
             if match_field:
                 score=score+3
             for skill in obj_skills:
@@ -56,7 +56,7 @@ class functions:
             student_interests=[student.interest_1, student.interest_2, student.interest_3]
             for student_skill, student_level in student_skills:
                 for obj_skill in obj_alls:
-                    match=re.search(str(obj_skill).lower(), str(student_skill).lower())
+                    match=re.search(unicode(obj_skill).lower(), unicode(student_skill).lower())
                     if match:
                         if student_level == 'Advanced':
                             score=2+score
@@ -67,7 +67,7 @@ class functions:
                         #score=score+1
             for student_interest in student_interests:
                for obj_interest in obj_alls:
-                    match=re.search(str(obj_interest).lower(), str(student_interest).lower())
+                    match=re.search(unicode(obj_interest).lower(), unicode(student_interest).lower())
                     if match:
                         score=score+0.7
             tmp_students_score.append((student, score))
