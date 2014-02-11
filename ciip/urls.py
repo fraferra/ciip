@@ -50,6 +50,9 @@ urlpatterns = patterns('',
     url(r'^cover_letter/$', views.cover_letter, name='cover_letter'),
     url(r'^current_project/$', views.current_project, name='current_project'),
     url(r'^interview/$', views.interview, name='interview'),
+    url(r'^my_managers/$', views.my_managers, name='my_managers'),
+    url(r'^student_send_message/$', views.student_send_message, name='student_send_message'),
+
 
 
 
@@ -68,6 +71,19 @@ urlpatterns = patterns('',
     url(r'^student_info/$', views.student_info ,name='student_info'),
     url(r'^signup_uniadmin/$', views.signup_uniadmin, name='signup_uniadmin'),
     url(r'^save_unicomment/$', views.save_unicomment, name='save_unicomment'),
+
+    url(r'^manager_login/$', views.manager_login, name='manager_login'),
+    url(r'^manager_home/$', views.manager_home, name='manager_home'),
+    url(r'^result/$', views.result, name='result'),
+    url(r'^schedule_interview/$', views.schedule_interview, name='schedule_interview'),
+    url(r'^my_students/$', views.my_students, name='my_students'),
+    url(r'^manager_send_message/$', views.manager_send_message, name='manager_send_message'),
+    url(r'^manager_info/$', views.manager_info, name='manager_info'),
+    url(r'^manager_edit_info/$', views.manager_edit_info, name='manager_edit_info'),
+    url(r'^student_full_profile/$', views.student_full_profile, name='student_full_profile'),
+
+
+    
 
 
 )
