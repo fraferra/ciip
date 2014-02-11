@@ -81,3 +81,12 @@ admin.site.register(Profile, ProfileAdmin)
 
 '''
         
+class ManagerAdmin(admin.ModelAdmin):
+    model=ManagerProfile
+    fieldsets=[('General Info', {'fields':['user','business_unit','first_name','last_name']}),
+    ('Interests and Skills', {'fields':['skill_1','skill_2','skill_3','interest_1','interest_2','interest_3']})]
+    list_display = ( 'last_name','business_unit','user_email')
+    def user_email(self, instance):
+        return instance.user.email
+
+admin.site.register(ManagerProfile,ManagerAdmin)

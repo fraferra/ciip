@@ -37,6 +37,19 @@ class Profile(models.Model):
 # Create your models here.
 
 post_save.connect(create_user_profile, sender=User)
+class ManagerProfile(Profile):
+    business_unit=models.CharField(max_length=100, null=True)
+    first_name = models.CharField(max_length=20, null=True)
+    last_name= models.CharField(max_length = 20, null=True)
+    skill_1=models.CharField(max_length=60, null=True)
+    skill_2=models.CharField(max_length=60, null=True)
+    skill_3=models.CharField(max_length=60, null=True)
+    interest_1=models.CharField(max_length=60, null=True)
+    interest_2=models.CharField(max_length=60, null=True)
+    interest_3=models.CharField(max_length=60, null=True)
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return unicode(self.last_name) or u''
+        
 
 
 class UserProfile(Profile):
@@ -501,6 +514,20 @@ class UniversityAdmin(Profile):
 
 
 
+
+class Interview(models.Model):
+    date= models.DateTimeField( null=True)
+    student=models.ForeignKey(UserProfile)
+    manager=models.ForeignKey(ManagerProfile)
+    interview_response = models.CharField(max_length=100,
+                                            default=None, null=True)
+
+class Message(models.Model):
+    text=models.TextField(max_length=1000, null=True)
+    student=models.ForeignKey(UserProfile)
+    manager=models.ForeignKey(ManagerProfile)
+    sent_by=models.CharField(max_length=50, null=True)
+    date_sent=models.DateTimeField( null=True)
 
 
 
