@@ -3,8 +3,8 @@ import smtplib
 import os
 import re
 from django.core.exceptions import ObjectDoesNotExist
-#from datetime import datetime
-import datetime
+from datetime import datetime
+#import datetime
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import render, render_to_response, redirect
 from ciip.forms import  StatusUpdateForm  ,UserProfileForm , EndorsementForm, UnicommentForm, SignUpFormAdmin, UniAdminForm , WorkForm, CoverForm, UploadFileForm, AcademicForm, MotivationalQuestionForm, SignUpForm,  SkillForm, InterestForm
@@ -1262,7 +1262,8 @@ def returnConfirmedOrNot(filter_result):
 
 def return_best_time(university):
     local_tz=timezone('US/Pacific')
-    time = local_tz.localize(datetime.datetime.now())
+    #time = local_tz.localize(datetime.datetime.now())
+    time = local_tz.localize(datetime.now())
     if university == 'UCL' or university=='Kent':
         tz= timezone('Europe/London')
         suggested_time_frame= university +" is currently 8 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
