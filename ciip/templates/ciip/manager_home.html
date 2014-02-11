@@ -126,8 +126,9 @@
             <div class="span9" >
               <h3>Best Match</h3>
               {% for student, score in top_3 %}
-              <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - {{score}}</strong></h4>
+              <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - Matching Score {{score}}</strong></h4>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
+                <p><strong>Position Suggested</strong>: {{ student.position_suggested }}</p>
                 <p><strong>Degree</strong>: {{ student.degree }}</p>
                 <p><strong>Skills:</strong></p>
                 <ul>
@@ -136,11 +137,24 @@
                   <li> <b>{{student.skill_3}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_3}}</li>
      
                 </ul>
+                <div class="btn-group">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Action <span class="caret"></span>
+                  </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/ciip/schedule_interview?id={{student.id}}">Schedule Interview</a></li>
+                      <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
+                  </ul>
+              </div>
               {% endfor %}
+              <hr class="featurette-divider">
+              <h3>Results</h3>
               <hr class="featurette-divider">
               {% for student in results %}
                 <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
+                <p><strong>Position Suggested</strong>: {{ student.position_suggested }}</p>
                 <p><strong>Degree</strong>: {{ student.degree }}</p>
                 <p><strong>Skills:</strong></p>
                 <ul>
@@ -157,9 +171,6 @@
                     <ul class="dropdown-menu" role="menu">
     <li><a href="/ciip/schedule_interview?id={{student.id}}">Schedule Interview</a></li>
     <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a href="#">Separated link</a></li>
   </ul>
 </div>
 
