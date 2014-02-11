@@ -1,10 +1,9 @@
 #List of constants used for the models 
 
 UNIVERSITY_ENDORSEMENT = (
-    ('Highly recommended','Highly recommended'),
-    ('Approved','Approved'),
-    ('Not approved', 'Not approved'),
-    ('On Hold', 'On Hold'),
+    ('Strongly recommended','Strongly recommended'),
+    ('Recommended','Recommended'),
+    ('Not recommended', 'Not recommended'),
 ) 
 UNIVERSITY_ROLE = (
        ('Tutor', 'Tutor'),
