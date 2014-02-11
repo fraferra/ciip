@@ -74,7 +74,7 @@ urlpatterns = patterns('',
 
     url(r'^manager_login/$', views.manager_login, name='manager_login'),
     url(r'^manager_home/$', views.manager_home, name='manager_home'),
-    url(r'^result/$', views.result, name='result'),
+    #url(r'^result/$', views.result, name='result'),
     url(r'^schedule_interview/$', views.schedule_interview, name='schedule_interview'),
     url(r'^my_students/$', views.my_students, name='my_students'),
     url(r'^manager_send_message/$', views.manager_send_message, name='manager_send_message'),
@@ -83,7 +83,7 @@ urlpatterns = patterns('',
     url(r'^student_full_profile/$', views.student_full_profile, name='student_full_profile'),
 
 
-    
+
 
 
 )
