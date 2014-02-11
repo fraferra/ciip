@@ -38,7 +38,7 @@ class Profile(models.Model):
 
 post_save.connect(create_user_profile, sender=User)
 class ManagerProfile(Profile):
-    business_unit=models.CharField(max_length=100, null=True)
+    business_unit=models.CharField(max_length=100, choices=constants.PROJECTS ,null=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name= models.CharField(max_length = 20, null=True)
     skill_1=models.CharField(max_length=60, null=True)
@@ -94,7 +94,7 @@ class UserProfile(Profile):
     motivation=models.CharField(max_length=3, null=True, default=None, choices=OPTION)
     interviewer_comment = models.TextField(max_length=1000, null=True, default=None)
     interviewer_name = models.CharField(max_length=100, null=True, default=None)
-    position_suggested = models.CharField(max_length=100, null=True, default=None)
+    position_suggested = models.CharField(max_length=100, null=True, choices=constants.PROJECTS, default=None)
 
 
     gender=models.CharField(max_length=6, choices=constants.GENDER, default='male', null=True)

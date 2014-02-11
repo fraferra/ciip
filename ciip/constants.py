@@ -37,6 +37,25 @@ PASSPORT = (
     ('No','No'),
 )
 
+PROJECTS=(
+   ('Technology radar','Technology radar'),
+   ('SDN / Engineering','SDN / Engineering'),
+   ('Openstack / Engineering','Openstack / Engineering'),
+   ('IT','IT'),
+   ('GIS / IT','GIS / IT'),
+   ('Collaboration / IT','Collaboration / IT'),
+   ('Security / Engineering','Security / Engineering'),
+   ('Marketing','Marketing'),
+   ('Sales','Sales'),
+   ('Engineering','Engineering'),
+   ('Cloud / Engineering','Cloud / Engineering'),
+   ('CIIP Tools / Engineering','CIIP Tools / Engineering'),
+   ('CSMTG / Engineering','CSMTG / Engineering'),
+   ('ONE PK / Engineering', 'ONE PK / Engineering'),
+
+
+)
+
 GENDER = (
     ('male', 'male'),
     ('female','female'),
