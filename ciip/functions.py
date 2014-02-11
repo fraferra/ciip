@@ -25,7 +25,7 @@ from pytz import timezone
 from django.views.generic import FormView
 from django import forms, http
 
-import pusher
+
 
 class functions:
     def matchingAlgorith(self,obj):
