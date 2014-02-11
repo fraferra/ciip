@@ -45,7 +45,7 @@ class functions:
         max_score=0
         for student in UserProfile.objects.all():
             score=0
-            match_field = re.search(str(obj_field).lower() ,str(student.suggested_position).lower())
+            match_field = re.search(str(obj_field).lower() ,str(student.position_suggested).lower())
             if match_field:
                 score=score+3
             for skill in obj_skills:

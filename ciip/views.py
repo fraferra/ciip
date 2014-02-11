@@ -578,7 +578,7 @@ def interview(request):
             
     return render(request, 'ciip/interview.html', {'user_name':user_name, 'date_interview':date_interview,
      'webex_link':webex_link, 'interview_response':interview_response})
-    
+
 def my_managers(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
@@ -1005,10 +1005,6 @@ def manager_home(request):
         current_pk = request.user.pk
         current_user = request.user
         user_name = User.objects.get(pk=current_pk).username
-
-
-
-
         try:
             manager_profile = ManagerProfile.objects.get(user=request.user)
             previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
