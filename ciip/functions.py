@@ -58,14 +58,18 @@ class functions:
                 match=re.search(unicode(student.degree).lower(), unicode(skill).lower())
                 if match:
                     score=score+1
+            #student_business_fields=['management', 'business', 'marketing']
+            #student_technical_fields=['engineering', 'electrical', 'computer science', 'big data','electronic', 'cs']
+
+            #check_degree=re.search()
             interview_fields=[student.leadership, student.initiative, student.innovation, 
                               student.adaptability, student.team_player, student.cisco_fit,
                               student.technical_skill, student.motivation ]
             for interview_field in interview_fields:
                 if interview_field == 'Yes':
                     score=score+0.2
-            match_uni_field=re.findall(field, unicode(student.uni_comment))
-            score=score+0.2*len(match_uni_field)
+            #match_uni_field=re.findall(field, unicode(student.uni_comment))
+            #score=score+0.2*len(match_uni_field)
             if student.university_endorsement == 'Strongly recommended':
                 score=score+0.5
             if student.university_endorsement == 'Recommended':
