@@ -132,15 +132,22 @@
               {% endfor %}
               <h4>Schedule time and day</h4>
                 <!--<input type="datetime" name="day" placeholder="format: YYYY-MM-DD HH:MM">-->
-                <div class="well">
-                    <div id="datetimepicker2" class="input-append">
-                      <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text" name="day"></input>
-                      <span class="add-on">
-                      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                      </i>
-                      </span>
-                    </div>
-                </div>
+<div class="well">
+  <div id="datetimepicker1" class="input-append date">
+    <input name="day" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
+    <span class="add-on">
+      <span> class="glyphicon glyphicon-calendar"></span><span class="glyphicon-icon calendar">
+      </span>
+    </span>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'en'
+    });
+  });
+</script>
             </form>
 
             </div><!--/span-->
@@ -169,13 +176,6 @@
     <script type="text/javascript"
      src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker2').datetimepicker({
-      language: 'en',
-      pick12HourFormat: true
-    });
-  });
-</script>
+
   </body>
 </html>
