@@ -4,7 +4,18 @@ UNIVERSITY_ENDORSEMENT = (
     ('Strongly recommended','Strongly recommended'),
     ('Recommended','Recommended'),
     ('Not recommended', 'Not recommended'),
-) 
+)
+MANAGER_ENDORSEMENT = (
+    ('---','---'),
+    ('1-Highly recommended','1-Highly recommended'),
+    ('2-Recommended','2-Recommended'),
+    ('3-Not recommended', '3-Not recommended'),
+)
+MASTER_UNDER = (
+    ('---','---'),
+    ('Undergraduate','Undergraduate'),
+    ('Master','Master'),
+)
 UNIVERSITY_ROLE = (
        ('Tutor', 'Tutor'),
        ('Mentor','Mentor'),
@@ -38,7 +49,17 @@ PASSPORT = (
 )
 
 PROJECTS=(
+   ('IT or Networking Academy', 'IT or Networking Academy'),
+   ('Marketing or IT', 'Marketing or IT'),
+   ('Sales or Marketing', 'Sales or Marketing'),
    ('Technology radar','Technology radar'),
+   ('Security / Bret Hartman', 'Security / Bret Hartman'),
+   ('Openstack / Big Data / Natural Language Processing /Research', 'Openstack / Big Data / Natural Language Processing /Research'),
+   ('Corporate Technology Group or IT', 'Corporate Technology Group or IT'),
+   ('Dave Ward Group or ENG','Dave Ward Group or ENG'),
+   ('CTAO', 'CTAO'),
+   ('Research','Research'),
+   ('Machine Learning / Security', 'Machine Learning / Security'),
    ('SDN / Engineering','SDN / Engineering'),
    ('Openstack / Engineering','Openstack / Engineering'),
    ('IT','IT'),

@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date
 from django import forms
-from django.contrib.auth.models import User,UserManager, AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import User,UserManager
 from django.utils import timezone
 from django.db.models.signals import post_save
 import constants
@@ -58,9 +58,11 @@ class UserProfile(Profile):
     #user=models.CharField(max_length=20, null=True)
 
     # profile = models.ForeignKey('Profile')
-
-
-
+    technical_resume_screen_selection =models.CharField(max_length=30, choices=constants.MANAGER_ENDORSEMENT,default='---', null=True)
+    technical_resume_screen_comment=models.TextField(max_length=1000, null=True)
+    technical_interview_screen_selection=models.CharField(max_length=30, choices=constants.MANAGER_ENDORSEMENT,default='---', null=True)
+    technical_interview_screen_comment=models.TextField(max_length=1000, null=True)
+    master_or_undergrad=models.CharField(max_length=30, choices=constants.MASTER_UNDER,default='---', null=True)
     university_endorsement=models.CharField(max_length=20, choices=constants.UNIVERSITY_ENDORSEMENT, null=True)
 
     university_role=models.CharField(max_length=100, choices= constants.UNIVERSITY_ROLE,  null=True)

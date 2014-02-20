@@ -15,6 +15,7 @@ class CiipAdmin(admin.ModelAdmin):
     
     fieldsets = [
         ('User',{'fields':['user']}),
+        ('Second Stage',{'fields':['technical_resume_screen_selection','technical_resume_screen_comment','technical_interview_screen_selection','technical_interview_screen_comment','master_or_undergrad']}),
         ('Interview',{'fields':['interviewer_comment','interviewer_name','position_suggested','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('Status Update',{'fields':['status','date_interview','interview_response']}),
         ('University Endorsement',{'fields':['university_endorsement', 'uni_comment', 'university_role','university_role_name']}),
@@ -47,7 +48,7 @@ class CiipAdmin(admin.ModelAdmin):
     'full_name_emergency','relationship','phone_emergency','email_emergency','birth_date']
     
 
-    list_display = ('first_name', 'last_name','status','university','user_email')
+    list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
     list_filter = ['university', 'status','university_endorsement']
     search_fields=['first_name','last_name']
 
