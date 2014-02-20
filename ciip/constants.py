@@ -9,6 +9,7 @@ MANAGER_ENDORSEMENT = (
     ('---','---'),
     ('1-Highly recommended','1-Highly recommended'),
     ('2-Recommended','2-Recommended'),
+    ('2.5','2.5'),
     ('3-Not recommended', '3-Not recommended'),
 )
 MASTER_UNDER = (
@@ -73,6 +74,14 @@ PROJECTS=(
    ('CIIP Tools / Engineering','CIIP Tools / Engineering'),
    ('CSMTG / Engineering','CSMTG / Engineering'),
    ('ONE PK / Engineering', 'ONE PK / Engineering'),
+   ('CSMTG or Data Center/UCS Manager','CSMTG or Data Center/UCS Manager'),
+   ('IT / Marketing or Services/TAC','IT / Marketing or Services/TAC'),
+   ('Collaboration or IT', 'Collaboration or IT'),
+   ('User Experience or Collaboration','User Experience or Collaboration'),
+   ('App layer / Android - IT or Collaboration','App layer / Android - IT or Collaboration'),
+   ('App layer- CSMTG /IT / SPVSS / CTG', 'App layer- CSMTG /IT / SPVSS / CTG'),
+   ('IT or Test Engineering','IT or Test Engineering'),
+   ('Research Journal Editor / Marketing','Research Journal Editor / Marketing'),
 
 
 )
