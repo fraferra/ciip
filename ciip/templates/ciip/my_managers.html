@@ -121,7 +121,8 @@
                   <option value="ask to reschedule">Ask to reschedule</option>
                 </select>  <input type="submit"  class="btn btn-primary btn-small" value="Confirm" ></p>
                 <p>Manager: {{ interview.manager.first_name }}{{ interview.manager.last_name }}</p>
-                <p>            
+                <p> 
+                {% if interview.skype_name != 'Webex scheduled through email'%}           
         <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
           <div id="SkypeButton_Call_{{interview.skype_name}}_1">
             <script type="text/javascript">
@@ -132,7 +133,12 @@
               "imageSize": 32
               });
            </script>
-          </div></p>
+          </div>
+          {% endif %}
+          {% if interview.skype_name == "Webex scheduled through email"%}
+          <b>Interview scheduled through Webex, please check your email.</b>
+          {% endif %}
+        </p>
                 <p><a href="/ciip/student_send_message?id={{interview.manager.id}}">View Messages from {{interview.manager.first_name}}</a></p>
                </form>
               {% endfor %}
