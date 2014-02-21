@@ -143,7 +143,7 @@ class functions:
         top_3.reverse()
         return top_3
             '''
-def matchingAlgorith(self,obj):
+def matchingAlgorith(obj):
     obj_skills=[obj.skill_1, obj.skill_2, obj.skill_3]
     obj_field=obj.business_unit
     field=''
