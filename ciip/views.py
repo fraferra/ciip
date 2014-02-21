@@ -599,8 +599,8 @@ def my_managers(request):
             interview.save()
             to_email=[interview.manager.user.email]
             from_email=current_student.user.email
-            subject='CIIP Interview:'+current_student.last_name+'replied'
-            message=current_student.last_name+'replied'+interview_response+' for the interview at '+str(interview.date)+'. Email student:'+current_student.user.email
+            subject='CIIP Interview:'+current_student.last_name+' replied'
+            message=current_student.last_name+' replied with '+interview_response+' for the interview at '+str(interview.date)+'. The email of the student:'+current_student.user.email
             sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/my_managers/')
     return render(request, 'ciip/my_managers.html', {'user_name':user_name, 'current_student':current_student,'interviews_with_managers':interviews_with_managers})
@@ -1081,7 +1081,7 @@ def schedule_interview(request):
             to_email=[profile_student.user.email]
             from_email=manager_profile.user.email
             subject='CIIP Application: Automatic Notification'
-            message='Interview scheduled by manager'+manager_profile.last_name+' at '+date+'. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
             sendEmailNotification(from_email, to_email, subject, message)
             if profile_student.offer_states == 'Offered':
                 pass

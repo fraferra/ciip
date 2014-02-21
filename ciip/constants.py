@@ -108,7 +108,8 @@ UNIVERSITY_CHOICES = (
     ('CTU', 'CTU'),
     ('Tsinghua', 'Tsinghua'),
     ('UNSW', 'UNSW'),
-    ('Ottawa','Ottawa'),
+    ('IIT Roorkee', 'IIT Roorkee'),
+    ('IIT Gandhinagar', 'IIT Gandhinagar'),
 )
 
 COUNTRIES = (
