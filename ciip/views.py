@@ -597,6 +597,11 @@ def my_managers(request):
             interview=Interview.objects.get(pk=interview_id)
             interview.interview_response=interview_response
             interview.save()
+            to_email=[interview.manager.user.email]
+            from_email=current_student.user.email
+            subject='CIIP Interview:'+current_student.last_name+'replied'
+            message=current_student.last_name+'replied'+interview_response+' for the interview at '+str(interview.date)+'. Email student:'+current_student.user.email
+            sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/my_managers/')
     return render(request, 'ciip/my_managers.html', {'user_name':user_name, 'current_student':current_student,'interviews_with_managers':interviews_with_managers})
 
@@ -1009,8 +1014,8 @@ def manager_home(request):
         try:
             manager_profile = ManagerProfile.objects.get(user=request.user)
             previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
-            algorithm=functions()
-            top_3=algorithm.matchingAlgorith(manager_profile)
+            #algorithm=functions()
+            top_3=matchingAlgorith(manager_profile)
             delete_interview=request.GET.get('delete','')
             if len(delete_interview) !=0:
                 interview=Interview.objects.get(pk=delete_interview)
@@ -1069,7 +1074,15 @@ def schedule_interview(request):
             return HttpResponseRedirect('/ciip/schedule_interview/')
         if request.method == 'POST':
             date=request.POST['day']
-            interview=Interview.objects.create(date=date, student=profile_student, manager=manager_profile)
+            skype_name=request.POST['skype_name']
+            if len(skype_name)==0:
+                skype_name='Webex scheduled through email'
+            interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+            to_email=[profile_student.user.email]
+            from_email=manager_profile.user.email
+            subject='CIIP Application: Automatic Notification'
+            message='Interview scheduled by manager'+manager_profile.last_name+' at '+date+'. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            sendEmailNotification(from_email, to_email, subject, message)
             if profile_student.offer_states == 'Offered':
                 pass
             else:

@@ -225,6 +225,7 @@ class Interview(models.Model):
     date= models.DateTimeField( null=True)
     student=models.ForeignKey(UserProfile)
     manager=models.ForeignKey(ManagerProfile)
+    skype_name=models.CharField(max_length=100, null=True, default=None)
     interview_response = models.CharField(max_length=100,
                                             default=None, null=True)
 
