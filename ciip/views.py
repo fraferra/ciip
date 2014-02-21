@@ -1094,6 +1094,7 @@ def schedule_interview(request):
        
             
     return render(request, 'ciip/schedule_interview.html', {'user_name': user_name,
+                                             'profile_student':profile_student,
                                              'previous_interviews':previous_interviews,
                                              'previous_interviews_manager':previous_interviews_manager,
                                              'current_time_there':current_time_there,
