@@ -74,6 +74,7 @@ urlpatterns = patterns('',
 
     url(r'^manager_login/$', views.manager_login, name='manager_login'),
     url(r'^manager_home/$', views.manager_home, name='manager_home'),
+    url(r'^manager_logout/$', views.manager_logout, name='manager_logout'),
     #url(r'^result/$', views.result, name='result'),
     url(r'^schedule_interview/$', views.schedule_interview, name='schedule_interview'),
     url(r'^my_students/$', views.my_students, name='my_students'),

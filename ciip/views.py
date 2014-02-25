@@ -1237,7 +1237,10 @@ def manager_send_message(request):
        
             
     return render(request, 'ciip/manager_send_message.html', {'messages_sent':messages_sent,'user_name': user_name,'previous_interviews_manager':previous_interviews_manager})
-  
+def manager_logout(request):
+    django_logout(request)
+    #eturn render(request, 'ciip/login.html')
+    return HttpResponseRedirect('/ciip/manager_login/') 
 
 def search_student(search):
     results=[]
