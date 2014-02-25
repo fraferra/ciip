@@ -625,21 +625,6 @@ def student_send_message(request):
 
     return render(request, 'ciip/student_send_message.html', {'user_name':user_name, 'previous_messages':previous_messages})
 
-def checkemail(address):
-    uni_list=['ucl.ac.uk','kent.ac.uk',
-               'tsinghua.edu.cn',
-               'zju.edu.cn','sfc.wide.ad.jp',
-               'sfc.keio.ac.jp','unsw.edu.au',
-               'student.bmstu.ru','fel.cvut.cz',
-               'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
-               'z5.keio.jp','bmstu.ru',
-               'ee.ucl.ac.uk', 'uottawa.ca',
-               'epfl.ch','zju.edu.cn']
-    match = re.search(r'([\w.-]+)@([\w.-]+)', address)
-    for uni in uni_list:
-        if match.group(2) == uni:
-            return True
-
 
 
 
@@ -918,48 +903,6 @@ def save_unicomment(request):
 
 
     
-def getUniAdmin(email, current_user):
-    match = re.search(r'([\w.-]+)@([\w.-]+)', email)
-    newemail = match.group(2).replace (".", " ")
-    profile = UniversityAdmin.objects.get(user=current_user)
-    uni = newemail.split()
-    for word in uni:
-        if word == 'ucl':
-            #uni_origin = University.objects.get(name='UCL')
-            profile.university = 'UCL'
-            profile.save()
-        if word == 'kent':
-            #uni_origin = University.objects.get(name='Kent')
-            profile.university = 'Kent'
-            profile.save()
-        if word == 'tsinghua':
-            #uni_origin = University.objects.get(name='Tsinghua')
-            profile.university = 'Tsinghua'
-            profile.save()
-        if word == 'zju':
-            #uni_origin = University.objects.get(name='ZJU')
-            profile.university = 'ZJU'
-            profile.save()
-        if word == 'wide' or word == 'keio':
-            #uni_origin = University.objects.get(name='Keio')
-            profile.university = 'Keio'
-            profile.save()
-        if word == 'cvut':
-            #uni_origin = University.objects.get(name='CTU')
-            profile.university = '  CTU'
-            profile.save()
-        if word == 'bmstu':
-            #uni_origin = University.objects.get(name='BMSTU')
-            profile.university = 'BMSTU'
-            profile.save()
-        if word == 'epfl':
-            #uni_origin = University.objects.get(name='EPFL')
-            profile.university = 'EPFL'
-            profile.save()
-        if word == 'unsw':
-            #uni_origin = University.objects.get(name='UNSW')
-            profile.university = 'UNSW'
-            profile.save()
 
 
 
@@ -987,6 +930,52 @@ def getUniAdmin(email, current_user):
 
 
 #manager views
+def manager_signup(request):
+    passcode='2860486313'
+    if request.method == 'POST':
+        form = SignUpFormManager(request.POST)
+        
+        if form.is_valid():
+            email=request.POST['email']
+            user_passcode = request.POST['passcode']
+            first_name=request.POST['first_name']
+            last_name=request.POST['last_name']
+            business_unit=request.POST['business_unit']
+            skill_1=request.POST['skill_1']
+            skill_2=request.POST['skill_2']
+            skill_3=request.POST['skill_3']
+            interest_1=request.POST['interest_1']
+            interest_2=request.POST['interest_2']
+            interest_3=request.POST['interest_3']
+            #import sys
+            #print >> sys.stderr, "********* User Current PK %s" %(user_passcode)
+            if checkciscoemail(email) and user_passcode==passcode:
+                new_user = form.save()
+                user=User.objects.get(email=email)
+                ManagerProfile.objects.create(user=user,
+                                              first_name=first_name,
+                                              last_name=last_name,
+                                              business_unit=business_unit,
+                                              skill_1=skill_1,
+                                              skill_2=skill_2,
+                                              skill_3=skill_3,
+                                              interest_1=interest_1,
+                                              interest_2=interest_2,
+                                              interest_3=interest_3
+                    )
+
+                return HttpResponseRedirect('/ciip/manager_login/')
+            else:
+                return HttpResponseRedirect('/ciip/manager_signup/')        
+    else:
+        form = SignUpFormManager()
+        
+    return render( request, 'ciip/manager_signup.html', {
+        'form': form, 'passcode':passcode,
+    })
+
+
+
 def manager_login(request):
     username=password=''
     if request.method == 'POST':
@@ -1072,7 +1061,7 @@ def schedule_interview(request):
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
             return HttpResponseRedirect('/ciip/schedule_interview/')
-        if request.method == 'POST':
+        if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
             date=request.POST['day']
             skype_name=request.POST['skype_name']
             if len(skype_name)==0:
@@ -1124,8 +1113,11 @@ def my_students(request):
             student_id=request.GET['id']
             status=request.GET['status']
             student = UserProfile.objects.get(pk=student_id)
-            student.offer_states=status
-            student.save()
+            match=re.search('Offered', student.offer_states)
+            if not match:
+                student.offer_states=status
+                student.save()
+            return HttpResponseRedirect('/ciip/my_students/')
         except MultiValueDictKeyError:
             pass
 
@@ -1242,60 +1234,3 @@ def manager_logout(request):
     #eturn render(request, 'ciip/login.html')
     return HttpResponseRedirect('/ciip/manager_login/') 
 
-def search_student(search):
-    results=[]
-    for user in UserProfile.objects.all():
-        fields = [user.skill_1, user.skill_2, user.skill_3, user.degree, user.first_name, user.last_name]
-        for value in fields:
-            if value is not None:
-                match = re.search(search.lower(), value.lower())
-                if match:
-                    if user not in results:
-                        results.append(user)
-    return results     
-        
-def returnConfirmedOrNot(filter_result):
-    results=[] 
-    if filter_result == 'rejected':
-        results=UserProfile.objects.filter(offer_states='Rejected')
-        #for user in UserProfile.objects.all():
-           #if user.offer_states == 'Rejected':
-                #results.append(user)
-    if filter_result == 'not_offered_yet':
-        for user in UserProfile.objects.all():
-            if user.offer_states is None:
-                results.append(user)
-    if filter_result == 'interviewing':
-        for user in UserProfile.objects.all():
-            if user.offer_states == 'Interviewing':
-                results.append(user)
-    if filter_result == 'accepted':
-        for user in UserProfile.objects.all():
-            match=re.search('Offered', str(user.offer_states))
-            if match:
-                results.append(user)       
-    return results
-
-
-def return_best_time(university):
-    local_tz=timezone('US/Pacific')
-    #time = local_tz.localize(datetime.datetime.now())
-    time = local_tz.localize(datetime.now())
-    if university == 'UCL' or university=='Kent':
-        tz= timezone('Europe/London')
-        suggested_time_frame= university +" is currently 8 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
-    if university == 'ZJU' or university == 'Tsinghua':
-        tz= timezone('Asia/Shanghai')
-        suggested_time_frame= university +" is currently 16 hours ahead. The best time suggested to schedule an interview is between 4pm and 6pm, Pacific Time."
-    if university == 'Keio':
-        tz= timezone("Japan")
-        suggested_time_frame= university +" is currently 17 hours ahead. The best time suggested to schedule an interview is between 5pm and 6pm, Pacific Time."
-    if university == 'BMSTU':
-        tz= timezone("Europe/Moscow")
-        suggested_time_frame= university +" is currently 12 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
-    #current_time=datetime.datetime.now(tz)
-    #current_time=timezone.localtime(tz)
-    fmt = '%Y-%m-%d %H:%M'
-    current_time = tz.normalize(time.astimezone(tz)).strftime(fmt)
-    date_info=[current_time, suggested_time_frame]
-    return date_info

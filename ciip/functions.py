@@ -217,3 +217,131 @@ def sendEmailNotification(from_email, to_email, subject, message):
         send_mail(subject, message, from_email , to_email)
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
+
+
+def search_student(search):
+    results=[]
+    for user in UserProfile.objects.all():
+        fields = [user.skill_1, user.skill_2, user.skill_3,
+                  user.degree, user.first_name, user.last_name,
+                   user.university, user.position_suggested, user.interest_1,
+                    user.interest_2,user.interest_3]
+        for value in fields:
+            if value is not None:
+                match = re.search(search.lower(), value.lower())
+                if match:
+                    if user not in results:
+                        results.append(user)
+    return results     
+        
+def returnConfirmedOrNot(filter_result):
+    results=[] 
+    if filter_result == 'rejected':
+        results=UserProfile.objects.filter(offer_states='Rejected')
+        #for user in UserProfile.objects.all():
+           #if user.offer_states == 'Rejected':
+                #results.append(user)
+    if filter_result == 'not_offered_yet':
+        for user in UserProfile.objects.all():
+            if user.offer_states is None:
+                results.append(user)
+    if filter_result == 'interviewing':
+        for user in UserProfile.objects.all():
+            if user.offer_states == 'Interviewing':
+                results.append(user)
+    if filter_result == 'accepted':
+        for user in UserProfile.objects.all():
+            match=re.search('Offered', str(user.offer_states))
+            if match:
+                results.append(user)       
+    return results
+
+
+def return_best_time(university):
+    local_tz=timezone('US/Pacific')
+    #time = local_tz.localize(datetime.datetime.now())
+    time = local_tz.localize(datetime.now())
+    if university == 'UCL' or university=='Kent':
+        tz= timezone('Europe/London')
+        suggested_time_frame= university +" is currently 8 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
+    if university == 'ZJU' or university == 'Tsinghua':
+        tz= timezone('Asia/Shanghai')
+        suggested_time_frame= university +" is currently 16 hours ahead. The best time suggested to schedule an interview is between 4pm and 6pm, Pacific Time."
+    if university == 'Keio':
+        tz= timezone("Japan")
+        suggested_time_frame= university +" is currently 17 hours ahead. The best time suggested to schedule an interview is between 5pm and 6pm, Pacific Time."
+    if university == 'BMSTU':
+        tz= timezone("Europe/Moscow")
+        suggested_time_frame= university +" is currently 12 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
+    #current_time=datetime.datetime.now(tz)
+    #current_time=timezone.localtime(tz)
+    fmt = '%Y-%m-%d %H:%M'
+    current_time = tz.normalize(time.astimezone(tz)).strftime(fmt)
+    date_info=[current_time, suggested_time_frame]
+    return date_info
+
+def getUniAdmin(email, current_user):
+    match = re.search(r'([\w.-]+)@([\w.-]+)', email)
+    newemail = match.group(2).replace (".", " ")
+    profile = UniversityAdmin.objects.get(user=current_user)
+    uni = newemail.split()
+    for word in uni:
+        if word == 'ucl':
+            #uni_origin = University.objects.get(name='UCL')
+            profile.university = 'UCL'
+            profile.save()
+        if word == 'kent':
+            #uni_origin = University.objects.get(name='Kent')
+            profile.university = 'Kent'
+            profile.save()
+        if word == 'tsinghua':
+            #uni_origin = University.objects.get(name='Tsinghua')
+            profile.university = 'Tsinghua'
+            profile.save()
+        if word == 'zju':
+            #uni_origin = University.objects.get(name='ZJU')
+            profile.university = 'ZJU'
+            profile.save()
+        if word == 'wide' or word == 'keio':
+            #uni_origin = University.objects.get(name='Keio')
+            profile.university = 'Keio'
+            profile.save()
+        if word == 'cvut':
+            #uni_origin = University.objects.get(name='CTU')
+            profile.university = '  CTU'
+            profile.save()
+        if word == 'bmstu':
+            #uni_origin = University.objects.get(name='BMSTU')
+            profile.university = 'BMSTU'
+            profile.save()
+        if word == 'epfl':
+            #uni_origin = University.objects.get(name='EPFL')
+            profile.university = 'EPFL'
+            profile.save()
+        if word == 'unsw':
+            #uni_origin = University.objects.get(name='UNSW')
+            profile.university = 'UNSW'
+            profile.save()
+
+
+def checkemail(address):
+    uni_list=['ucl.ac.uk','kent.ac.uk',
+               'tsinghua.edu.cn',
+               'zju.edu.cn','sfc.wide.ad.jp',
+               'sfc.keio.ac.jp','unsw.edu.au',
+               'student.bmstu.ru','fel.cvut.cz',
+               'a2.keio.jp','a5.keio.jp','west.sd.keio.ac.jp',
+               'z5.keio.jp','bmstu.ru',
+               'ee.ucl.ac.uk', 'uottawa.ca',
+               'epfl.ch','zju.edu.cn']
+    match = re.search(r'([\w.-]+)@([\w.-]+)', address)
+    for uni in uni_list:
+        if match.group(2) == uni:
+            return True
+
+def checkciscoemail(address):
+    cisco_email='cisco.com'
+    match = re.search(r'([\w.-]+)@([\w.-]+)', address)
+    if match.group(2) == cisco_email:
+        return True
+

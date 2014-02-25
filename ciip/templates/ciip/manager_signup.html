@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign in &middot; CIIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/ciip/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 1000px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+    <link href="/static/ciip/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+       <link rel="shortcut icon" href="/static/img/favicon.ico" >
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  </head>
+
+  <body>
+   <div class="container">
+    <div class="row">
+    <div class="span12">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid" >
+          <a class="brand" href="http://www.cisco.com/"><img src="/static/img/logocopy.png" width="90px" height="50"></a>
+          <br>
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      <a class="brand" href="/ciip/info/">CIIP Home</a>
+          <form  method = "get">{% csrf_token %}
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
+              <li><a href="/ciip/faq/">FAQ</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse --></form>
+        </div>
+      </div>
+            <div class="alert alert-success"><center><strong>Manager Tool</strong></center></div>
+
+    </div>
+<br>
+<br>
+   <br>
+<br>
+<br>
+   <br>
+ <form class="form-signin"  action="" method="post">{% csrf_token %}
+ <center><h2 style="width:1000px" class="form-signin-heading">Hiring Manager Sign Up</h2></center>
+ <b>The email address must be your cisco email address</b>      
+{{ form.as_p }}
+<!--<input type="text" id='usertype' name="FirstName" value="university or student?"><br>-->
+<div>
+   <div class="panel panel-info">
+  <div class="panel-body" >
+<hr class="featurette-divider">
+<center><h3>Please enter some general info to best match with the applicants</h3></center>   
+<hr class="featurette-divider">
+ <p>First name:
+ <input type="text" class="input-block-level" style="width:150px" placeholder="First name" name="first_name" >
+ Last name:
+<input type="text" class="input-block-level" style="width:150px" placeholder="Last name" name="last_name"> 
+
+
+ <label>Business Unit:</label>
+ <select name="business_unit">
+<option value="United States">United States</option>
+<option value="Canada">Canada</option>
+<option value="Mexico">Mexico</option>
+<option value="Other">Not Listed</option>
+</select></p>
+
+<hr class="featurette-divider">
+ <p>Skill requested #1:
+<input type="text" class="input-block-level" style="width:200px" placeholder="skill..." name="skill_1" > 
+ Skill requested #2:
+<input type="text" class="input-block-level" style="width:200px" placeholder="skill..." name="skill_2" > 
+ Skill requested #3:
+<input type="text" class="input-block-level" style="width:200px" placeholder="skill..." name="skill_3" > </p>
+
+<hr class="featurette-divider">
+ <p>Interest 1:
+<input type="text" class="input-block-level" style="width:200px"placeholder="interest..." name="interest_1" > 
+ Interest 2:
+<input type="text" class="input-block-level" style="width:200px"placeholder="interest..." name="interest_2" > 
+ Interest 3:
+<input type="text" class="input-block-level" style="width:200px" placeholder="interest..." name="interest_3" ></p> 
+<hr class="featurette-divider">
+
+<center><p><strong>Please, enter the authentication code found on the leafleft.</strong></p></center>
+<center><p><input type="text" class="input-block-level" style="width:300px"  placeholder="Authentication Number" name="passcode" id="passcode"></p></center>
+
+</div>
+</div>
+<center><span></span></center>
+ <br> 
+    <center>  <button class="btn btn-large btn-primary" type="submit">Create account</button> </center>
+    
+</div>
+  </form>
+
+<br><br>
+      <footer>
+        
+        <p>&copy; Cisco 2013</p>
+      </footer>
+    </div> 
+  <script type="text/javascript" src="/static/js/jquery.js"></script> 
+  <script type="text/javascript" src="/static/js/dropdown.js"></script>  
+    <script type="text/javascript">  
+        $(document).ready(function () {  
+            $('.dropdown-toggle').dropdown();  
+        });  
+   </script>
+   <!--<script type="text/javascript">
+   function checkPasscode () {
+      var passcode = parseInt(document.getElementById("passcode").value);
+      
+      if(passcode ) {
+
+        return true;
+      }
+      else {
+       
+        return false;
+      }
+    }
+
+
+   </script>  
+   <script>
+$( "form" ).submit(function( event ) {
+if ( checkPasscode()) {
+$( "span" ).text( "Validated..." ).show();
+return;
+}
+$( "span" ).text( "Passcode is not valid!" ).show().fadeOut( 2000 );
+event.preventDefault();
+});
+</script>-->
+  <script type="text/javascript" src="/static/js/jquery.js"></script> 
+
+  </body>
+</html>

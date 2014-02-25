@@ -66,6 +66,21 @@ class EmergencyForm(ModelForm):
         model = UserProfile
         fields = ('full_name_emergency','relationship','phone_emergency','email_emergency')
 
+class SignUpFormManager(UserCreationForm):
+    email = forms.EmailField(label='Email address', max_length=75)
+    password1=PasswordField()
+    password2=PasswordField()
+    class Meta:
+        model = User
+        fields = ('username','email') 
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        try:
+            user = User.objects.get(email=email)
+            raise forms.ValidationError("This email address already exists. Did you forget your password?")
+        except User.DoesNotExist:
+            return email
 
 
 class CoverForm(ModelForm):

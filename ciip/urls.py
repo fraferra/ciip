@@ -72,6 +72,9 @@ urlpatterns = patterns('',
     url(r'^signup_uniadmin/$', views.signup_uniadmin, name='signup_uniadmin'),
     url(r'^save_unicomment/$', views.save_unicomment, name='save_unicomment'),
 
+
+
+    url(r'^manager_signup/$', views.manager_signup, name='manager_signup'),
     url(r'^manager_login/$', views.manager_login, name='manager_login'),
     url(r'^manager_home/$', views.manager_home, name='manager_home'),
     url(r'^manager_logout/$', views.manager_logout, name='manager_logout'),
