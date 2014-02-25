@@ -1557,7 +1557,24 @@ def manager_send_message(request):
        
             
     return render(request, 'ciip/manager_send_message.html', {'messages_sent':messages_sent,'user_name': user_name,'previous_interviews_manager':previous_interviews_manager})
-  
+
+def manager_guidelines(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/manager_guidelines')
+
+    return render(request, 'ciip/manager_guidelines.html', {'user_name':user_name,'previous_interviews_manager':previous_interviews_manager ,'manager_profile':manager_profile})
+ 
 
 def manager_logout(request):
     django_logout(request)

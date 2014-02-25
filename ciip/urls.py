@@ -85,6 +85,7 @@ urlpatterns = patterns('',
     url(r'^manager_info/$', views.manager_info, name='manager_info'),
     url(r'^manager_edit_info/$', views.manager_edit_info, name='manager_edit_info'),
     url(r'^student_full_profile/$', views.student_full_profile, name='student_full_profile'),
+    url(r'^manager_guidelines/$', views.manager_guidelines, name='manager_guidelines'),
 
 
 
