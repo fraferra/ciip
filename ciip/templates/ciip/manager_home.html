@@ -107,7 +107,30 @@
             {% endfor %}
           </ul>
         </div><!--/span-->
+<button style="position:fixed; left:10px; bottom:10px"class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Give Us Feedback
+</button>
 
+<!-- Modal -->
+<form method='post'>{% csrf_token %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Please give us feedback</h4>
+      </div>
+      <div class="modal-body">
+       <textarea   class="form-textarea validate[required] form-validation-error" style="width:500px"rows="9" cols="150" name="feedback" ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit"   class="btn btn-primary btn-default" value="Send Feedback">
+      </div>
+    </div>
+  </div>
+</div>
+</form>
          <div class="span9">
           <div class="hero-unit">
            

@@ -345,3 +345,10 @@ def checkciscoemail(address):
     if match.group(2) == cisco_email:
         return True
 
+def sendFeedback(manager, feedback):
+    to_email=['fraferra@cisco.com','elbowen@cisco.com']
+    from_email=manager.user.email
+    message=feedback
+    subject='Feedback from Manager '+manager.last_name+'. Email:'+manager.user.email
+    sendEmailNotification(from_email, to_email, subject, message)
+    feedback=''

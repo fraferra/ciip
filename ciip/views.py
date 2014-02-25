@@ -926,7 +926,7 @@ def save_unicomment(request):
 
 
 
-
+'''
 
 
 #manager views
@@ -1233,4 +1233,332 @@ def manager_logout(request):
     django_logout(request)
     #eturn render(request, 'ciip/login.html')
     return HttpResponseRedirect('/ciip/manager_login/') 
+'''
+def manager_signup(request):
+    passcode='2860486313'
+    if request.method == 'POST':
+        form = SignUpFormManager(request.POST)
+        
+        if form.is_valid():
+            email=request.POST['email']
+            user_passcode = request.POST['passcode']
+            first_name=request.POST['first_name']
+            last_name=request.POST['last_name']
+            business_unit=request.POST['business_unit']
+            skill_1=request.POST['skill_1']
+            skill_2=request.POST['skill_2']
+            skill_3=request.POST['skill_3']
+            interest_1=request.POST['interest_1']
+            interest_2=request.POST['interest_2']
+            interest_3=request.POST['interest_3']
+            #import sys
+            #print >> sys.stderr, "********* User Current PK %s" %(user_passcode)
+            if checkciscoemail(email) and user_passcode==passcode:
+                new_user = form.save()
+                user=User.objects.get(email=email)
+                ManagerProfile.objects.create(user=user,
+                                              first_name=first_name,
+                                              last_name=last_name,
+                                              business_unit=business_unit,
+                                              skill_1=skill_1,
+                                              skill_2=skill_2,
+                                              skill_3=skill_3,
+                                              interest_1=interest_1,
+                                              interest_2=interest_2,
+                                              interest_3=interest_3
+                    )
 
+                return HttpResponseRedirect('/ciip/manager_login/')
+            else:
+                return HttpResponseRedirect('/ciip/manager_signup/')        
+    else:
+        form = SignUpFormManager()
+        
+    return render( request, 'ciip/manager_signup.html', {
+        'form': form, 'passcode':passcode,
+    })
+
+
+
+
+
+def manager_login(request):
+    username=password=''
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username =username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                return HttpResponseRedirect('/ciip/manager_home/')
+            else:
+                return HttpResponseRedirect('ciip/notactive/')
+        else:
+            return HttpResponseRedirect('/ciip/notregistered/')
+    return render(request, 'ciip/manager_login.html', {'username':username, 'password':password})
+
+def manager_home(request):
+    results=[]
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        try:
+            manager_profile = ManagerProfile.objects.get(user=request.user)
+            previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+            #algorithm=functions()
+            top_3=matchingAlgorith(manager_profile)
+            delete_interview=request.GET.get('delete','')
+            feedback=request.POST.get('feedback','')
+            if len(feedback)!=0:
+                sendFeedback(manager_profile, feedback)
+            if len(delete_interview) !=0:
+                interview=Interview.objects.get(pk=delete_interview)
+                interview.delete()
+                return HttpResponseRedirect('/ciip/manager_home')
+
+            try:
+                query=request.GET['search']
+                results=search_student(query)
+                
+            except MultiValueDictKeyError:
+                pass
+            try:
+                filter_result=request.GET['sort']
+                results=returnConfirmedOrNot(filter_result)
+                
+            except MultiValueDictKeyError:
+                pass
+
+        except ObjectDoesNotExist:
+
+            return HttpResponseRedirect('/ciip/login/')
+
+            
+            
+            
+    return render(request, 'ciip/manager_home.html', {'user_name': user_name,'top_3':top_3,'results':results, 'previous_interviews_manager':previous_interviews_manager })
+
+
+
+def schedule_interview(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+
+
+
+        
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        email = User.objects.get(pk=current_pk).username
+        student_id=request.GET['id']
+        profile_student = UserProfile.objects.get(pk=student_id)
+        university=profile_student.university
+        date_info=return_best_time(university)
+        current_time_there=date_info[0]
+        suggested_time_frame=date_info[1]
+        previous_interviews=Interview.objects.filter(student=profile_student)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        date=request.POST['day']
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/schedule_interview/')
+        if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
+            skype_name=request.POST['skype_name']
+            if len(skype_name)==0:
+                skype_name='Webex scheduled through email'
+            interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+            to_email=[profile_student.user.email]
+            from_email=manager_profile.user.email
+            subject='CIIP Application: Automatic Notification'
+            message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            sendEmailNotification(from_email, to_email, subject, message)
+            if profile_student.offer_states == 'Offered':
+                pass
+            else:
+                profile_student.offer_states='Interviewing'
+                profile_student.save()
+        
+          
+            return HttpResponseRedirect('/ciip/manager_home')
+       
+            
+    return render(request, 'ciip/schedule_interview.html', {'user_name': user_name,
+                                             'profile_student':profile_student,
+                                             'previous_interviews':previous_interviews,
+                                             'previous_interviews_manager':previous_interviews_manager,
+                                             'current_time_there':current_time_there,
+                                             'suggested_time_frame':suggested_time_frame,
+                                             'university':university})
+  
+def my_students(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        my_students_list =[]
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        email = User.objects.get(pk=current_pk).username
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/my_students/')
+        for interview in previous_interviews_manager:
+            if not interview.student in my_students_list:
+                my_students_list.append(interview.student)
+        try:
+            student_id=request.GET['id']
+            status=request.GET['status']
+            student = UserProfile.objects.get(pk=student_id)
+            match=re.search('Offered', student.offer_states)
+            if not match:
+                student.offer_states=status
+                student.save()
+            return HttpResponseRedirect('/ciip/my_students/')
+        except MultiValueDictKeyError:
+            pass
+
+            
+    return render(request, 'ciip/my_students.html', {'manager_profile':manager_profile,'user_name': user_name, 'my_students_list':my_students_list,'previous_interviews_manager':previous_interviews_manager})
+
+
+
+def manager_info(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/manager_info')
+
+    return render(request, 'ciip/manager_info.html', {'user_name':user_name,'previous_interviews_manager':previous_interviews_manager ,'manager_profile':manager_profile})
+    
+def manager_edit_info(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/manager_edit_info')
+
+        if request.method=='POST':
+            manager_profile.first_name=request.POST['first_name']
+            manager_profile.last_name=request.POST['last_name']
+            manager_profile.skill_1=request.POST['skill_1']
+            manager_profile.skill_2=request.POST['skill_2']
+            manager_profile.skill_3=request.POST['skill_3']
+            manager_profile.interest_1=request.POST['interest_1']
+            manager_profile.interest_2=request.POST['interest_2']
+            manager_profile.interest_3=request.POST['interest_3']
+            manager_profile.save()
+            return HttpResponseRedirect('/ciip/manager_info/')
+    return render(request, 'ciip/manager_edit_info.html', {'user_name':user_name, 'manager_profile':manager_profile, 'previous_interviews_manager':previous_interviews_manager})
+def student_full_profile(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        manager_profile = ManagerProfile.objects.get(user=request.user) 
+        student_id=request.GET['id']
+        student=UserProfile.objects.get(pk=student_id)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        interview_with_student=Interview.objects.filter(student=student, manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/student_full_profile')
+
+        if request.method == 'POST':
+            time =datetime.datetime.now()
+            message=request.POST['message']+' posted by '+manager_profile.last_name+' at '+str(time)  
+            student.manager_comment = message
+            student.save()
+            return HttpResponseRedirect('/ciip/student_full_profile?id='+str(student.id))
+    return render(request, 'ciip/student_full_profile.html',{'previous_interviews_manager':previous_interviews_manager,'user_name':user_name,'student':student,'interview_with_student':interview_with_student})
+
+def manager_send_message(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        to_email=[]
+        manager_profile = ManagerProfile.objects.get(user=request.user)
+        previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+        delete_interview=request.GET.get('delete','')
+        feedback=request.POST.get('feedback','')
+        if len(feedback)!=0:
+            sendFeedback(manager_profile, feedback)
+        if len(delete_interview) !=0:
+            interview=Interview.objects.get(pk=delete_interview)
+            interview.delete()
+            return HttpResponseRedirect('/ciip/manager_send_message')
+
+        email = User.objects.get(pk=current_pk).username
+        student_id=request.GET['id']
+        student=UserProfile.objects.get(pk=student_id)
+        student_email = student.user.email
+        messages_sent=Message.objects.filter(manager=manager_profile,student=student).reverse()
+        #a = range(len(messages_sent))
+        #sorted(messages_sent, key=lambda x: a.index(x.date_sent))
+        if request.method == 'POST':
+            time =datetime.datetime.now()
+            message=request.POST['message']
+            message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
+            return HttpResponseRedirect('/ciip/manager_send_message/?id='+student_id)
+
+
+       
+            
+    return render(request, 'ciip/manager_send_message.html', {'messages_sent':messages_sent,'user_name': user_name,'previous_interviews_manager':previous_interviews_manager})
+  
+
+def manager_logout(request):
+    django_logout(request)
+    #eturn render(request, 'ciip/login.html')
+    return HttpResponseRedirect('/ciip/manager_login/') 
