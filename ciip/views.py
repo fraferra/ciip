@@ -1520,7 +1520,7 @@ def student_full_profile(request):
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
             time =datetime.now()
-            message=request.POST['message']+' posted by '+manager_profile.last_name+' at '+str(time)  
+            message=request.POST.get('message','')+' posted by '+manager_profile.last_name+' at '+str(time)  
             student.manager_comment = message
             student.save()
             return HttpResponseRedirect('/ciip/student_full_profile?id='+str(student.id))
