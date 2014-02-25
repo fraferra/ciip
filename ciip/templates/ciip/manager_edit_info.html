@@ -144,13 +144,35 @@
  <input type="text" class="input-block-level" placeholder="First name" name="first_name" value ="{{manager_profile.first_name}}">
  <p>Last name:</p>
 <input type="text" class="input-block-level" placeholder="Last name" name="last_name" value ="{{manager_profile.last_name}}"> 
-
+<hr class="featurette-divider">
+ <label>Please enter which area best describes your group:</label>
+ <select name="business_unit">
+<option value="{{manager_profile.business_unit}}">{{manager_profile.business_unit}}</option>
+<option value="Engineering">Engineering</option>
+<option value="Openstack / Engineering">Openstack / Engineering</option>
+<option value="SDN / Engineering">SDN / Engineering</option>
+<option value="Security / Engineering">Security / Engineering</option>
+<option value="IT">IT</option>
+<option value="GIS / IT">GIS / IT</option>
+<option value="Marketing">Marketing</option>
+<option value="Sales">Sales</option>
+<option value="Technology radar">Technology radar</option>
+<option value="Corporate Technology Group">Corporate Technology Group</option>
+<option value="CTAO">CTAO</option>
+<option value="Research">Research</option>
+<option value="Collaboration / IT">Collaboration / IT</option>
+<option value="CSMTG / Engineering">CSMTG / Engineering</option>
+<option value="ONE PK / Engineering">ONE PK / Engineering</option>
+<option value="Services / TAC">Services / TAC</option>
+</select></p>
+<hr class="featurette-divider">
  <p>Skill 1:</p>
 <input type="text" class="input-block-level" placeholder="skill..." name="skill_1" value ="{{manager_profile.skill_1}}"> 
  <p>Skill 2:</p>
 <input type="text" class="input-block-level" placeholder="skill..." name="skill_2" value ="{{manager_profile.skill_2}}"> 
  <p>Skill 3:</p>
 <input type="text" class="input-block-level" placeholder="skill..." name="skill_3" value ="{{manager_profile.skill_3}}"> 
+<hr class="featurette-divider">
  <p>Interest 1:</p>
 <input type="text" class="input-block-level" placeholder="interest..." name="interest_1" value ="{{manager_profile.interest_1}}"> 
  <p>Interest 2:</p>

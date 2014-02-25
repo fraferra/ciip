@@ -1484,6 +1484,7 @@ def manager_edit_info(request):
         if request.method=='POST':
             manager_profile.first_name=request.POST['first_name']
             manager_profile.last_name=request.POST['last_name']
+            manager_profile.business_unit=request.POST['business_unit']
             manager_profile.skill_1=request.POST['skill_1']
             manager_profile.skill_2=request.POST['skill_2']
             manager_profile.skill_3=request.POST['skill_3']
