@@ -172,7 +172,7 @@ def matchingAlgorith(obj):
         for skill in obj_skills:
             match=re.search(unicode(student.degree).lower(), unicode(skill).lower())
             if match:
-                    score=score+1
+                score=score+1
             #student_business_fields=['management', 'business', 'marketing']
             #student_technical_fields=['engineering', 'electrical', 'computer science', 'big data','electronic', 'cs']
 
