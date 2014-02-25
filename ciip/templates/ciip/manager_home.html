@@ -106,6 +106,35 @@
               <br>Response: <i>{{interview.interview_response}}</i> </li>
             {% endfor %}
           </ul>
+          <p><b>Best Match</b></p>
+              {% for student, score in top_3 %}
+              <p><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - Matching Score {{score}}</strong></p>
+                <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
+                <p><strong>Position Suggested</strong>: {{ student.position_suggested }}</p>
+                <p><strong>Degree</strong>: {{ student.degree }}</p>
+                <p><strong>Skills:</strong></p>
+                <ul>
+                  <li> <b>{{student.skill_1}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_1}}</li>
+                  <li> <b>{{student.skill_2}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_2}}</li>
+                  <li> <b>{{student.skill_3}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_3}}</li>
+     
+                </ul>
+                <p><strong>Interests:</strong></p>
+                <ul>
+                  <li> {{student.interest_1}} </li><li> {{student.interest_2}} </li><li> {{student.interest_3}} </li>
+                  
+                </ul>
+                <div class="btn-group">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Action <span class="caret"></span>
+                  </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/ciip/schedule_interview?id={{student.id}}">Schedule Interview</a></li>
+                      <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
+                  </ul>
+              </div>
+              {% endfor %}
         </div><!--/span-->
 <button style="position:fixed; left:10px; bottom:10px"class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Give Us Feedback
@@ -148,7 +177,7 @@
       
           <div class="row-fluid">
             <div class="span9" >
-              <h3>Best Match</h3>
+              <!--<h3>Best Match</h3>
               {% for student, score in top_3 %}
               <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - Matching Score {{score}}</strong></h4>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
@@ -176,7 +205,7 @@
                       <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
                   </ul>
               </div>
-              {% endfor %}
+              {% endfor %}-->
               <hr class="featurette-divider">
               <h3>Results</h3>
               <hr class="featurette-divider">
