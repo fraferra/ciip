@@ -1491,9 +1491,8 @@ def manager_edit_info(request):
               (manager_profile.interest_3,'interest_3')]
             for field, name in fields:
                 value=request.POST.get(name, '')
-                if len(value)!=0:
-                    field=value
-                    manager_profile.save()
+                field=value
+                manager_profile.save()
 
             '''
             manager_profile.first_name=request.POST.get('first_name','')
