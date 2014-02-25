@@ -1520,9 +1520,11 @@ def student_full_profile(request):
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
             time =datetime.now()
-            message=request.POST.get('message','')+' posted by '+manager_profile.last_name+' at '+str(time)  
-            student.manager_comment = message
-            student.save()
+            message=request.POST.get('message','')
+            if len(message)!=0:
+                message=message+' posted by '+manager_profile.last_name+' at '+str(time)  
+                student.manager_comment = message
+                student.save()
             return HttpResponseRedirect('/ciip/student_full_profile?id='+str(student.id))
     return render(request, 'ciip/student_full_profile.html',{'previous_interviews_manager':previous_interviews_manager,'user_name':user_name,'student':student,'interview_with_student':interview_with_student})
 
@@ -1556,7 +1558,8 @@ def manager_send_message(request):
                 sendFeedback(manager_profile, feedback)
             time =datetime.now()
             message=request.POST.get('message','')
-            message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
+            if len(message)!=0:
+                message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
             return HttpResponseRedirect('/ciip/manager_send_message/?id='+student_id)
 
 
