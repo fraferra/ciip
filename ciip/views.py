@@ -1484,11 +1484,15 @@ def manager_edit_info(request):
             feedback=request.POST.get('feedback','')
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
-            fields=[first_name, last_name, business_unit, skill_1,skill_2, skill_3, interest_1, interest_2, interest_3]
-            for field in fields:
-                value=request.POST.get(str(field), '')
+            fields=[(manager_profile.first_name,'first_name'),( manager_profile.last_name,'last_name'),
+              (manager_profile.business_unit,'business_unit'), (manager_profile.skill_1,'skill_1'),
+              (manager_profile.skill_2,'skill_2'), (manager_profile.skill_3,'skill_3'),
+              (manager_profile.interest_1,'interest_1'), ( manager_profile.interest_2,'interest_2'), 
+              (manager_profile.interest_3,'interest_3')]
+            for field, name in fields:
+                value=request.POST.get(name, '')
                 if len(value)!=0:
-                    manager_profile.field=value
+                    field=value
                     manager_profile.save()
 
             '''
