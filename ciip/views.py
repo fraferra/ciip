@@ -1519,7 +1519,7 @@ def student_full_profile(request):
             feedback=request.POST.get('feedback','')
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
-            time =datetime.datetime.now()
+            time =datetime.now()
             message=request.POST['message']+' posted by '+manager_profile.last_name+' at '+str(time)  
             student.manager_comment = message
             student.save()
