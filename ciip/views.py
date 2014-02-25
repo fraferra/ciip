@@ -1473,15 +1473,17 @@ def manager_edit_info(request):
         manager_profile = ManagerProfile.objects.get(user=request.user)
         previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
         delete_interview=request.GET.get('delete','')
-        feedback=request.POST.get('feedback','')
-        if len(feedback)!=0:
-            sendFeedback(manager_profile, feedback)
+        
+        
         if len(delete_interview) !=0:
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
             return HttpResponseRedirect('/ciip/manager_edit_info')
 
         if request.method=='POST':
+            feedback=request.POST.get('feedback','')
+            if len(feedback)!=0:
+                sendFeedback(manager_profile, feedback)
             manager_profile.first_name=request.POST['first_name']
             manager_profile.last_name=request.POST['last_name']
             manager_profile.business_unit=request.POST['business_unit']
@@ -1507,15 +1509,16 @@ def student_full_profile(request):
         previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
         interview_with_student=Interview.objects.filter(student=student, manager=manager_profile)
         delete_interview=request.GET.get('delete','')
-        feedback=request.POST.get('feedback','')
-        if len(feedback)!=0:
-            sendFeedback(manager_profile, feedback)
+        
         if len(delete_interview) !=0:
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
             return HttpResponseRedirect('/ciip/student_full_profile')
 
         if request.method == 'POST':
+            feedback=request.POST.get('feedback','')
+            if len(feedback)!=0:
+                sendFeedback(manager_profile, feedback)
             time =datetime.datetime.now()
             message=request.POST['message']+' posted by '+manager_profile.last_name+' at '+str(time)  
             student.manager_comment = message
@@ -1534,9 +1537,7 @@ def manager_send_message(request):
         manager_profile = ManagerProfile.objects.get(user=request.user)
         previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
         delete_interview=request.GET.get('delete','')
-        feedback=request.POST.get('feedback','')
-        if len(feedback)!=0:
-            sendFeedback(manager_profile, feedback)
+        
         if len(delete_interview) !=0:
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
@@ -1550,6 +1551,9 @@ def manager_send_message(request):
         #a = range(len(messages_sent))
         #sorted(messages_sent, key=lambda x: a.index(x.date_sent))
         if request.method == 'POST':
+            feedback=request.POST.get('feedback','')
+            if len(feedback)!=0:
+                sendFeedback(manager_profile, feedback)
             time =datetime.datetime.now()
             message=request.POST['message']
             message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
