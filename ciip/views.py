@@ -619,7 +619,7 @@ def student_send_message(request):
         #sorted(previous_messages, key=lambda x: a.index(x.date_sent))
         if request.method =='POST':
             message=request.POST['message']
-            time =datetime.datetime.now()
+            time =datetime.now()
             message=Message.objects.create(text=message, manager=current_manager, student=current_student, sent_by=current_student.first_name, date_sent=time)
             return HttpResponseRedirect('/ciip/student_send_message/?id='+manager_id)
 
