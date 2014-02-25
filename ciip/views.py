@@ -1385,7 +1385,8 @@ def schedule_interview(request):
             subject='CIIP Application: Automatic Notification'
             message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
             sendEmailNotification(from_email, to_email, subject, message)
-            if profile_student.offer_states == 'Offered':
+            match=re.search('Offered', profile_student.offer_states)
+            if match:
                 pass
             else:
                 profile_student.offer_states='Interviewing'
