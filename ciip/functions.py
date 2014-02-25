@@ -221,7 +221,7 @@ def sendEmailNotification(from_email, to_email, subject, message):
 
 def search_student(search, sortby):
     results=[]
-    if len(sortby)=0:
+    if len(sortby)==0:
         list_students=UserProfile.objects.all()
     else:
         list_students=UserProfile.objects.filter(offer_states=sortby)
