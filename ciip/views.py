@@ -1325,8 +1325,11 @@ def manager_home(request):
                 list_sort=['all','offered','interviewing','not_offered_yet','rejected']
                 for lis in list_sort:
                     sort=request.GET.get(lis)
-                    if len(sort)!=0:
+                    try:
                         sortby.append(sort)
+                    except TypeError:
+                        pass
+
                 query=request.GET['search']
                 results=search_student(query, sortby)
                 
