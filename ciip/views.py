@@ -1484,6 +1484,7 @@ def manager_edit_info(request):
             feedback=request.POST.get('feedback','')
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
+            '''
             fields=[(manager_profile.first_name,'first_name'),( manager_profile.last_name,'last_name'),
               (manager_profile.business_unit,'business_unit'), (manager_profile.skill_1,'skill_1'),
               (manager_profile.skill_2,'skill_2'), (manager_profile.skill_3,'skill_3'),
@@ -1496,17 +1497,17 @@ def manager_edit_info(request):
 
             '''
             manager_profile.first_name=request.POST.get('first_name','')
-            manager_profile.last_name=request.POST['last_name']
-            manager_profile.business_unit=request.POST['business_unit']
-            manager_profile.skill_1=request.POST['skill_1']
-            manager_profile.skill_2=request.POST['skill_2']
-            manager_profile.skill_3=request.POST['skill_3']
-            manager_profile.interest_1=request.POST['interest_1']
-            manager_profile.interest_2=request.POST['interest_2']
-            manager_profile.interest_3=request.POST['interest_3']
+            manager_profile.last_name=request.POST.get('last_name','')
+            manager_profile.business_unit=request.POST.get('business_unit','')
+            manager_profile.skill_1=request.POST.get('skill_1','')
+            manager_profile.skill_2=request.POST.get('skill_2','')
+            manager_profile.skill_3=request.POST.get('skill_3','')
+            manager_profile.interest_1=request.POST.get('interest_1','')
+            manager_profile.interest_2=request.POST.get('interest_2','')
+            manager_profile.interest_3=request.POST.get('interest_3','')
             manager_profile.save()
 
-            '''
+            
             return HttpResponseRedirect('/ciip/manager_info/')
     return render(request, 'ciip/manager_edit_info.html', {'user_name':user_name, 'manager_profile':manager_profile, 'previous_interviews_manager':previous_interviews_manager})
 def student_full_profile(request):
