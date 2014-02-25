@@ -99,14 +99,18 @@
                
             </ul>
           </div><!--/.well -->
-     <p><b>Your interviews</b></p>
+     <p><b>Your interviews </b></p>
+     <p><b>A maximum of 5 interviews is allowed</b></p>
+     <hr class="featurette-divider">
          <ul>
             {% for interview in previous_interviews_manager %}
             <li>Date: <i> {{ interview.date }} </i> <br>Student: <a href="/ciip/student_full_profile?id={{interview.student.id}}"><b>{{ interview.student.last_name }}</b></a>              <a href="/ciip/manager_home?delete={{interview.id}}"><span class="glyphicon glyphicon-remove"></span></a>
               <br>Response: <i>{{interview.interview_response}}</i> </li>
             {% endfor %}
           </ul>
+          <hr class="featurette-divider">
           <p><b>Best Match</b></p>
+          <hr class="featurette-divider">
               {% for student, score in top_3 %}
               <p><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - Matching Score {{score}}</strong></p>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
@@ -134,6 +138,7 @@
                       <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
                   </ul>
               </div>
+              <hr class="featurette-divider">
               {% endfor %}
         </div><!--/span-->
 <button style="position:fixed; left:10px; bottom:10px"class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
