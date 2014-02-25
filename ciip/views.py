@@ -1366,7 +1366,7 @@ def schedule_interview(request):
         previous_interviews=Interview.objects.filter(student=profile_student)
         previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
         delete_interview=request.GET.get('delete','')
-        date=request.POST['day']
+        
         feedback=request.POST.get('feedback','')
         if len(feedback)!=0:
             sendFeedback(manager_profile, feedback)
@@ -1376,6 +1376,7 @@ def schedule_interview(request):
             return HttpResponseRedirect('/ciip/schedule_interview/')
         if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
             skype_name=request.POST['skype_name']
+            date=request.POST['day']
             if len(skype_name)==0:
                 skype_name='Webex scheduled through email'
             interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
