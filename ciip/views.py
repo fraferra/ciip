@@ -1555,7 +1555,7 @@ def manager_send_message(request):
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
             time =datetime.now()
-            message=request.POST['message']
+            message=request.POST.get('message','')
             message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
             return HttpResponseRedirect('/ciip/manager_send_message/?id='+student_id)
 
