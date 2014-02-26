@@ -1382,11 +1382,14 @@ def schedule_interview(request):
             skype_name=request.POST.get('skype_name')
             try:
                 date=request.POST.get('day')
+                if len(skype_name)==0:
+                    skype_name='Webex scheduled through email'
+                interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
             except ValidationError:
                 return HttpResponseRedirect('/ciip/schedule_interview')
-            if len(skype_name)==0:
-                skype_name='Webex scheduled through email'
-            interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+            #if len(skype_name)==0:
+                #skype_name='Webex scheduled through email'
+            #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
             to_email=[profile_student.user.email]
             from_email=manager_profile.user.email
             subject='CIIP Application: Automatic Notification'
