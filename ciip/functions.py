@@ -243,7 +243,7 @@ def search_student(search, offer_status, ranking, university):
                     user.interest_2,user.interest_3]
         for value in fields:
             if value is not None:
-                match = re.search(search.lower(), value.lower())
+                match = re.search((search.lower())+, value.lower())
                 if match:
                     if user not in results:
                         results.append(user)
