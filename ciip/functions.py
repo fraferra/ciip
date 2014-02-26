@@ -254,7 +254,7 @@ def returnUniversity(university):
     results=[]
     if university=='0':
         results=UserProfile.objects.all()
-    if university =='UCL+Kent':
+    if university =='UCLKent':
         results=UserProfile.objects.filter(university='UCL')+UserProfile.objects.filter(university='Kent') 
     else:
         results=UserProfile.objects.filter(university=university)
