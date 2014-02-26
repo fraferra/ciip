@@ -1323,6 +1323,7 @@ def manager_home(request):
             try:
                 offer_status=request.GET['offer_status']
                 query=request.GET['search']
+
                 ranking=request.GET['ranking']
                 university=request.GET['university']
                 results=search_student(query, offer_status, ranking, university)
@@ -1381,7 +1382,7 @@ def schedule_interview(request):
             skype_name=request.POST.get('skype_name')
             try:
                 date=request.POST.get('day')
-            except ValidatioError:
+            except ValidationError:
                 return HttpResponseRedirect('/ciip/schedule_interview')
             if len(skype_name)==0:
                 skype_name='Webex scheduled through email'
