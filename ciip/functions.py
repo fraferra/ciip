@@ -166,6 +166,7 @@ def matchingAlgorith(obj):
     max_score=0
     for student in UserProfile.objects.all():
         score=0
+        ranking=student.
         match_field = re.search(str(obj_field).lower() ,str(student.position_suggested).lower())
         if match_field:
             score=score+3
@@ -263,15 +264,15 @@ def returnConfirmedOrNot(filter_result):
 
 def returnRanking(ranking):
     results=[]
-    if ranking==0:
+    if ranking=='0':
         results=UserProfile.objects.all()
-    if ranking==1:
+    if ranking=='1':
         results=UserProfile.objects.filer(technical_resume_screen_selection='1-Highly recommended')
-    if ranking==2:
+    if ranking=='2':
         results=UserProfile.objects.filer(technical_resume_screen_selection='2-Recommended')
-    if ranking==2.5:
+    if ranking=='2.5':
         results=UserProfile.objects.filer(technical_resume_screen_selection='2.5')
-    if ranking==3:
+    if ranking=='3':
         results=UserProfile.objects.filer(technical_resume_screen_selection='3-Not recommended')
     return results
 
