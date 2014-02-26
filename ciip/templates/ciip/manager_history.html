@@ -146,7 +146,7 @@
       
           <div class="row-fluid">
             <div class="span9" >
-              <input type="submit" name="delete_all" class="btn btn-default btn-small" value="Delete All" style="margin-right:100px">
+              <input type="submit" href="/ciip/manager_history?delete_all=delete_all" name="delete_all" class="btn btn-default btn-small" value="Delete All" style="right:100px">
               <hr class="featurette-divider">
             {% for search in previous_search %}
                <p><a href="/ciip/manager_home/?search={{search.search}}&offer_status={{search.offer_status}}&ranking={{search.ranking}}&university={{search.university}}"><b>Searched: {{search.search}} / {{search.offer_status}} / {{search.ranking}} / {{search.university}} at {{search.date}}</b></a>  <a href="/ciip/manager_history?delete2={{search.id}}"><span class="glyphicon glyphicon-remove"></span></a></p>
