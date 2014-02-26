@@ -166,7 +166,16 @@ def matchingAlgorith(obj):
     max_score=0
     for student in UserProfile.objects.all():
         score=0
-        ranking=student.
+        ranking=student.technical_resume_screen_selection
+        if ranking=='1-Highly recommended':
+            score=3+score
+        if ranking=='2-Recommended':
+            score=2+score
+        if ranking=='2.5':
+            score=1+score
+        if ranking=='3-Not recommended':
+            score=0+score
+
         match_field = re.search(str(obj_field).lower() ,str(student.position_suggested).lower())
         if match_field:
             score=score+3
