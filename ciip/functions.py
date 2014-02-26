@@ -276,13 +276,13 @@ def returnRanking(ranking):
     if ranking=='0':
         results=UserProfile.objects.all()
     if ranking=='1':
-        results=UserProfile.objects.filer(technical_resume_screen_selection='1-Highly recommended')
+        results=UserProfile.objects.filter(technical_resume_screen_selection='1-Highly recommended')
     if ranking=='2':
-        results=UserProfile.objects.filer(technical_resume_screen_selection='2-Recommended')
+        results=UserProfile.objects.filter(technical_resume_screen_selection='2-Recommended')
     if ranking=='2.5':
-        results=UserProfile.objects.filer(technical_resume_screen_selection='2.5')
+        results=UserProfile.objects.filter(technical_resume_screen_selection='2.5')
     if ranking=='3':
-        results=UserProfile.objects.filer(technical_resume_screen_selection='3-Not recommended')
+        results=UserProfile.objects.filter(technical_resume_screen_selection='3-Not recommended')
     return results
 
 
