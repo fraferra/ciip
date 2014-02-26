@@ -249,18 +249,20 @@ def search_student(search, offer_status, ranking, university):
                 if match:
                     if user not in results:
                         results.append(user)
-    return results     
+    return results 
+
 def returnUniversity(university):
     results=[]
     if university=='0':
         results=UserProfile.objects.all()
-    if university =='UCLKent':
+    elif university =='UCLKent':
         res_1=UserProfile.objects.filter(university='UCL')
         res_2=UserProfile.objects.filter(university='Kent')
         results=list(set(res_1) | set(res_2))
     else:
         results=UserProfile.objects.filter(university=university)
     return results
+
 def returnConfirmedOrNot(filter_result):
     results=[]
     if filter_result=='all':
