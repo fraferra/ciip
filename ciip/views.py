@@ -1330,7 +1330,6 @@ def manager_home(request):
                 time =datetime.now()
                 Search.objects.create(manager=manager_profile,date=time, search=query, university=university, ranking=ranking, offer_status=offer_status)
             except MultiValueDictKeyError:
-            except MultiValueDictKeyError:
                 pass
             try:
                 filter_result=request.GET['sort']
