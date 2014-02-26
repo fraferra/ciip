@@ -1379,7 +1379,10 @@ def schedule_interview(request):
             return HttpResponseRedirect('/ciip/schedule_interview/')
         if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
             skype_name=request.POST.get('skype_name')
-            date=request.POST.get('day')
+            try:
+                date=request.POST.get('day')
+            except ValidatioError:
+                return HttpResponseRedirect('/ciip/schedule_interview')
             if len(skype_name)==0:
                 skype_name='Webex scheduled through email'
             interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
