@@ -1360,13 +1360,17 @@ def manager_history(request):
             #algorithm=functions()
             top_3=matchingAlgorith(manager_profile)
             delete_interview=request.GET.get('delete','')
+            delete_search=request.GET.get('delete2','')
             feedback=request.POST.get('feedback','')
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
             if len(delete_interview) !=0:
                 interview=Interview.objects.get(pk=delete_interview)
                 interview.delete()
-                return HttpResponseRedirect('/ciip/manager_home')
+                return HttpResponseRedirect('/ciip/manager_history')
+            if len(delete_search) !=0:
+                search=Search.objects.get(pk=delete_search)
+                search.delete()
             previous_search=Search.objects.filter(manager=manager_profile)
         except ObjectDoesNotExist:
 
