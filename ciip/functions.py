@@ -236,7 +236,9 @@ def search_student(search, offer_status):
     return results     
         
 def returnConfirmedOrNot(filter_result):
-    results=[] 
+    results=[]
+    if filter_result=='all':
+        results=UserProfile.objects.all() 
     if filter_result == 'Rejected':
         results=UserProfile.objects.filter(offer_states='Rejected')
         #for user in UserProfile.objects.all():

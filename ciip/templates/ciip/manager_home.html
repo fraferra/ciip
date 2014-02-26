@@ -174,15 +174,22 @@
             
               <center><p>Search:<input type="text" style="height:25px"placeholder="search" name="search" />
                <input type="submit" value="submit" /></p><center>
-               <label>Sort by offer status:</label>
+               <p><label>Sort by offer status:</label>
                    <select name="offer_status">
-                      <option value="all">all</option>
+                      <option value="all">All</option>
                       <option value="Offered">Offered</option>
                       <option value="Interviewing">Interviewing</option>
                       <option value="not_offered_yet">Not Contacted Yet</option>
                       <option value="Rejected">Rejected</option>
+                  </select>
+              <label>Sort by Ranking:</label>
+                   <select name="ranking">
+                      <option value="0">All</option>
+                      <option value="1">1-Highly recommended</option>
+                      <option value="2">2-Recommended</option>
+                      <option value="2.5">2.5-Maybe</option>
+                      <option value="3">3-Not recommended</option>
                   </select></p>
-              
                <!--<p><i>Sort by</i> <a href="/ciip/manager_home?sort=accepted">Offered</a> / <a href="/ciip/manager_home?sort=interviewing">Interviewing</a> / <a href="/ciip/manager_home?sort=not_offered_yet">Not Contacted Yet</a> / <a href="/ciip/manager_home?sort=rejected">Rejected</a></p>-->
              
             </form> 
