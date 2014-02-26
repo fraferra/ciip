@@ -2,7 +2,7 @@
 import smtplib
 import os
 import re
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import *
 from datetime import datetime
 #import datetime
 from django.core.mail import send_mail, BadHeaderError
