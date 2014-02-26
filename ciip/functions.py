@@ -219,9 +219,11 @@ def sendEmailNotification(from_email, to_email, subject, message):
         return HttpResponse('Invalid header found.')
 
 
-def search_student(search, offer_status):
+def search_student(search, offer_status, ranking):
     results=[]
-    list_students=returnConfirmedOrNot(offer_status)
+    by_offer=returnConfirmedOrNot(offer_status)
+    by_ranking=returnRanking(ranking)
+    list_students=list(set(by_offer) & set(by_ranking))
     for user in list_students:
         fields = [user.skill_1, user.skill_2, user.skill_3,
                   user.degree, user.first_name, user.last_name,
@@ -258,6 +260,22 @@ def returnConfirmedOrNot(filter_result):
             if match:
                 results.append(user)       
     return results
+
+def returnRanking(ranking):
+    results=[]
+    if ranking==0:
+        results=UserProfile.objects.all()
+    if ranking==1:
+        results=UserProfile.objects.filer(technical_resume_screen_selection='1-Highly recommended')
+    if ranking==2:
+        results=UserProfile.objects.filer(technical_resume_screen_selection='2-Recommended')
+    if ranking==2.5:
+        results=UserProfile.objects.filer(technical_resume_screen_selection='2.5')
+    if ranking==3:
+        results=UserProfile.objects.filer(technical_resume_screen_selection='3-Not recommended')
+    return results
+
+
 
 
 def return_best_time(university):

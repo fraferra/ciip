@@ -1323,7 +1323,8 @@ def manager_home(request):
             try:
                 offer_status=request.GET['offer_status']
                 query=request.GET['search']
-                results=search_student(query, offer_status)
+                ranking=request.GET['ranking']
+                results=search_student(query, offer_status, ranking)
                 
             except MultiValueDictKeyError:
                 pass
