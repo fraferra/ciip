@@ -253,7 +253,9 @@ def search_student(search, offer_status, ranking, university):
 def returnUniversity(university):
     results=[]
     if university=='0':
-        results=UserProfile.objects.all() 
+        results=UserProfile.objects.all()
+    if university =='UCL+Kent':
+        results=UserProfile.objects.filter(university='UCL')+UserProfile.objects.filter(university='Kent') 
     else:
         results=UserProfile.objects.filter(university=university)
     return results
