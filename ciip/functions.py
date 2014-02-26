@@ -219,12 +219,11 @@ def sendEmailNotification(from_email, to_email, subject, message):
         return HttpResponse('Invalid header found.')
 
 
-def search_student(search, sortby):
-    results=[]
-    if len(sortby)==0:
+def search_student(search, offer_status):
+    if offer_status=='all':
         list_students=UserProfile.objects.all()
     else:
-        list_students=UserProfile.objects.filter(offer_states=sortby)
+        list_students=UserProfile.objects.filter(offer_states=offer_status)
     for user in list_students:
         fields = [user.skill_1, user.skill_2, user.skill_3,
                   user.degree, user.first_name, user.last_name,

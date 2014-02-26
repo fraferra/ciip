@@ -1321,17 +1321,9 @@ def manager_home(request):
                 return HttpResponseRedirect('/ciip/manager_home')
 
             try:
-                sortby=request.GET.get('sort')
-                #list_sort=['all','offered','interviewing','not_offered_yet','rejected']
-                #for lis in list_sort:
-                    #sort=request.GET.get(lis)
-                    #try:
-                        #sortby.append(sort)
-                    #except TypeError:
-                        #pass
-
+                offer_status=request.GET['offer_status']
                 query=request.GET['search']
-                results=search_student(query, sortby)
+                results=search_student(query, offer_status)
                 
             except MultiValueDictKeyError:
                 pass
