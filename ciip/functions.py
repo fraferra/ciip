@@ -220,6 +220,7 @@ def sendEmailNotification(from_email, to_email, subject, message):
 
 
 def search_student(search, offer_status):
+    results=[]
     if offer_status=='all':
         list_students=UserProfile.objects.all()
     else:
