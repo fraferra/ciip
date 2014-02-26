@@ -73,7 +73,7 @@ urlpatterns = patterns('',
     url(r'^save_unicomment/$', views.save_unicomment, name='save_unicomment'),
 
 
-
+    url(r'^manager_history/$', views.manager_history, name='manager_history'),
     url(r'^manager_signup/$', views.manager_signup, name='manager_signup'),
     url(r'^manager_login/$', views.manager_login, name='manager_login'),
     url(r'^manager_home/$', views.manager_home, name='manager_home'),

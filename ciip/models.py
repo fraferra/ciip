@@ -236,6 +236,13 @@ class Message(models.Model):
     sent_by=models.CharField(max_length=50, null=True)
     date_sent=models.DateTimeField( null=True)
 
+class Search(models.Model):
+    manager=models.ForeignKey(ManagerProfile)
+    search=models.CharField(max_length=100, null=True, default=None)
+    ranking=models.CharField(max_length=100, null=True, default=None)
+    offer_status=models.CharField(max_length=100, null=True, default=None)
+    university=models.CharField(max_length=100, null=True, default=None)
+    date=models.DateTimeField( null=True)
 
 
 

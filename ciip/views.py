@@ -1327,7 +1327,9 @@ def manager_home(request):
                 ranking=request.GET['ranking']
                 university=request.GET['university']
                 results=search_student(query, offer_status, ranking, university)
-                
+                time =datetime.now()
+                Search.objects.create(manager=manager_profile,date=time, search=query, university=university, ranking=ranking, offer_status=offer_status)
+            except MultiValueDictKeyError:
             except MultiValueDictKeyError:
                 pass
             try:
@@ -1345,6 +1347,34 @@ def manager_home(request):
             
             
     return render(request, 'ciip/manager_home.html', {'user_name': user_name,'top_3':top_3,'results':results, 'previous_interviews_manager':previous_interviews_manager })
+
+def manager_history(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/manager_login/')
+    else:
+        current_pk = request.user.pk
+        current_user = request.user
+        user_name = User.objects.get(pk=current_pk).username
+        try:
+            manager_profile = ManagerProfile.objects.get(user=request.user)
+            previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
+            #algorithm=functions()
+            top_3=matchingAlgorith(manager_profile)
+            delete_interview=request.GET.get('delete','')
+            feedback=request.POST.get('feedback','')
+            if len(feedback)!=0:
+                sendFeedback(manager_profile, feedback)
+            if len(delete_interview) !=0:
+                interview=Interview.objects.get(pk=delete_interview)
+                interview.delete()
+                return HttpResponseRedirect('/ciip/manager_home')
+            previous_search=Search.objects.filter(manager=manager_profile)
+        except ObjectDoesNotExist:
+
+            return HttpResponseRedirect('/ciip/login/')                   
+    return render(request, 'ciip/manager_history.html', {'user_name': user_name,'previous_search':previous_search,
+                                                           'previous_interviews_manager':previous_interviews_manager})
+ 
 
 
 
