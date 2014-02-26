@@ -1377,7 +1377,7 @@ def schedule_interview(request):
         if len(delete_interview) !=0:
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
-            return HttpResponseRedirect('/ciip/schedule_interview/')
+            return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
         if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
             skype_name=request.POST.get('skype_name')
             try:
@@ -1386,7 +1386,7 @@ def schedule_interview(request):
                     skype_name='Webex scheduled through email'
                 interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
             except ValidationError:
-                return HttpResponseRedirect('/ciip/schedule_interview')
+                return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
             #if len(skype_name)==0:
                 #skype_name='Webex scheduled through email'
             #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
