@@ -1362,7 +1362,7 @@ def manager_history(request):
             delete_interview=request.GET.get('delete','')
             delete_search=request.GET.get('delete2','')
             feedback=request.POST.get('feedback','')
-            delete_all=request,GET.get('delete_all','')
+            delete_all=request.GET.get('delete_all','')
             if delete_all=='delete_all':
                 for se in Search.objects.filter(manager=manager_profile):
                     se.delete()
