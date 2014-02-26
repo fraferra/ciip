@@ -221,10 +221,7 @@ def sendEmailNotification(from_email, to_email, subject, message):
 
 def search_student(search, offer_status):
     results=[]
-    if offer_status=='all':
-        list_students=UserProfile.objects.all()
-    else:
-        list_students=UserProfile.objects.filter(offer_states=offer_status)
+    list_students=returnConfirmedOrNot(offer_status)
     for user in list_students:
         fields = [user.skill_1, user.skill_2, user.skill_3,
                   user.degree, user.first_name, user.last_name,
@@ -240,7 +237,7 @@ def search_student(search, offer_status):
         
 def returnConfirmedOrNot(filter_result):
     results=[] 
-    if filter_result == 'rejected':
+    if filter_result == 'Rejected':
         results=UserProfile.objects.filter(offer_states='Rejected')
         #for user in UserProfile.objects.all():
            #if user.offer_states == 'Rejected':
@@ -249,11 +246,11 @@ def returnConfirmedOrNot(filter_result):
         for user in UserProfile.objects.all():
             if user.offer_states is None:
                 results.append(user)
-    if filter_result == 'interviewing':
+    if filter_result == 'Interviewing':
         for user in UserProfile.objects.all():
             if user.offer_states == 'Interviewing':
                 results.append(user)
-    if filter_result == 'accepted':
+    if filter_result == 'Offered':
         for user in UserProfile.objects.all():
             match=re.search('Offered', str(user.offer_states))
             if match:
