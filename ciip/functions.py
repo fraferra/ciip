@@ -175,7 +175,11 @@ def matchingAlgorith(obj):
             score=1+score
         if ranking=='3-Not recommended':
             score=0+score
-
+        #list_obj_field=obj_field.lower().split(' / ')
+        #list_position_suggested=position_suggested.lower().split(' / ')
+        #for lis in list_obj_field:
+           # if lis in list_position_suggested:
+            #    score=score+1.5
         match_field = re.search(str(obj_field).lower() ,str(student.position_suggested).lower())
         if match_field:
             score=score+3
