@@ -115,7 +115,7 @@
               <p><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}} - Matching Score {{score}}</strong></p>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
                 <p><strong>Position Suggested</strong>: {{ student.position_suggested }}</p>
-                <p><strong>Degree</strong>: {{ student.degree }}</p>
+                <p><strong>Degree</strong>: {{ student.degree }} / {{student.master_or_undergrad}}</p>
                 <p><strong>Skills:</strong></p>
                 <ul>
                   <li> <b>{{student.skill_1}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_1}}</li>
@@ -251,13 +251,18 @@
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>
                 <p><strong>Position Suggested</strong>: {{ student.position_suggested }}</p>
                 <p><strong>Ranking</strong>: {{ student.technical_resume_screen_selection }}</p>
-                <p><strong>Degree</strong>: {{ student.degree }}</p>
+                <p><strong>Degree</strong>: {{ student.degree }} / {{student.master_or_undergrad}}</p>
                 <p><strong>Skills:</strong></p>
                 <ul>
                   <li> <b>{{student.skill_1}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_1}}</li>
                   <li> <b>{{student.skill_2}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_2}}</li>
                   <li> <b>{{student.skill_3}}</b>  <i>Level of proficiency</i>:  {{student.skill_level_3}}</li>
      
+                </ul>
+                <p><strong>Interests:</strong></p>
+                <ul>
+                  <li> {{student.interest_1}} </li><li> {{student.interest_2}} </li><li> {{student.interest_3}} </li>
+                  
                 </ul>
                 <div class="btn-group">
 
