@@ -171,7 +171,7 @@
               {% endfor %}
               {% endif %}
 
-              {% if manager_profile.coordinator == 'No' %}
+              {% if manager_profile.coordinator == 'No' or manager_profile.coordinator == 'no' %}
               {% for student in my_students_list %}
 
                 <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
