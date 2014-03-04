@@ -113,7 +113,14 @@
         <p><b>Your interviews</b></p>
          <ul>
             {% for interview in previous_interviews_manager %}
-            <li>Date: <i> {{ interview.date }} </i> <br>Student: <a href="/ciip/student_full_profile?id={{interview.student.id}}"><b>{{ interview.student.last_name }}</b></a>              <a href="/ciip/my_students?delete={{interview.id}}"><span class="glyphicon glyphicon-remove"></span></a>
+            {% if interview.delegated_to == None %}
+              <li>Date: <i>{{ interview.date }}</i>
+              {% endif %}
+              {% if interview.delegated_to != None %}
+              <li>Delegated to {{interview.delegated_to.last_name}}
+              {% endif %}
+              {% endfor %}
+            <br>Student: <a href="/ciip/student_full_profile?id={{interview.student.id}}"><b>{{ interview.student.last_name }}</b></a>              <a href="/ciip/my_students?delete={{interview.id}}"><span class="glyphicon glyphicon-remove"></span></a>
               <br>Response: <i>{{interview.interview_response}}</i> </li>
             {% endfor %}
           </ul>
