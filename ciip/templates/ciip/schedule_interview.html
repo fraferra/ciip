@@ -204,7 +204,7 @@
 Send Mail (Press also submit to save interview date)</a></p> 
    <input type="submit" href="/ciip/manager_home/" class="btn btn-primary btn-small" value="Schedule Interview">
     <br><br><br>
-   <p>Or delegate to a coordinator of your business unit:</p>
+   <h4>Or delegate to a coordinator of your business unit:</h4>
    <ul>
    {% for coor in business_unit_coordinators %}
    <li><a href="/ciip/schedule_interview?coordinator=yes&coordinator_id={{coor.id}}&id={{profile_student.id}}">{{coor.last_name}} {{coor.first_name}}</a></li>
