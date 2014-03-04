@@ -169,7 +169,7 @@
           <div class="hero-unit">
            
               <form action="/ciip/manager_home" method = "get">{% csrf_token %}
-              <h1>Welcome {{user_name}}</h1>
+              <h1>Welcome {{manager_profile.first_name}}</h1>
               <br>
               <center><h3><a href="/ciip/manager_history">Check your history</a></h3></center>
               <center><hr class="featurette-divider"></center>

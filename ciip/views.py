@@ -1347,7 +1347,7 @@ def manager_home(request):
             
             
             
-    return render(request, 'ciip/manager_home.html', {'user_name': user_name,'top_3':top_3,'results':results, 'previous_interviews_manager':previous_interviews_manager })
+    return render(request, 'ciip/manager_home.html', {'manager_profile':manager_profile,'user_name': user_name,'top_3':top_3,'results':results, 'previous_interviews_manager':previous_interviews_manager })
 
 def manager_history(request):
     if not request.user.is_authenticated():
@@ -1425,10 +1425,10 @@ def schedule_interview(request):
             Interview.objects.create(student=profile_student, manager=manager_profile, delegated_to=current_coordinator)
             to_email=[current_coordinator.user.email]
             from_email=manager_profile.user.email
-            subject='CIIP Application: '+manager_profile.last_name +' delegated you for an interview.'
-            message='Manager '+manager_profile.first_name+' '+manager_profile.last_name+' would like you schedule an interview with '+profile_student.last_name+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            subject='CIIP Application: '+manager_profile.first_name+ ' '+manager_profile.last_name +' delegated you for an interview.'
+            message='Manager '+manager_profile.first_name+' '+manager_profile.last_name+' would like you schedule an interview with '+profile_student.last_name+'. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
             sendEmailNotification(from_email, to_email, subject, message)
-            return HttpResponseRedirect('/ciip/manager_home')
+            return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
         else:
             if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
                 skype_name=request.POST.get('skype_name')
