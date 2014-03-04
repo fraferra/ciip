@@ -133,6 +133,45 @@
       
           <div class="row-fluid">
             <div class="span9">
+               {% if manager_profile.coordinator == 'yes' %}
+              <h3>Delegated students</h3>
+               <hr class="featurette-divider">
+              {% for inter in interviews_delegated %}
+              <p>Delegated  by <b>{{inter.manager}}</b> for student <b>{{inter.student.first_name}} {{inter.student.last_name}}</b></p>
+              <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
+                <p>{{inter.student.offer_states}}   /   Change to <a href="/ciip/my_students?id={{inter.student.id}}&status=Offered%20by%20{{inter.manager.last_name}}">Offered Status</a> or to <a href="/ciip/my_students?id={{inter.student.id}}&status=Rejected">Rejected Status</a></p>
+
+                <p><strong>Degree</strong>: {{inter.student.master_or_undergrad}} - {{ inter.student.degree }}</p>
+                <p><strong>Skills:</strong></p>
+                <ul>
+                  <li> <b>{{inter.student.skill_1}}</b>  <i>Level of proficiency</i>:  {{inter.student.skill_level_1}}</li>
+                  <li> <b>{{inter.student.skill_2}}</b>  <i>Level of proficiency</i>:  {{inter.student.skill_level_2}}</li>
+                  <li> <b>{{inter.student.skill_3}}</b>  <i>Level of proficiency</i>:  {{inter.student.skill_level_3}}</li>
+     
+                </ul>
+                <p><strong>Interests:</strong></p>
+                <ul>
+                  <li> {{inter.student.interest_1}} </li><li> {{inter.student.interest_2}} </li><li> {{inter.student.interest_3}} </li>
+                  
+                </ul>
+                <div class="btn-group">
+
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                More... <span class="caret"></span>
+                  </button>
+                    <ul class="dropdown-menu" role="menu">
+    <li><a href="/ciip/schedule_interview?id={{inter.student.id}}">Schedule Interview</a></li>
+    <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{inter.student.file_cv}}">{% if inter.student.file_cv %} Download CV {% endif %}</a></li>
+    <li><a href="/ciip/student_full_profile?id={{inter.student.id}}">More Info and Interview Comment</a></li>
+    <li class="divider"></li>
+    <li><a href="/ciip/manager_send_message?id={{inter.student.id}}">Send Message</a></li>
+  </ul>
+</div>
+               <hr class="featurette-divider">
+              {% endfor %}
+              {% endif %}
+
+              {% if manager_profile.coordinator == 'no' %}
               {% for student in my_students_list %}
 
                 <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
@@ -167,6 +206,7 @@
 
               <hr class="featurette-divider">
               {% endfor %}
+              {% endif %}
             
             </div><!--/span-->
           </div><!--/row-->

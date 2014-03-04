@@ -159,8 +159,15 @@
             <div class="span8" >
               <h4>Other inteviews scheduled for this student</h4>
               {% for interview in previous_interviews %}
-              <p>Date: {{ interview.date }}</p>
+
+              
               <p>Manager: {{ interview.manager.last_name }}</p>
+              {% if interview.delegated_to == None %}
+              <p>Date: {{ interview.date }}</p>
+              {% endif %}
+              {% if interview.delegated_to != None %}
+              <p>Delegated to {{interview.delegated_to.last_name}}</p>
+              {% endif %}
               {% endfor %}
               <h4>Schedule time and day</h4>
 
@@ -189,6 +196,13 @@
    <p><input type="text" name='skype_name' placeholder="Enter Skype username" > or <a href="mailto:{{profile_student.user.email}}?Subject=CIIP%20APPLICATION%20URGENT%20Hiring%20Manager%20Interview">
 Send Mail (Press also submit to save interview date)</a></p> 
    <input type="submit" href="/ciip/manager_home/" class="btn btn-primary btn-small" value="Schedule Interview">
+    <br><br><br>
+   <p>Or delegate to a coordinator of your business unit:</p>
+   <ul>
+   {% for coor in business_unit_coordinators %}
+   <li><a href="/ciip/schedule_interview?coordinator=yes&coordinator_id={{coor.id}}&id={{profile_student.id}}">{{coor.last_name}} {{coor.first_name}}</a></li>
+   {% endfor %}
+ </ul>
 </div>
 <script type="text/javascript">
   $(function() {

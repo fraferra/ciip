@@ -1,5 +1,8 @@
 #List of constants used for the models 
-
+COORDINATOR = (
+    ('yes', 'yes'),
+    ('no','no'),
+)
 UNIVERSITY_ENDORSEMENT = (
     ('Strongly recommended','Strongly recommended'),
     ('Recommended','Recommended'),

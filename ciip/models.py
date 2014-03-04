@@ -38,6 +38,7 @@ class Profile(models.Model):
 
 post_save.connect(create_user_profile, sender=User)
 class ManagerProfile(Profile):
+    coordinator=models.CharField(max_length=3, choices=constants.COORDINATOR, default='No', null=True)
     business_unit=models.CharField(max_length=100, choices=constants.PROJECTS, default=None ,null=True)
     first_name = models.CharField(max_length=20, null=True)
     last_name= models.CharField(max_length = 20, null=True)
@@ -225,6 +226,7 @@ class Interview(models.Model):
     date= models.DateTimeField( null=True)
     student=models.ForeignKey(UserProfile)
     manager=models.ForeignKey(ManagerProfile)
+    delegated_to=models.ForeignKey(ManagerProfile, related_name='delegates', null=True, default=None)
     skype_name=models.CharField(max_length=100, null=True, default=None)
     interview_response = models.CharField(max_length=100,
                                             default=None, null=True)

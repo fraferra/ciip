@@ -1251,12 +1251,14 @@ def manager_signup(request):
             interest_1=request.POST['interest_1']
             interest_2=request.POST['interest_2']
             interest_3=request.POST['interest_3']
+            coordinator=request.POST['coordinator']
             #import sys
             #print >> sys.stderr, "********* User Current PK %s" %(user_passcode)
             if checkciscoemail(email) and user_passcode==passcode:
                 new_user = form.save()
                 user=User.objects.get(email=email)
                 ManagerProfile.objects.create(user=user,
+                                              coordinator=coordinator,
                                               first_name=first_name,
                                               last_name=last_name,
                                               business_unit=business_unit,
@@ -1415,35 +1417,49 @@ def schedule_interview(request):
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
             return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
-        if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
-            skype_name=request.POST.get('skype_name')
-            try:
-                date=request.POST.get('day')
-                if len(skype_name)==0:
-                    skype_name='Webex scheduled through email'
-                interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
-            except ValidationError:
-                return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
-            #if len(skype_name)==0:
-                #skype_name='Webex scheduled through email'
-            #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
-            to_email=[profile_student.user.email]
+        coordinator=request.GET.get('coordinator','')
+        coordinator_id=request.GET.get('coordinator_id','')
+        business_unit_coordinators=ManagerProfile.objects.filter(coordinator='yes', business_unit=manager_profile.business_unit)
+        if coordinator=='yes':
+            current_coordinator=ManagerProfile.objects.get(pk=coordinator_id)
+            Interview.objects.create(student=profile_student, manager=manager_profile, delegated_to=current_coordinator)
+            to_email=[current_coordinator.user.email]
             from_email=manager_profile.user.email
-            subject='CIIP Application: Automatic Notification'
-            message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            subject='CIIP Application: '+manager_profile.last_name +' delegated you for an interview.'
+            message='Manager '+manager_profile.first_name+' '+manager_profile.last_name+' would like you schedule an interview with '+profile_student.last_name+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
             sendEmailNotification(from_email, to_email, subject, message)
-            match=re.search('Offered', profile_student.offer_states)
-            if match:
-                pass
-            else:
-                profile_student.offer_states='Interviewing'
-                profile_student.save()
-        
-          
             return HttpResponseRedirect('/ciip/manager_home')
-       
+        else:
+            if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
+                skype_name=request.POST.get('skype_name')
+                try:
+                    date=request.POST.get('day')
+                    if len(skype_name)==0:
+                        skype_name='Webex scheduled through email'
+                    interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+                except ValidationError:
+                    return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
+                #if len(skype_name)==0:
+                    #skype_name='Webex scheduled through email'
+                #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+                to_email=[profile_student.user.email]
+                from_email=manager_profile.user.email
+                subject='CIIP Application: Automatic Notification'
+                message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+                sendEmailNotification(from_email, to_email, subject, message)
+                match=re.search('Offered', profile_student.offer_states)
+                if match:
+                    pass
+                else:
+                    profile_student.offer_states='Interviewing'
+                    profile_student.save()
+            
+              
+                return HttpResponseRedirect('/ciip/manager_home')
+           
             
     return render(request, 'ciip/schedule_interview.html', {'user_name': user_name,
+                                             'business_unit_coordinators':business_unit_coordinators,
                                              'profile_student':profile_student,
                                              'previous_interviews':previous_interviews,
                                              'previous_interviews_manager':previous_interviews_manager,
@@ -1455,6 +1471,7 @@ def my_students(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/manager_login/')
     else:
+        interviews_delegated=[]
         current_pk = request.user.pk
         current_user = request.user
         user_name = User.objects.get(pk=current_pk).username
@@ -1470,6 +1487,9 @@ def my_students(request):
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
             return HttpResponseRedirect('/ciip/my_students/')
+        if manager_profile.coordinator=='yes':
+            interviews_delegated=Interview.objects.filter(delegated_to=manager_profile)
+
         for interview in previous_interviews_manager:
             if not interview.student in my_students_list:
                 my_students_list.append(interview.student)
@@ -1486,7 +1506,11 @@ def my_students(request):
             pass
 
             
-    return render(request, 'ciip/my_students.html', {'manager_profile':manager_profile,'user_name': user_name, 'my_students_list':my_students_list,'previous_interviews_manager':previous_interviews_manager})
+    return render(request, 'ciip/my_students.html', {'manager_profile':manager_profile,
+        'user_name': user_name,
+         'my_students_list':my_students_list,
+         'interviews_delegated':interviews_delegated,
+         'previous_interviews_manager':previous_interviews_manager})
 
 
 
@@ -1552,6 +1576,7 @@ def manager_edit_info(request):
             manager_profile.interest_1=request.POST.get('interest_1','')
             manager_profile.interest_2=request.POST.get('interest_2','')
             manager_profile.interest_3=request.POST.get('interest_3','')
+            manager_profile.coordinator=request.POST.get('coordinator','')
             manager_profile.save()
 
             
