@@ -138,7 +138,7 @@
                <hr class="featurette-divider">
               {% for inter in interviews_delegated %}
               <p>Delegated  by <b>{{inter.manager}}</b> for student <b>{{inter.student.first_name}} {{inter.student.last_name}}</b></p>
-              <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
+              <h4><strong>{{ inter.student.first_name }} {{ inter.student.last_name }} / {{inter.student.university}}</strong></h4>
                 <p>{{inter.student.offer_states}}   /   Change to <a href="/ciip/my_students?id={{inter.student.id}}&status=Offered%20by%20{{inter.manager.last_name}}">Offered Status</a> or to <a href="/ciip/my_students?id={{inter.student.id}}&status=Rejected">Rejected Status</a></p>
 
                 <p><strong>Degree</strong>: {{inter.student.master_or_undergrad}} - {{ inter.student.degree }}</p>
