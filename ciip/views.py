@@ -1431,7 +1431,7 @@ def schedule_interview(request):
             return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
         else:
             if request.method == 'POST' and len(Interview.objects.filter(manager=manager_profile)) <5:
-                skype_name=request.POST.get('skype_name')
+                skype_name=request.POST.get('skype_name','')
                 try:
                     date=request.POST.get('day')
                     if len(skype_name)==0:
