@@ -1437,16 +1437,17 @@ def schedule_interview(request):
                     if len(skype_name)==0:
                         skype_name='Webex scheduled through email'
                     interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
+                    to_email=[profile_student.user.email]
+                    from_email=manager_profile.user.email
+                    subject='CIIP Application: Automatic Notification'
+                    message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+                    sendEmailNotification(from_email, to_email, subject, message)
                 except ValidationError:
                     return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
                 #if len(skype_name)==0:
                     #skype_name='Webex scheduled through email'
                 #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
-                to_email=[profile_student.user.email]
-                from_email=manager_profile.user.email
-                subject='CIIP Application: Automatic Notification'
-                message='Interview scheduled by manager '+manager_profile.first_name+' '+manager_profile.last_name+' at '+date+', Pacific Time. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
-                sendEmailNotification(from_email, to_email, subject, message)
+                
                 match=re.search('Offered', profile_student.offer_states)
                 if match:
                     pass
