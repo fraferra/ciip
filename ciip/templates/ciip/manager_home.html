@@ -247,6 +247,8 @@
          
               <h3>Results</h3>
               <hr class="featurette-divider">
+              <p><i>Results found: {{number_results}}</i></p>
+              <hr class="featurette-divider">
               {% for student in results %}
                 <h4><strong>{{ student.first_name }} {{ student.last_name }} / {{student.university}}</strong></h4>
                 <p style="color:#0099CC":><strong>{{student.offer_states}}</strong></p>

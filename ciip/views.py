@@ -1329,6 +1329,7 @@ def manager_home(request):
                 ranking=request.GET['ranking']
                 university=request.GET['university']
                 results=search_student(query, offer_status, ranking, university)
+                number_results=len(results)
                 time =datetime.now()
                 Search.objects.create(manager=manager_profile,date=time, search=query, university=university, ranking=ranking, offer_status=offer_status)
             except MultiValueDictKeyError:
@@ -1347,7 +1348,11 @@ def manager_home(request):
             
             
             
-    return render(request, 'ciip/manager_home.html', {'manager_profile':manager_profile,'user_name': user_name,'top_3':top_3,'results':results, 'previous_interviews_manager':previous_interviews_manager })
+    return render(request, 'ciip/manager_home.html', {'manager_profile':manager_profile,
+                                                      'user_name': user_name,'top_3':top_3,
+                                                      'results':results, 
+                                                      'previous_interviews_manager':previous_interviews_manager,
+                                                      'number_results':number_results })
 
 def manager_history(request):
     if not request.user.is_authenticated():
@@ -1426,7 +1431,7 @@ def schedule_interview(request):
             to_email=[current_coordinator.user.email]
             from_email=manager_profile.user.email
             subject='CIIP Application: '+manager_profile.first_name+ ' '+manager_profile.last_name +' delegated you for an interview.'
-            message='Manager '+manager_profile.first_name+' '+manager_profile.last_name+' would like you schedule an interview with '+profile_student.last_name+'. Please check your CIIP Profile for further informations. For any problem please email ciip_office@cisco.com'
+            message='Manager '+manager_profile.first_name+' '+manager_profile.last_name+' would like you schedule an interview with '+profile_student.last_name+'. Please check www.ciip4me.com/ciip/manager_home/ for further informations. For any problem please email ciip_office@cisco.com'
             sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/schedule_interview/?id='+student_id)
         else:
