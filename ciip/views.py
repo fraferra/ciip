@@ -1329,7 +1329,7 @@ def manager_home(request):
                 ranking=request.GET['ranking']
                 university=request.GET['university']
                 results=search_student(query, offer_status, ranking, university)
-                number_results=len(results)
+                #number_results=len(results)
                 time =datetime.now()
                 Search.objects.create(manager=manager_profile,date=time, search=query, university=university, ranking=ranking, offer_status=offer_status)
             except MultiValueDictKeyError:
@@ -1351,8 +1351,8 @@ def manager_home(request):
     return render(request, 'ciip/manager_home.html', {'manager_profile':manager_profile,
                                                       'user_name': user_name,'top_3':top_3,
                                                       'results':results, 
-                                                      'previous_interviews_manager':previous_interviews_manager,
-                                                      'number_results':number_results })
+                                                      'previous_interviews_manager':previous_interviews_manager})
+                                                      #'number_results':number_results })
 
 def manager_history(request):
     if not request.user.is_authenticated():
