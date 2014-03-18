@@ -1682,3 +1682,28 @@ def manager_logout(request):
     django_logout(request)
     #eturn render(request, 'ciip/login.html')
     return HttpResponseRedirect('/ciip/manager_login/') 
+
+
+# "https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}
+def downloads(request):
+
+    filename = "media/%s" % (request.GET.get('file'))
+
+    conn = S3Connection("AKIAJD2OM3MYDTC2BFRQ", "Re+FENQuiKKPKLmoyr03gomVzp6lT05CibIPuktb")
+    bucket_name = ""
+    if settings.DEBUG == True:
+        bucket_name = "ciip.dev.media"
+    else:
+        bucket_name = "ciip.media"
+
+    bucket = conn.get_bucket(bucket_name)
+    
+    key = bucket.get_key(filename)
+    content = key.get_contents_as_string()
+
+    response = HttpResponse(mimetype='application/force-download')
+    response['Content-Disposition']='attachment;filename="%s"'%filename
+    response["X-Sendfile"] = filename
+    response.write(content)
+
+    return response

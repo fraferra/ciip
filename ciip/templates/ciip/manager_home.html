@@ -135,7 +135,7 @@
                   </button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="/ciip/schedule_interview?id={{student.id}}">Schedule Interview</a></li>
-                      <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
+                      <li><a href="/ciip/downloads?file={{student.file_cv}}">{% if student.file_cv %} Download CV {% endif %}</a></li>
                   </ul>
               </div>
               <hr class="featurette-divider">
