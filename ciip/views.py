@@ -1684,6 +1684,7 @@ def manager_logout(request):
     return HttpResponseRedirect('/ciip/manager_login/') 
 
 import boto
+import os
 from boto.s3.connection import S3Connection
 
 from django.conf import settings
@@ -1696,6 +1697,7 @@ def downloads(request):
 
     filename = request.GET.get('file')
     s3_filename = "media/%s" % (filename)
+    short_filename = os.path.basename(filename)
 
     conn = S3Connection("AKIAJD2OM3MYDTC2BFRQ", "Re+FENQuiKKPKLmoyr03gomVzp6lT05CibIPuktb")
    
@@ -1711,8 +1713,8 @@ def downloads(request):
     content = key.get_contents_as_string()
 
     response = HttpResponse(mimetype='application/force-download')
-    response['Content-Disposition']='attachment;filename="%s"'%filename
-    response["X-Sendfile"] = filename
+    response['Content-Disposition']='attachment;filename="%s"'%short_filename
+    response["X-Sendfile"] = short_filename
     response.write(content)
 
     return response
