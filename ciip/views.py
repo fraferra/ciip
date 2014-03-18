@@ -621,6 +621,11 @@ def student_send_message(request):
             message=request.POST['message']
             time =datetime.now()
             message=Message.objects.create(text=message, manager=current_manager, student=current_student, sent_by=current_student.first_name, date_sent=time)
+            from_email=current_student.user.email
+            to_email=current_manager.user.email
+            subject='Student '+current_student.first_name+' '+current_student.last_name+' sent a message on CIIP.'
+            message='Check https://www.ciip4me.com/ciip/manager_send_message?id='+current_student.id
+            sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/student_send_message/?id='+manager_id)
 
     return render(request, 'ciip/student_send_message.html', {'user_name':user_name, 'previous_messages':previous_messages})
@@ -1399,11 +1404,7 @@ def schedule_interview(request):
     else:
         current_pk = request.user.pk
         current_user = request.user
-        user_name = User.objects.get(pk=current_pk).username
-
-
-
-        
+        user_name = User.objects.get(pk=current_pk).username        
         manager_profile = ManagerProfile.objects.get(user=request.user)
         email = User.objects.get(pk=current_pk).username
         student_id=request.GET['id']
@@ -1453,13 +1454,13 @@ def schedule_interview(request):
                 #if len(skype_name)==0:
                     #skype_name='Webex scheduled through email'
                 #interview=Interview.objects.create(date=date, skype_name=skype_name,student=profile_student, manager=manager_profile)
-                
-                match=re.search('Offered', profile_student.offer_states)
-                if match:
-                    pass
-                else:
-                    profile_student.offer_states='Interviewing'
-                    profile_student.save()
+                if type(profile_student.offer_states) is str:
+                    match=re.search('Offered', profile_student.offer_states)
+                    if match:
+                        pass
+                    else:
+                        profile_student.offer_states='Interviewing'
+                        profile_student.save()
             
               
                 return HttpResponseRedirect('/ciip/manager_home')
@@ -1632,15 +1633,16 @@ def manager_send_message(request):
         manager_profile = ManagerProfile.objects.get(user=request.user)
         previous_interviews_manager=Interview.objects.filter(manager=manager_profile)
         delete_interview=request.GET.get('delete','')
-        
+        student_id=request.GET['id']
+        student=UserProfile.objects.get(pk=student_id)
         if len(delete_interview) !=0:
             interview=Interview.objects.get(pk=delete_interview)
             interview.delete()
-            return HttpResponseRedirect('/ciip/manager_send_message')
+            return HttpResponseRedirect('/ciip/manager_send_message?id='+student_id)
 
         email = User.objects.get(pk=current_pk).username
-        student_id=request.GET['id']
-        student=UserProfile.objects.get(pk=student_id)
+        
+        
         student_email = student.user.email
         messages_sent=Message.objects.filter(manager=manager_profile,student=student).reverse()
         #a = range(len(messages_sent))
@@ -1653,6 +1655,11 @@ def manager_send_message(request):
             message=request.POST.get('message','')
             if len(message)!=0:
                 message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
+                from_email=manager_profile.user.email
+                to_email=student_email
+                subject='Manger '+manager_profile.first_name+' '+manager_profile.last_name+' sent a message on CIIP.'
+                message='Check https://www.ciip4me.com/ciip/student_send_message?id='+manager_profile.id
+                sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/manager_send_message/?id='+student_id)
 
 
