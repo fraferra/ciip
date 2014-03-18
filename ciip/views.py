@@ -1707,7 +1707,7 @@ def downloads(request):
 
     bucket = conn.get_bucket(bucket_name)
     
-    key = bucket.get_key(filename)
+    key = bucket.get_key(s3_filename)
     content = key.get_contents_as_string()
 
     response = HttpResponse(mimetype='application/force-download')
