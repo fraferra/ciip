@@ -1,5 +1,5 @@
 # Django settings for mysite project.
-#import os
+import os
 #import os
 #PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 #STATIC_ROOT = 'staticfiles'
@@ -9,8 +9,12 @@
  #   os.path.join(PROJECT_PATH, 'static'),
 #)
 
+env = os.environ.get("CIIP_ENV", "local")
 
-DEBUG = False
+if env == "production":
+    DEBUG = False
+else:
+    DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -53,14 +57,12 @@ import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
 
-AWS_STORAGE_BUCKET_NAME='ciip.media'
+if env == "production":
+    AWS_STORAGE_BUCKET_NAME='ciip.media'
+else:
+    AWS_STORAGE_BUCKET_NAME='ciip.dev.media'
 
 DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
-
-
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
@@ -155,6 +157,9 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.eggs.Loader',
 )
 
+if env == "production":
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 MIDDLEWARE_CLASSES = (
     'sslify.middleware.SSLifyMiddleware',
