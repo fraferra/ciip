@@ -1,5 +1,6 @@
 # Django settings for mysite project.
 import os
+
 #import os
 #PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 #STATIC_ROOT = 'staticfiles'
@@ -50,16 +51,16 @@ else:
         }
     }
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
 
 
 if env == "production":
     AWS_STORAGE_BUCKET_NAME='ciip.media'
 else:
     AWS_STORAGE_BUCKET_NAME='ciip.dev.media'
-
-DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
+if not env=="local":
+    DEFAULT_FILE_STORAGE='mysite.s3utils.MediaRootS3BotoStorage'
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
