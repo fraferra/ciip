@@ -1683,6 +1683,10 @@ def manager_logout(request):
     #eturn render(request, 'ciip/login.html')
     return HttpResponseRedirect('/ciip/manager_login/') 
 
+import boto
+from boto.s3.connection import S3Connection
+
+from django.conf import settings
 
 # "https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}
 def downloads(request):
@@ -1697,7 +1701,7 @@ def downloads(request):
     conn = S3Connection("AKIAJD2OM3MYDTC2BFRQ", "Re+FENQuiKKPKLmoyr03gomVzp6lT05CibIPuktb")
    
     logger.error('here after s3 connection')
-    
+
     bucket_name = ""
     if settings.DEBUG == True:
         bucket_name = "ciip.dev.media"
