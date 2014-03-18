@@ -235,5 +235,12 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+       'ciip.views': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     }
 }
+
+
