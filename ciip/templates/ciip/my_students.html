@@ -161,7 +161,7 @@
                   </button>
                     <ul class="dropdown-menu" role="menu">
     <li><a href="/ciip/schedule_interview?id={{inter.student.id}}">Schedule Interview</a></li>
-    <li><a href="https://s3-us-west-2.amazonaws.com/ciip.media/media/{{inter.student.file_cv}}">{% if inter.student.file_cv %} Download CV {% endif %}</a></li>
+    <li><a href="/ciip/downloads?file={{student.file_cv}}">{% if inter.student.file_cv %} Download CV {% endif %}</a></li>
     <li><a href="/ciip/student_full_profile?id={{inter.student.id}}">More Info and Interview Comment</a></li>
     <li class="divider"></li>
     <li><a href="/ciip/manager_send_message?id={{inter.student.id}}">Send Message</a></li>
