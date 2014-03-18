@@ -1693,23 +1693,17 @@ def downloads(request):
 
     import logging
     logger = logging.getLogger(__name__)
-    filename = "media/%s" % (request.GET.get('file'))
 
-
-    logger.error("S3 remote filename %s " % (filename))
+    filename = request.GET.get('file')
+    s3_filename = "media/%s" % (filename)
 
     conn = S3Connection("AKIAJD2OM3MYDTC2BFRQ", "Re+FENQuiKKPKLmoyr03gomVzp6lT05CibIPuktb")
    
-    logger.error('here after s3 connection')
-
     bucket_name = ""
     if settings.DEBUG == True:
         bucket_name = "ciip.dev.media"
     else:
         bucket_name = "ciip.media"
-
-    logger.error("S3 remote filename %s and bucket name %s" % (filename, bucket_name))
-
 
     bucket = conn.get_bucket(bucket_name)
     
