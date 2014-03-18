@@ -622,9 +622,9 @@ def student_send_message(request):
             time =datetime.now()
             message=Message.objects.create(text=message, manager=current_manager, student=current_student, sent_by=current_student.first_name, date_sent=time)
             from_email=current_student.user.email
-            to_email=current_manager.user.email
+            to_email=[current_manager.user.email]
             subject='Student '+current_student.first_name+' '+current_student.last_name+' sent a message on CIIP.'
-            message='Check https://www.ciip4me.com/ciip/manager_send_message?id='+current_student.id
+            message='Check https://www.ciip4me.com/ciip/manager_send_message?id='+str(current_student.id)
             sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/student_send_message/?id='+manager_id)
 
@@ -1656,9 +1656,9 @@ def manager_send_message(request):
             if len(message)!=0:
                 message=Message.objects.create(text=message, manager=manager_profile, student=student, sent_by=manager_profile.first_name, date_sent=time)
                 from_email=manager_profile.user.email
-                to_email=student_email
+                to_email=[student_email]
                 subject='Manger '+manager_profile.first_name+' '+manager_profile.last_name+' sent a message on CIIP.'
-                message='Check https://www.ciip4me.com/ciip/student_send_message?id='+manager_profile.id
+                message='Check https://www.ciip4me.com/ciip/student_send_message?id='+str(manager_profile.id)
                 sendEmailNotification(from_email, to_email, subject, message)
             return HttpResponseRedirect('/ciip/manager_send_message/?id='+student_id)
 
