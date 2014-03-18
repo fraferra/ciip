@@ -4,7 +4,7 @@ Django==1.5.4
 Jinja2==2.6
 Mako==0.5.0
 MarkupSafe==0.15
-PAM==0.4.2
+
 PIL==1.1.7
 Pygments==1.4
 South==0.7.3
