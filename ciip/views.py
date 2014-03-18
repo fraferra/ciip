@@ -1687,7 +1687,12 @@ def manager_logout(request):
 # "https://s3-us-west-2.amazonaws.com/ciip.media/media/{{student.file_cv}}
 def downloads(request):
 
+    import logging
+    logger = logging.getLogger(__name__)
     filename = "media/%s" % (request.GET.get('file'))
+
+    logger.error("S3 remote filename %s" % filename)
+
 
     conn = S3Connection("AKIAJD2OM3MYDTC2BFRQ", "Re+FENQuiKKPKLmoyr03gomVzp6lT05CibIPuktb")
     bucket_name = ""
