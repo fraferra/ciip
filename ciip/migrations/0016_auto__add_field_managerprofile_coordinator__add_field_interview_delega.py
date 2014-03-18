@@ -3,28 +3,29 @@ import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
-
+import os
+env = os.environ.get("CIIP_ENV", "local")
 
 class Migration(SchemaMigration):
+    if env=="local":
+        def forwards(self, orm):
+            # Adding field 'ManagerProfile.coordinator'
+            db.add_column(u'ciip_managerprofile', 'coordinator',
+                          self.gf('django.db.models.fields.CharField')(default='No', max_length=3, null=True),
+                          keep_default=False)
 
-    def forwards(self, orm):
-        # Adding field 'ManagerProfile.coordinator'
-        db.add_column(u'ciip_managerprofile', 'coordinator',
-                      self.gf('django.db.models.fields.CharField')(default='No', max_length=3, null=True),
-                      keep_default=False)
-
-        # Adding field 'Interview.delegated_to'
-        db.add_column(u'ciip_interview', 'delegated_to',
-                      self.gf('django.db.models.fields.related.ForeignKey')(default=None, related_name='delegates', null=True, to=orm['ciip.ManagerProfile']),
-                      keep_default=False)
+            # Adding field 'Interview.delegated_to'
+            db.add_column(u'ciip_interview', 'delegated_to',
+                          self.gf('django.db.models.fields.related.ForeignKey')(default=None, related_name='delegates', null=True, to=orm['ciip.ManagerProfile']),
+                          keep_default=False)
 
 
-    def backwards(self, orm):
-        # Deleting field 'ManagerProfile.coordinator'
-        db.delete_column(u'ciip_managerprofile', 'coordinator')
+        def backwards(self, orm):
+            # Deleting field 'ManagerProfile.coordinator'
+            db.delete_column(u'ciip_managerprofile', 'coordinator')
 
-        # Deleting field 'Interview.delegated_to'
-        db.delete_column(u'ciip_interview', 'delegated_to_id')
+            # Deleting field 'Interview.delegated_to'
+            db.delete_column(u'ciip_interview', 'delegated_to_id')
 
 
     models = {
