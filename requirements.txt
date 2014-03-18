@@ -31,4 +31,5 @@ python-dateutil==1.5
 simplejson==2.3.2
 
 static==1.0.2
+django-sslify==0.2.3
 
