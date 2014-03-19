@@ -67,6 +67,7 @@ PROJECTS=(
    ('SDN / Engineering','SDN / Engineering'),
    ('Openstack / Engineering','Openstack / Engineering'),
    ('IT','IT'),
+   ('CSTG','CSTG'),
    ('GIS / IT','GIS / IT'),
    ('Collaboration / IT','Collaboration / IT'),
    ('Security / Engineering','Security / Engineering'),
