@@ -291,7 +291,7 @@ def returnConfirmedOrNot(filter_result):
                 results.append(user)
     if filter_result == 'Offered':
         for user in UserProfile.objects.all():
-            match=re.search('Offered', str(user.offer_states))
+            match=re.search('offer', str(user.offer_states).lower())
             if match:
                 results.append(user)       
     return results
