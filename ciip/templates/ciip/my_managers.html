@@ -10,9 +10,10 @@
           
           <div class="row-fluid">
             <div class="span4">
-              <h4>Interviews Scheduled</h4>
+              <h3>Interviews Scheduled</h3>
               {% for interview in interviews_with_managers %}
               <form action='/ciip/my_managers/?id={{interview.id}}' method='post' >{% csrf_token %}
+                <h4>Manager: {{ interview.manager.first_name }} {{ interview.manager.last_name }}</h4>
                 <p>Date: {{ interview.date }}<br><b>Confirm interview date and time: </b>
                   <select name="interview_response">
                    <option value="" disabled="disabled" selected="selected">{{interview.interview_response}}</option>
@@ -20,7 +21,7 @@
                   <option value="declined">Decline</option>
                   <option value="ask to reschedule">Ask to reschedule</option>
                 </select>  <input type="submit"  class="btn btn-primary btn-small" value="Confirm" ></p>
-                <p>Manager: {{ interview.manager.first_name }}{{ interview.manager.last_name }}</p>
+                
                 <p> 
                 {% if interview.skype_name != 'Webex scheduled through email'%}           
         <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
