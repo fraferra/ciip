@@ -3,6 +3,10 @@ COORDINATOR = (
     ('yes', 'yes'),
     ('no','no'),
 )
+LISTED = (
+    ('yes', 'yes'),
+    ('no','no'),
+    )
 UNIVERSITY_ENDORSEMENT = (
     ('Strongly recommended','Strongly recommended'),
     ('Recommended','Recommended'),

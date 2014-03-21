@@ -994,7 +994,7 @@ def manager_home(request):
     results=[]
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/manager_login/')
-    else:
+    else: 
         number_results=0
         current_pk = request.user.pk
         current_user = request.user
@@ -1006,6 +1006,11 @@ def manager_home(request):
             top_3=matchingAlgorith(manager_profile)
             delete_interview=request.GET.get('delete','')
             feedback=request.POST.get('feedback','')
+            
+
+            
+
+
             if len(feedback)!=0:
                 sendFeedback(manager_profile, feedback)
             if len(delete_interview) !=0:
