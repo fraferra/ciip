@@ -283,7 +283,7 @@ def returnConfirmedOrNot(filter_result):
                 #results.append(user)
     if filter_result == 'not_offered_yet':
         for user in UserProfile.objects.all():
-            if user.offer_states is None:
+            if user.offer_states is None or user.offer_states =='.':
                 results.append(user)
     if filter_result == 'Interviewing':
         for user in UserProfile.objects.all():
