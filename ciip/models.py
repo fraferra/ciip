@@ -194,6 +194,8 @@ class UserProfile(Profile):
     offer_states=models.CharField(max_length=50, default=None,  null=True)
     manager_comment=models.TextField(max_length=1000, null=True, default=None)
 
+    listed=models.TextField(max_length=50, choices=constants.LISTED, default='yes', null=True)
+
 
     #image = models.ImageField(upload_to='images/%Y/%m/%d')
 

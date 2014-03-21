@@ -164,7 +164,7 @@ def matchingAlgorith(obj):
     top_3=[]
     tmp_students_score=[]
     max_score=0
-    for student in UserProfile.objects.all():
+    for student in UserProfile.objects.filter(listed='yes'):
         score=0
         ranking=student.technical_resume_screen_selection
         if ranking=='1-Highly recommended':
@@ -238,13 +238,15 @@ def sendEmailNotification(from_email, to_email, subject, message):
         return HttpResponse('Invalid header found.')
 
 
-def search_student(search, offer_status, ranking, university):
+def search_student(search, offer_status, ranking, university, listed):
     results=[]
     by_offer=returnConfirmedOrNot(offer_status)
+    by_listed=UserProfile.objects.filter(listed='yes')
     by_ranking=returnRanking(ranking)
     by_university=returnUniversity(university)
     tmp=list(set(by_offer) & set(by_ranking))
-    list_students=list(set(tmp) & set(by_university))
+    tmp2=list(set(tmp) & set(by_university))
+    list_students=list(set(tmp2) & set(by_listed))
     for user in list_students:
         fields = [user.skill_1, user.skill_2, user.skill_3,
                   user.degree, user.first_name, user.last_name,
