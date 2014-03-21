@@ -57,6 +57,10 @@ class CiipAdmin(admin.ModelAdmin):
     search_fields=['first_name','last_name']
     actions=['change_to_no']
     print_report.short_description = "Change to no"
+    def change_to_no(modeladmin, request, queryset):
+        for query in queryset:
+            query.listed = 'no'
+            query.save()
     def user_email(self, instance):
         return instance.user.email
     
