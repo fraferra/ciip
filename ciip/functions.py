@@ -238,7 +238,7 @@ def sendEmailNotification(from_email, to_email, subject, message):
         return HttpResponse('Invalid header found.')
 
 
-def search_student(search, offer_status, ranking, university, listed):
+def search_student(search, offer_status, ranking, university):
     results=[]
     by_offer=returnConfirmedOrNot(offer_status)
     by_listed=UserProfile.objects.filter(listed='yes')
