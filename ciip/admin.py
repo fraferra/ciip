@@ -56,14 +56,14 @@ class CiipAdmin(admin.ModelAdmin):
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
     search_fields=['first_name','last_name']
     actions=['change_to_no']
-    print_report.short_description = "Change to no"
+    
     def change_to_no(modeladmin, request, queryset):
         for query in queryset:
             query.listed = 'no'
             query.save()
     def user_email(self, instance):
         return instance.user.email
-    
+    change_to_no.short_description = "Change to no"
 
 admin.site.register(UserProfile, CiipAdmin)
 
