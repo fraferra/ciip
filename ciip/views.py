@@ -1295,7 +1295,7 @@ def student_full_profile(request):
             time =datetime.now()
             message=request.POST.get('message','')
             if len(message)!=0:
-                message=message+' posted by '+manager_profile.last_name+' at '+str(time)  
+                message=message+' posted by '+manager_profile.last_name+' at '+str(time)+'\n'  
                 student.manager_comment = message
                 student.save()
             return HttpResponseRedirect('/ciip/student_full_profile?id='+str(student.id))

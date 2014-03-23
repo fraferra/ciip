@@ -319,6 +319,9 @@ def return_best_time(university):
     local_tz=timezone('US/Pacific')
     #time = local_tz.localize(datetime.datetime.now())
     time = local_tz.localize(datetime.now())
+    if university =='IIT Gandhinagar' or university =='IIT Roorkee':
+        tz= timezone('Asia/Kolkata')
+        suggested_time_frame= university +" is currently 12 hours and 30 minutes ahead. The best time suggested to schedule an interview is between 7am and 10am, Pacific Time."
     if university == 'UCL' or university=='Kent':
         tz= timezone('Europe/London')
         suggested_time_frame= university +" is currently 8 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
@@ -331,6 +334,7 @@ def return_best_time(university):
     if university == 'BMSTU':
         tz= timezone("Europe/Moscow")
         suggested_time_frame= university +" is currently 12 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
+    
     #current_time=datetime.datetime.now(tz)
     #current_time=timezone.localtime(tz)
     fmt = '%Y-%m-%d %H:%M'
