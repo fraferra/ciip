@@ -985,9 +985,9 @@ def manager_login(request):
                 auth_login(request, user)
                 return HttpResponseRedirect('/ciip/manager_home/')
             else:
-                return HttpResponseRedirect('ciip/notactive/')
+                return HttpResponseRedirect('ciip/manager_login/')
         else:
-            return HttpResponseRedirect('/ciip/notregistered/')
+            return HttpResponseRedirect('/ciip/manager_login/')
     return render(request, 'ciip/manager_login.html', {'username':username, 'password':password})
 
 def manager_home(request):

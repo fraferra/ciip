@@ -75,14 +75,14 @@
           <div class="nav-collapse collapse">
                    <p class="navbar-text pull-right">
             {% if user_name == 'none' %}
-            <a href="/ciip/login/"><font color='#FFFFFF'>Login</font></a>/<a href="/ciip/eligibility/"><font color='#FFFFFF'>Sign up</font></a>
+            <a href="/ciip/manager_login/"><font color='#FFFFFF'>Login</font></a>/<a href="/ciip/manager_signup/"><font color='#FFFFFF'>Sign up</font></a>
 {% else %}
-    Logged in as {{user_name}} (<a href="/ciip/login/"><font color='#FFFFFF'>Logout</font></a>)
+    Logged in as {{user_name}} (<a href="/ciip/manager_login/"><font color='#FFFFFF'>Logout</font></a>)
 {% endif %}
             <!-- Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a> -->
             </p>
             <ul class="nav">
-              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/manager_home/">My Account</a></li>
               <li><a href="/ciip/send_email/">Contact Us</a></li>
               <li><a href="/ciip/faq/">FAQ</a></li>
               <li><a href="/ciip/info/#social">#CIIPLife</a></li>

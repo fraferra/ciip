@@ -74,10 +74,10 @@
           <form  method = "get">{% csrf_token %}
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+              Logged in as {{user_name}}<a href="/ciip/manager_home/" class="navbar-link">{{ User}}</a>
             </p>
             <ul class="nav">
-              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/manager_home/">My Account</a></li>
               <li><a href="/ciip/send_email/">Contact Us</a></li>
               <li><a href="/ciip/faq/">FAQ</a></li>
 
@@ -138,7 +138,7 @@
 </select></p>
 
 <hr class="featurette-divider">
-<b>Enter skills that the student are requried to have for the role: you are hiring for:</b> 
+<b>Enter skills that the student are requried to have for the role you are hiring for:</b> 
 <br> 
  <p>Skill required #1:
 <input type="text" class="input-block-level" style="width:200px" placeholder="skill..." name="skill_1" > 
