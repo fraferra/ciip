@@ -1195,7 +1195,7 @@ def my_students(request):
             student_id=request.GET['id']
             status=request.GET['status']
             student = UserProfile.objects.get(pk=student_id)
-            match=re.search('Offered', student.offer_states)
+            match=re.search('offer', str(student.offer_states).lower())
             if not match:
                 student.offer_states=status
                 student.save()
