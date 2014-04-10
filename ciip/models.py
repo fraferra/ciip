@@ -233,6 +233,9 @@ class Interview(models.Model):
     skype_name=models.CharField(max_length=100, null=True, default=None)
     interview_response = models.CharField(max_length=100,
                                             default=None, null=True)
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return unicode(self.manager) or u''
+
 
 class Message(models.Model):
     text=models.TextField(max_length=1000, null=True)
@@ -240,6 +243,9 @@ class Message(models.Model):
     manager=models.ForeignKey(ManagerProfile)
     sent_by=models.CharField(max_length=50, null=True)
     date_sent=models.DateTimeField( null=True)
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return unicode(self.student) or u''
+
 
 class Search(models.Model):
     manager=models.ForeignKey(ManagerProfile)
