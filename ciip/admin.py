@@ -105,14 +105,14 @@ admin.site.register(ManagerProfile,ManagerAdmin)
 
 class InterviewAdmin(admin.ModelAdmin):
     model=Interview
-    fieldsets=['date','student','manager','interview_response']
+    fieldsets=[('Info',{'fields':['date','student','manager','interview_response']}),]
     readonly_fields=['date','student','manager','interview_response']
 
 admin.site.register(Interview,InterviewAdmin)
 
 class MessageAdmin(admin.ModelAdmin):
     model=Message
-    fieldsets=['text','student','manager']
+    fieldsets=[('Info',{'fields':['text','student','manager']}),]
     readonly_fields=['text','student','manager']
 
 admin.site.register(Message,MessageAdmin)
