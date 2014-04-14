@@ -337,6 +337,9 @@ def return_best_time(university):
     if university == 'EPFL':
         tz= timezone("Europe/Rome")
         suggested_time_frame= university +" is currently 9 hours ahead. The best time suggested to schedule an interview is between 8am and 10am, Pacific Time."
+    if university == 'UNSW':
+        tz= timezone("Australia/Canberra")
+        suggested_time_frame= university +" is currently 17 hours ahead. The best time suggested to schedule an interview is between 3pm and 6pm, Pacific Time."
       
     #current_time=datetime.datetime.now(tz)
     #current_time=timezone.localtime(tz)
