@@ -3,7 +3,7 @@ from django.contrib import admin
 from ciip.models import *
 from django.contrib.auth.models import User
 #from django.contrib.auth.admin import UserAdmin
-
+import requests
 #from django.contrib.auth.models import User
 
 
@@ -55,8 +55,20 @@ class CiipAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
     search_fields=['first_name','last_name']
-    actions=['change_to_no']
-    
+    actions=['change_to_no','downloadCV']
+    def downloadCV(modeladmin, request, queryset):
+        for query in queryset:
+            url=query.file_cv
+            local_filename = url.split('/')[-1]
+    # NOTE the stream=True parameter
+            r = requests.get(url, stream=True)
+            path="/Users/fraferra/Desktop/new_CVS/"
+            with open(path+local_filename, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=1024): 
+                    if chunk: # filter out keep-alive new chunks
+                        f.write(chunk)
+                        f.flush()
+
     def change_to_no(modeladmin, request, queryset):
         for query in queryset:
             query.listed = 'no'
@@ -64,7 +76,7 @@ class CiipAdmin(admin.ModelAdmin):
     def user_email(self, instance):
         return instance.user.email
     change_to_no.short_description = "Change to no"
-
+    downloadCV.short_description = "Download CV"
 admin.site.register(UserProfile, CiipAdmin)
 
 
