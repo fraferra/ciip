@@ -58,7 +58,7 @@ class CiipAdmin(admin.ModelAdmin):
     actions=['change_to_no','downloadCV']
     def downloadCV(modeladmin, request, queryset):
         for query in queryset:
-            url=query.file_cv
+            url=str(query.file_cv)
             local_filename = url.split('/')[-1]
     # NOTE the stream=True parameter
             r = requests.get(url, stream=True)
