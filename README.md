@@ -71,9 +71,27 @@ Usually any time I make a change I apply this kind of workflow:
 
   1.Change a field in my models
   
-  2.Run this command:
+  2.Create Migration file:
   ```
   $ python manage.py schemamigration ciip --auto
+  ```
+  
+  3.Apply migration on the local postgresql database:
+  ```
+  $ python manage.py migrate ciip
+  ```
+  
+  4.Push the changes to GitHub and Heroku
+  ```
+  $ git push origin master
+  ```
+  ```
+  $ git push heroku master
+  ```
+  
+  5.Apply migration on the postgresql database hosted on heroku
+  ```
+  $ heroku run python manage.py migrate ciip
   ```
   
 
