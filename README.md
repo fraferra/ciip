@@ -40,3 +40,25 @@ d. Install the psycopg2 driver for PostgreSQL
 ```
 $ sudo easy_install psycopg2
 ```
+2.Familiarazing with Django 1.5.4
+--------
+OVERVIEW
+
+We used a Model–view–controller (MVC) architecture. The structure of every object ( student, manager, university admin etc. ) is defined in /ciip/models.py . /ciip/views.py controls the views and the requests of the users and in /ciip/templates/ciip/ you will find all the templates used. Please familiarize with the template tags used in Django (http://jinja.pocoo.org/docs/templates/ ) in order to understand how we display the info in the templates.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
