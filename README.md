@@ -46,6 +46,13 @@ OVERVIEW
 
 We used a Model–view–controller (MVC) architecture. The structure of every object ( student, manager, university admin etc. ) is defined in /ciip/models.py . /ciip/views.py controls the views and the requests of the users and in /ciip/templates/ciip/ you will find all the templates used. Please familiarize with the template tags used in Django (http://jinja.pocoo.org/docs/templates/ ) in order to understand how we display the info in the templates.
 
+In the folder mysite you will find settings.py ; ciip is the actual Django app.
+
+The Models
+
+  In models.py you will find all the objects used in ciip4me. Eache field describes a property of the object.
+  ATTENTION: If you change a field in models make sure to use South aftward to migrate from your old database schema to your new database structure. Look at the section South in this documentation to see how to do it.
+
 
 
 
