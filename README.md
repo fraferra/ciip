@@ -51,9 +51,31 @@ In the folder mysite you will find settings.py ; ciip is the actual Django app.
 The Models
 
   In models.py you will find all the objects used in ciip4me. Eache field describes a property of the object.
+  
   ATTENTION: If you change a field in models make sure to use South aftward to migrate from your old database schema to your new database structure. Look at the section South in this documentation to see how to do it.
 
 
+
+SOUTH
+-----
+
+OVERVIEW
+
+South is used to migrate your database anytime you make a change to your models. South is now integrated with Django 1.7 but since we are using Django 1.5.4 you will have some basic commands that you need to do to migrate succssefully the database.
+
+Firstly have a look at this South introduction, http://south.readthedocs.org/en/latest/tutorial/part1.html . 
+
+The Process:
+
+Usually any time I make a change I apply this kind of workflow:
+
+  1.Change a field in my models
+  
+  2.Run this command:
+  ```
+  $ python manage.py schemamigration ciip --auto
+  ```
+  
 
 
 
