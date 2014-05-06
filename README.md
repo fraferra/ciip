@@ -10,7 +10,7 @@ Introduction:
 SECTION 1:
 ----------
 
-WARNING:
+**WARNING:**
 When Liz and I firstly started to work on this we had no previous programming experience. If you have a CS background you might find many redundancies and structural errors, please feel free to change them!
 
 THE PHILOSOPHY:
