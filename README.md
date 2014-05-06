@@ -159,9 +159,7 @@ Below there is a short 'map' of the templates and what contents they contain.
 
 * /ciip/templates/ciip/faq.html -- This is the FAQ page ( https://www.ciip4me.com/ciip/faq ). I guess you know what it contains...
 
-
-
-
+* /ciip/templates/ciip/contact_us.html --  https://www.ciip4me.com/ciip/contact_us . Contact page
 
 
 
