@@ -48,6 +48,11 @@ We used a Model–view–controller (MVC) architecture. The structure of every o
 
 In the folder mysite you will find settings.py ; ciip is the actual Django app.
 
+/ciip/
+------
+
+This is actual app, where all the models, the views and the controller are.
+
 **The Models**
 
   In models.py you will find all the objects used in ciip4me. Eache field describes a property of the object.
@@ -78,6 +83,15 @@ In the folder mysite you will find settings.py ; ciip is the actual Django app.
   2- It handles user's errors, in fact a form will not validate if, for instance, a user enter a string in a field in which there should be an integer.
   
   In forms.py each class defines a form. You will need to define which object thet form is linked to and the fields that you want to display. You can also style the fields if you define the form fields directly in the form. Have a look at this link for further info about forms: https://docs.djangoproject.com/en/1.5/topics/forms/ 
+
+  **Admin.py**
+  
+  
+/mysite/
+--------
+
+This is where the settings are, you rarely touch the files in /mysite/.
+
 
 SOUTH
 -----
