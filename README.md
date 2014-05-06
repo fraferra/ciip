@@ -54,7 +54,30 @@ The Models
   
   ATTENTION: If you change a field in models make sure to use South aftward to migrate from your old database schema to your new database structure. Look at the section South in this documentation to see how to do it.
 
+The Controller
 
+  In views.py you will find all the logic that handles the different requests. At the moment all the views for the University admin, Manger and Student are in the same file, this should change in the future, in fact it would be best practice to have three different apps for each stakeholder.
+  In every method we handle a different requests. Some of the backend logic is then process in functions.py
+  
+The Views
+
+  In /templates/ciip/ you will find all the templates that define the views, familiarize on the way we pass variables from the controller to the view ( we pass a variable, eg. x,  when we render the page and then we use {{ x }} within a template.
+  
+Other files
+  
+  Urls.py
+ 
+  urls.py, as you can guess from the name it's where we link the actual URL of a page to method in our views.py
+  
+  Forms.py
+  
+  A form in django is used to enter info about an object define in the models. It is used for two main reasons:
+  
+  1- it's quicker, in fact you don't have to write HTML, you just need to pass the form to the templates
+  
+  2- It handles user's errors, in fact a form will not validate if, for instance, a user enter a string in a field in which there should be an integer.
+  
+  In forms.py each class defines a form. You will need to define which object thet form is linked to and the fields that you want to display. You can also style the fields if you define the form fields directly in the form. Have a look at this link for further info about forms: https://docs.djangoproject.com/en/1.5/topics/forms/ 
 
 SOUTH
 -----
