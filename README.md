@@ -1,13 +1,13 @@
 CIIP4ME Documentation
 ----------------------
 
-Introduction:
+**Introduction**
 
   Welcome! If you are reading this it means that you will have the great privilege of maintaining and improving the ciip4me website. This documentation is divided in three section, depending on three different stakeholders: 1- Coders 2-Managing content 3-Admin work
   
 ===================================================================
 
-SECTION 1:
+SECTION 1 (CODERS):
 ----------
 
 **WARNING:**
@@ -17,6 +17,7 @@ When Liz and I firstly started to work on this we had no previous programming ex
 During last year developing something quickly was the most important thing to achive, for this reason we built the app using as a framework Django and hosting the website on Heroku for a quick hosting. If you have never used Django please follow the tutorial at https://docs.djangoproject.com/en/1.5/intro/tutorial01/ . The Django version used here is 1.5.4
 
 The OS we suggest is Ubuntu 12.04 and all the following instructions that you will see assume that you are using Ubuntu 12.04. We choose Ubunut because since we are working with open source software it's often much easier to install it on Ubunut rather than using Windows or Mac.
+
 
 1.The Set-Up:
 -------------
@@ -135,12 +136,19 @@ Usually any time I make a change I apply this kind of workflow:
   ```
   $ heroku run python manage.py migrate ciip
   ```
+
+========================================================================================
   
+SECTION 2 (UPDATING THE CONTENT):
+----------------
 
+**Overview**
 
+This webapp does not have a CMS (Content Management System), hence all the changes must be done directly in the templates.
 
+If you have a basic knowledge of HTML then you should be able to change the contents with no problem.
 
-
+Below there is a short 'map' of the templates and what contents they contain.
 
 
 
