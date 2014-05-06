@@ -162,6 +162,44 @@ Below there is a short 'map' of the templates and what contents they contain.
 * /ciip/templates/ciip/contact_us.html --  https://www.ciip4me.com/ciip/contact_us . Contact page
 
 
+**B.Students' app**
+
+* /ciip/templates/ciip/login.html --  https://www.ciip4me.com/ciip/login . Login for Students
+
+
+* /ciip/templates/ciip/home.html --  https://www.ciip4me.com/ciip/home . Homepage for students
+
+
+* /ciip/templates/ciip/academic_info.html --  https://www.ciip4me.com/ciip/academic_info . Overview of academic info
+ 
+
+* /ciip/templates/ciip/edit_academic_info.html --  https://www.ciip4me.com/ciip/edit_academic_info . Edit academic info
+
+
+* /ciip/templates/ciip/profile_contact_info.html --  https://www.ciip4me.com/ciip/profile_contact_info . Overview of contact informations and general info about the student
+
+
+* /ciip/templates/ciip/edit_contact_info.html --  https://www.ciip4me.com/ciip/edit_contact_info . Edit basic ocntact info
+
+
+* /ciip/templates/ciip/upload_file.html --  https://www.ciip4me.com/ciip/upload_file . Upload CV
+
+
+* /ciip/templates/ciip/cover_letter.html --  https://www.ciip4me.com/ciip/cover_letter . Upload Cover Letter
+
+
+* /ciip/templates/ciip/work_internship.html --  https://www.ciip4me.com/ciip/work_internship . Overview of internships and work experience
+ 
+
+* /ciip/templates/ciip/edit_work_internship.html --  https://www.ciip4me.com/ciip/edit_work_internship . Edit internships and work experience info
+
+
+
+
+
+
+
+
 
 
 
