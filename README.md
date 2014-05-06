@@ -85,7 +85,12 @@ This is actual app, where all the models, the views and the controller are.
   In forms.py each class defines a form. You will need to define which object thet form is linked to and the fields that you want to display. You can also style the fields if you define the form fields directly in the form. Have a look at this link for further info about forms: https://docs.djangoproject.com/en/1.5/topics/forms/ 
 
   **Admin.py**
+
+  admin.py is used to configure the Django Admin interface. You need to edit admin.py if you want to change the informations displayed about the objects in the Django Admin.
   
+  **Functions.py**
+  
+  In this file you will find some recurrent functions used in the backend
   
 /mysite/
 --------
