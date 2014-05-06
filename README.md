@@ -151,6 +151,12 @@ If you have a basic knowledge of HTML then you should be able to change the cont
 Below there is a short 'map' of the templates and what contents they contain.
 
 
+**THE CONTENT MAP**
+
+**A.Landing page and open to the public**
+
+* /ciip/templates/ciip/info.html  -- This is the landing page ( https://www.ciip4me.com/ciip/info). Basic info about the program are given and also some other general info.
+
 
 
 
