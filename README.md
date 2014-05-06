@@ -157,6 +157,9 @@ Below there is a short 'map' of the templates and what contents they contain.
 
 * /ciip/templates/ciip/info.html  -- This is the landing page ( https://www.ciip4me.com/ciip/info). Basic info about the program are given and also some other general info.
 
+* /ciip/templates/ciip/faq.html -- This is the FAQ page ( https://www.ciip4me.com/ciip/faq ). I guess you know what it contains...
+
+
 
 
 
