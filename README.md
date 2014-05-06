@@ -13,7 +13,7 @@ SECTION 1:
 **WARNING:**
 When Liz and I firstly started to work on this we had no previous programming experience. If you have a CS background you might find many redundancies and structural errors, please feel free to change them!
 
-THE PHILOSOPHY:
+**THE PHILOSOPHY:**
 During last year developing something quickly was the most important thing to achive, for this reason we built the app using as a framework Django and hosting the website on Heroku for a quick hosting. If you have never used Django please follow the tutorial at https://docs.djangoproject.com/en/1.5/intro/tutorial01/ . The Django version used here is 1.5.4
 
 The OS we suggest is Ubuntu 12.04 and all the following instructions that you will see assume that you are using Ubuntu 12.04. We choose Ubunut because since we are working with open source software it's often much easier to install it on Ubunut rather than using Windows or Mac.
@@ -42,34 +42,34 @@ $ sudo easy_install psycopg2
 ```
 2.Familiarazing with Django 1.5.4
 --------
-OVERVIEW
+**OVERVIEW**
 
 We used a Model–view–controller (MVC) architecture. The structure of every object ( student, manager, university admin etc. ) is defined in /ciip/models.py . /ciip/views.py controls the views and the requests of the users and in /ciip/templates/ciip/ you will find all the templates used. Please familiarize with the template tags used in Django (http://jinja.pocoo.org/docs/templates/ ) in order to understand how we display the info in the templates.
 
 In the folder mysite you will find settings.py ; ciip is the actual Django app.
 
-The Models
+**The Models**
 
   In models.py you will find all the objects used in ciip4me. Eache field describes a property of the object.
   
-  ATTENTION: If you change a field in models make sure to use South aftward to migrate from your old database schema to your new database structure. Look at the section South in this documentation to see how to do it.
+  **ATTENTION:** If you change a field in models make sure to use South aftward to migrate from your old database schema to your new database structure. Look at the section South in this documentation to see how to do it.
 
-The Controller
+**The Controller**
 
   In views.py you will find all the logic that handles the different requests. At the moment all the views for the University admin, Manger and Student are in the same file, this should change in the future, in fact it would be best practice to have three different apps for each stakeholder.
   In every method we handle a different requests. Some of the backend logic is then process in functions.py
   
-The Views
+**The Views**
 
   In /templates/ciip/ you will find all the templates that define the views, familiarize on the way we pass variables from the controller to the view ( we pass a variable, eg. x,  when we render the page and then we use {{ x }} within a template.
   
-Other files
+**Other files**
   
-  Urls.py
+  **Urls.py**
  
   urls.py, as you can guess from the name it's where we link the actual URL of a page to method in our views.py
   
-  Forms.py
+  **Forms.py**
   
   A form in django is used to enter info about an object define in the models. It is used for two main reasons:
   
@@ -82,7 +82,7 @@ Other files
 SOUTH
 -----
 
-OVERVIEW
+**OVERVIEW**
 
 South is used to migrate your database anytime you make a change to your models. South is now integrated with Django 1.7 but since we are using Django 1.5.4 you will have some basic commands that you need to do to migrate succssefully the database.
 
