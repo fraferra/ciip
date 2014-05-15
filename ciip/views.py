@@ -1264,6 +1264,12 @@ def manager_edit_info(request):
             manager_profile.interest_3=request.POST.get('interest_3','')
             manager_profile.coordinator=request.POST.get('coordinator','')
             manager_profile.work_description=request.POST.get('work_description','')
+            
+            manager_profile.job_title=request.POST.get('job_title','')
+            manager_profile.degree=request.POST.get('degree','')
+            manager_profile.field=request.POST.get('field','')
+            manager_profile.group=request.POST.get('group','')
+            manager_profile.year_experience=request.POST.get('year_experience','')
             manager_profile.save()
 
             
