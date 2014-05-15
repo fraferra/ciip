@@ -49,6 +49,12 @@ class ManagerProfile(Profile):
     interest_2=models.CharField(max_length=60, null=True)
     interest_3=models.CharField(max_length=60, null=True)
     work_description=models.TextField(max_length=1000, null=True)
+
+    job_title=models.CharField(max_length=50, null=True, default=None)
+    degree=models.CharField(max_length=50, null=True, default=None)
+    field=models.CharField(max_length=50, null=True, default=None)
+    group=models.CharField(max_length=50, null=True, default=None)
+    year_experience=models.CharField(max_length=20, null=True, default=None)
     def __unicode__(self):  # Python 3: def __str__(self):
         return unicode(self.last_name) or u''
 

@@ -55,19 +55,7 @@ class CiipAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
     search_fields=['first_name','last_name']
-    actions=['change_to_no','downloadCV']
-    def downloadCV(modeladmin, request, queryset):
-        for query in queryset:
-            url="https://s3-us-west-2.amazonaws.com/ciip.media/media/"+str(query.file_cv)
-            local_filename = url.split('/')[-1]
-    # NOTE the stream=True parameter
-            r = requests.get(url, stream=True)
-            path="/Users/fraferra/Desktop/new_CVS/"
-            with open(path+local_filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=1024): 
-                    if chunk: # filter out keep-alive new chunks
-                        f.write(chunk)
-                        f.flush()
+    actions=['change_to_no',]
 
     def change_to_no(modeladmin, request, queryset):
         for query in queryset:
@@ -76,7 +64,7 @@ class CiipAdmin(admin.ModelAdmin):
     def user_email(self, instance):
         return instance.user.email
     change_to_no.short_description = "Change to no"
-    downloadCV.short_description = "Download CV"
+
 admin.site.register(UserProfile, CiipAdmin)
 
 
@@ -105,10 +93,11 @@ admin.site.register(Profile, ProfileAdmin)
         
 class ManagerAdmin(admin.ModelAdmin):
     model=ManagerProfile
-    fieldsets=[('General Info', {'fields':['user','business_unit','first_name','last_name','coordinator']}),
+    fieldsets=[('DS7002 Info', {'fields':['job_title','group','degree','field','year_experience']}),
+    ('General Info', {'fields':['user','business_unit','first_name','last_name','coordinator', ]}),
     ('Interests and Skills', {'fields':['skill_1','skill_2','skill_3','interest_1','interest_2','interest_3','work_description']})]
     list_display = ( 'last_name','business_unit','user_email')
-    readonly_fields=['work_description']
+    readonly_fields=['work_description', 'skill_1','skill_2','skill_3','interest_1','interest_2','interest_3']
     def user_email(self, instance):
         return instance.user.email
 
