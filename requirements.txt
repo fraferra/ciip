@@ -1,3 +1,4 @@
+requests==2.2.1
 Django==1.5.4
 Jinja2==2.6
 Mako==0.5.0
