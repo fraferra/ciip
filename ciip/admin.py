@@ -120,7 +120,7 @@ class ManagerAdmin(admin.ModelAdmin):
         worksheet.set_column('A:F', 20)
         row=2
         for query in queryset:
-            worksheet.write('A'+str(row),query.first_name + query.last_name)
+            worksheet.write('A'+str(row),query.first_name +' '+ query.last_name)
             worksheet.write('B'+str(row), query.user.email)
             worksheet.write('C'+str(row), query.business_unit)
             worksheet.write('D'+str(row), query.vap)
