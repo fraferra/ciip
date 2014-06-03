@@ -55,7 +55,7 @@ class CiipAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
     search_fields=['first_name','last_name']
-    actions=['change_to_no',]
+    actions=['change_to_no','print_report']
 
     def change_to_no(modeladmin, request, queryset):
         for query in queryset:
@@ -64,6 +64,40 @@ class CiipAdmin(admin.ModelAdmin):
     def user_email(self, instance):
         return instance.user.email
     change_to_no.short_description = "Change to no"
+
+    def user_email(self, instance):
+        return instance.user.email
+
+    def print_report(modeladmin, request, queryset):
+        try:
+            import cStringIO as StringIO
+        except ImportError:
+            import StringIO
+        output = StringIO.StringIO()
+        title='report_students'  
+        workbook=xlsxwriter.Workbook(output)
+        worksheet = workbook.add_worksheet()
+        bold = workbook.add_format({'bold': True})
+        worksheet.write('A1', 'Full Name', bold)
+        worksheet.write('B1', 'Email', bold)
+        worksheet.write('C1', 'University', bold)
+        worksheet.write('D1', 'Country', bold)
+        worksheet.set_column('A:D', 20)
+        row=2
+        ordered_list=queryset.order_by('university')
+        for query in ordered_list:
+            worksheet.write('A'+str(row),query.first_name +' '+ query.last_name)
+            worksheet.write('B'+str(row), query.user.email)
+            worksheet.write('C'+str(row), query.university)
+            worksheet.write('D'+str(row), query.country)
+            row=row+1
+        workbook.close()
+        output.seek(0)
+        response = HttpResponse(output.read(), mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response['Content-Disposition'] = "attachment; filename="+title
+        return response
+
+    print_report.short_description = "Print report"
 
 admin.site.register(UserProfile, CiipAdmin)
 
@@ -112,7 +146,7 @@ class ManagerAdmin(admin.ModelAdmin):
         workbook=xlsxwriter.Workbook(output)
         worksheet = workbook.add_worksheet()
         bold = workbook.add_format({'bold': True})
-        worksheet.write('A1', 'First Name', bold)
+        worksheet.write('A1', 'Full Name', bold)
         worksheet.write('B1', 'Email', bold)
         worksheet.write('C1', 'Business Unit', bold)
         worksheet.write('D1', 'VAP', bold)

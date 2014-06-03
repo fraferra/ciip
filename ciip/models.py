@@ -214,7 +214,7 @@ class UserProfile(Profile):
 
     listed=models.TextField(max_length=50, choices=constants.LISTED, default='yes', null=True)
 
-
+    manager=models.ForeignKey(ManagerProfile, default=None, null=True)
     #image = models.ImageField(upload_to='images/%Y/%m/%d')
 
 

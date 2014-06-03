@@ -23,6 +23,7 @@ MASTER_UNDER = (
     ('---','---'),
     ('Undergraduate','Undergraduate'),
     ('Master','Master'),
+    ('PhD', 'PhD')
 )
 UNIVERSITY_ROLE = (
        ('Tutor', 'Tutor'),
