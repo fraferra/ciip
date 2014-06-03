@@ -1,4 +1,4 @@
-from ciip.models import UserProfile, UniversityAdmin
+from ciip.models import UserProfile, UniversityAdmin, ManagerProfile
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
@@ -115,6 +115,12 @@ class UploadFileForm(ModelForm):
         model = UserProfile
         fields =('file_name', 'file_cv')
 
+
+class ds7002Form(ModelForm):
+    class Meta:
+        model = ManagerProfile
+        fields =( 'ds_7002' ,)
+
 '''
 class ImageForm(ModelForm):
     class Meta:
@@ -147,7 +153,7 @@ class InterestForm(ModelForm):
     class Meta:
         model=UserProfile
         fields=('interest_1','interest_2','interest_3')
-
+'''
 class SignUpForm(UserCreationForm):
     """ Require email address when a user signs up """
     email = forms.EmailField(label='Email address', max_length=75)
@@ -175,7 +181,7 @@ class SignUpForm(UserCreationForm):
             
         return user
 
-
+'''
 class EndorsementForm(ModelForm):
     class Meta:
         model = UserProfile

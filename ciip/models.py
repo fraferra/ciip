@@ -18,9 +18,11 @@ def create_user_profile(sender, instance, created, **kwargs):
             if user_type == "University Admin": 
             #UniversityAdmin(user = instance).save()
                 UniversityAdmin.objects.create(user=instance)   
+            if user_type == 'student':
+                UserProfile.objects.create(user=instance)
             else:
             #UserProfile(user = instance).save()
-                UserProfile.objects.create(user=instance) 
+                ManagerProfile.objects.create(user=instance) 
         except AttributeError:
             pass 
 
@@ -55,6 +57,13 @@ class ManagerProfile(Profile):
     field=models.CharField(max_length=50, null=True, default=None)
     group=models.CharField(max_length=50, null=True, default=None)
     year_experience=models.CharField(max_length=20, null=True, default=None)
+    number_employees_dept=models.CharField(max_length=20, null=True, default=None)
+
+    vap=models.CharField(max_length=60, null=True, default=None)
+    number_interns=models.CharField(max_length=20, null=True, default=None)
+
+    ds_7002=models.FileField(upload_to='manager', default=None, null=True)
+
     def __unicode__(self):  # Python 3: def __str__(self):
         return unicode(self.last_name) or u''
 

@@ -1265,16 +1265,31 @@ def manager_edit_info(request):
             manager_profile.coordinator=request.POST.get('coordinator','')
             manager_profile.work_description=request.POST.get('work_description','')
             
-            manager_profile.job_title=request.POST.get('job_title','')
-            manager_profile.degree=request.POST.get('degree','')
-            manager_profile.field=request.POST.get('field','')
-            manager_profile.group=request.POST.get('group','')
-            manager_profile.year_experience=request.POST.get('year_experience','')
-            manager_profile.save()
+            #manager_profile.job_title=request.POST.get('job_title','')
+           # manager_profile.degree=request.POST.get('degree','')
+           # manager_profile.field=request.POST.get('field','')
+           # manager_profile.group=request.POST.get('group','')
+           # manager_profile.year_experience=request.POST.get('year_experience','')
 
+            manager_profile.vap=request.POST.get('vap')
+            manager_profile.number_interns=request.POST.get('number_interns')
+            form = ds7002Form(request.POST, request.FILES)
+            manager_profile.save()
             
-            return HttpResponseRedirect('/ciip/manager_info/')
-    return render(request, 'ciip/manager_edit_info.html', {'user_name':user_name, 'manager_profile':manager_profile, 'previous_interviews_manager':previous_interviews_manager})
+            if form.is_valid():
+            # file is saved
+               new_user=form.save()
+            return HttpResponseRedirect('/ciip/manager_info/') 
+        else:
+            form = ds7002Form()      
+            
+    return render(request, 'ciip/manager_edit_info.html', {'user_name':user_name,
+                                                          'manager_profile':manager_profile, 
+                                                          'previous_interviews_manager':previous_interviews_manager,
+                                                          'form':form})
+
+
+
 def student_full_profile(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/manager_login/')

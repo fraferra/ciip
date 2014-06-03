@@ -1,6 +1,6 @@
 {% extends "ciip/layout_manager.html" %}
 {% block content %}
-              <form  method = "post">{% csrf_token %}
+              <form enctype="multipart/form-data" method = "post">{% csrf_token %}
               <h2>Edit Manager Info:</h2>
               <br>
             
@@ -19,7 +19,9 @@
 					<input type="text" class="input-block-level" placeholder="Last name" name="last_name" value ="{{manager_profile.last_name}}">
 					<hr class="featurette-divider">
 					<h3><b>DS 7002 Info</b></h3>
-					<p>Job Title:</p>
+					<p>Form</p>
+					<p>{{form}}</p> 
+					<!--<p>Job Title:</p>
 					<input type="text" class="input-block-level" placeholder="Job title" name="job_title" value ="{{manager_profile.job_title}}">
 					<p>Degree (Academic degree)</p>
 					<input type="text" class="input-block-level" placeholder="Academic Degree" name="degree" value ="{{manager_profile.degree}}">
@@ -29,9 +31,12 @@
 					<input type="text" class="input-block-level" placeholder="Business Unit" name="group" value ="{{manager_profile.group}}">
 					<p>Years of experience in the Industry</p>
 					<input type="text" class="input-block-level" placeholder="Years of experience" name="year_experience" value ="{{manager_profile.year_experience}}">
-														
-														
-
+					<hr class="featurette-divider">-->
+					<h3><b>VAP and number of interns</b></h3>								
+					<p>VAP</p>
+					<input type="text" class="input-block-level" placeholder="VAP" name="vap" value ="{{manager_profile.vap}}">									
+                    <p>Number of Interns</p>
+					<input type="text" class="input-block-level" placeholder="exp: 5" name="number_interns" value ="{{manager_profile.number_interns}}">
 
 					<br>
 					<hr class="featurette-divider">
