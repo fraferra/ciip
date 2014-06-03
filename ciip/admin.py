@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 #from django.contrib.auth.admin import UserAdmin
 import requests
 #from django.contrib.auth.models import User
-
-
+import xlsxwriter
+from django.http import HttpResponse
 
 class CiipAdmin(admin.ModelAdmin):
   
@@ -98,11 +98,43 @@ class ManagerAdmin(admin.ModelAdmin):
     ('Interests and Skills', {'fields':['skill_1','skill_2','skill_3','interest_1','interest_2','interest_3','work_description']})]
     list_display = ( 'last_name','business_unit','user_email')
     readonly_fields=['work_description', 'skill_1','skill_2','skill_3','interest_1','interest_2','interest_3']
+    actions=['print_report',]
     def user_email(self, instance):
         return instance.user.email
 
-admin.site.register(ManagerProfile,ManagerAdmin)
+    def print_report(modeladmin, request, queryset):
+        try:
+            import cStringIO as StringIO
+        except ImportError:
+            import StringIO
+        output = StringIO.StringIO()
+        title='report_managers'  
+        workbook=xlsxwriter.Workbook(output)
+        worksheet = workbook.add_worksheet()
+        bold = workbook.add_format({'bold': True})
+        worksheet.write('A1', 'First Name', bold)
+        worksheet.write('B1', 'Email', bold)
+        worksheet.write('C1', 'Business Unit', bold)
+        worksheet.write('D1', 'VAP', bold)
+        worksheet.write('F1', '# Interns', bold)
+        worksheet.set_column('A:F', 20)
+        row=2
+        for query in queryset:
+            worksheet.write('A'+str(row),query.first_name + query.last_name)
+            worksheet.write('B'+str(row), query.user.email)
+            worksheet.write('C'+str(row), query.business_unit)
+            worksheet.write('D'+str(row), query.vap)
+            worksheet.write('F'+str(row), query.number_interns)
+            row=row+1
+        workbook.close()
+        output.seek(0)
+        response = HttpResponse(output.read(), mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response['Content-Disposition'] = "attachment; filename="+title
+        return response
 
+    print_report.short_description = "Print report"
+
+admin.site.register(ManagerProfile,ManagerAdmin)
 
 class InterviewAdmin(admin.ModelAdmin):
     model=Interview
@@ -117,3 +149,8 @@ class MessageAdmin(admin.ModelAdmin):
     readonly_fields=['text','student','manager']
 
 admin.site.register(Message,MessageAdmin)
+
+
+
+
+
