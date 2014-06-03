@@ -1231,7 +1231,7 @@ def manager_edit_info(request):
 
             manager_profile.vap=request.POST.get('vap')
             manager_profile.number_interns=request.POST.get('number_interns')
-            form = ds7002Form(request.POST, request.FILES)
+            form = ds7002Form(request.POST, request.FILES, instance=manager_profile)
             manager_profile.save()
             
             if form.is_valid():
@@ -1239,7 +1239,7 @@ def manager_edit_info(request):
                new_user=form.save()
             return HttpResponseRedirect('/ciip/manager_info/') 
         else:
-            form = ds7002Form()      
+            form = ds7002Form(instance=manager_profile)      
             
     return render(request, 'ciip/manager_edit_info.html', {'user_name':user_name,
                                                           'manager_profile':manager_profile, 
