@@ -86,7 +86,7 @@ class CiipAdmin(admin.ModelAdmin):
         row=2
         ordered_list=queryset.order_by('university')
         for query in ordered_list:
-            worksheet.write('A'+str(row),query.first_name +' '+ query.last_name)
+            worksheet.write('A'+str(row),str(query.first_name) +' '+ str(query.last_name))
             worksheet.write('B'+str(row), query.user.email)
             worksheet.write('C'+str(row), query.university)
             worksheet.write('D'+str(row), query.country)
