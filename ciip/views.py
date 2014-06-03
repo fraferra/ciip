@@ -138,43 +138,8 @@ def profile_contact_info(request):
         if request.method == 'GET':
             
             profile = UserProfile.objects.get(user = request.user)
-            first_name= profile.first_name
-            last_name = profile.last_name
-            email= profile.email
-            gender=profile.gender
-            passport=profile.passport
-            #birth_date_day=profile.birth_date_day
-            #birth_date_month=profile.birth_date_month
-            #birth_date_year=profile.birth_date_year
-            address_line1=profile.address_line1
-            address_line2=profile.address_line2
-            phone=profile.phone
-            city=profile.city
-            zip_code=profile.zip_code
-            country=profile.country
-            #passport_number=profile.passport_number
-            #full_name_emergency=profile.full_name_emergency
-            #birth_date=profile.birth_date
-            #date_issued=profile.date_issued
-            #country_issued=profile.country_issued
-            #date_expiration=profile.date_expiration
-            #email_emergency=profile.email_emergency
-            #phone_emergency=profile.phone_emergency
-            #relationship=profile.relationship
-
-
-            contact_info={'user_name':user_name,'passport':passport ,'first_name':first_name,'last_name':last_name,
-            'email':email,#'birth_date':birth_date,'birth_date_day':birth_date_day,'birth_date_year':birth_date_year,'birth_date_month':birth_date_month,
-            'gender':gender, 'address_line1':address_line1,
-            'address_line2':address_line2, 'phone':phone,
-            'city':city, 'zip_code':zip_code,
-            'country':country,# 'passport_number':passport_number,
-            #'full_name_emergency':full_name_emergency, #'date_expiration':date_expiration,
-            #'date_issued':date_issued, 'country_issued':country_issued,
-            #'email_emergency':email_emergency, 'phone_emergency':phone_emergency,
-            #'relationship':relationship,
-            }
-    return render(request, 'ciip/profile_contact_info.html', contact_info)
+ 
+    return render(request, 'ciip/profile_contact_info.html', {'profile':profile})
 
 
 
@@ -189,13 +154,6 @@ def home(request):
             status = UserProfile.objects.get(user = request.user).status
         except ObjectDoesNotExist:
             return HttpResponseRedirect('/ciip/uniadmin_login/') 
-        #if request.method =='GET':
-            #profile = UserProfileForm(instance=request.user.get_profile())
-            #user_name=str(profile['first_name'])
-            #status_profile = StatusUpdateForm(instance=request.user.get_profile())
-            #status=status_profile['status']
-            
-            
             
     return render(request, 'ciip/home.html', {'user_name': user_name,'status':status,})
 

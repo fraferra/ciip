@@ -91,16 +91,21 @@ class CoverForm(ModelForm):
 
 
 class UserProfileForm(ModelForm):
+    date_expiration = forms.DateTimeField(label='Date of expiration (format: YYYY-MM-DD):',  widget=forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}))
     class Meta:
         model = UserProfile
         fields = ('gender','first_name',
             'last_name',#'birth_date_day','birth_date_month',
+            'full_name',
             #'birth_date',
             'passport',
              'email',
             'phone','address_line1',
             'address_line2','city',
             'zip_code','country',
+            'passport_number',
+            'date_expiration',
+            'country_issued',
          
            #'full_name_emergency','relationship','phone_emergency','email_emergency'
            )

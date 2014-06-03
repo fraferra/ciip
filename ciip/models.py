@@ -130,6 +130,9 @@ class UserProfile(Profile):
 
     first_name = models.CharField(max_length=20, null=True)
     last_name= models.CharField(max_length = 20, null=True)
+    
+    full_name = models.CharField(max_length=50, null=True, default=None)
+
     email = models.EmailField(null=True)
     phone=models.CharField(max_length=20, null=True, help_text="example: +44 7403 123456 ")
     #phone = models.DecimalField(max_digits=15, decimal_places=0, null=True)
