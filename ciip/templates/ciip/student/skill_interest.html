@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CIIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/ciip/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="/static/ciip/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+       <link rel="shortcut icon" href="/static/img/favicon.ico" >
+
+  </head>
+
+  <body>
+       <div class="container">
+    <div class="row">
+    <div class="span12">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid" >
+          <a class="brand" href="http://www.cisco.com/"><img src="/static/img/logocopy.png" width="90px" height="50"></a>
+          <br>
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       <a class="brand" href="/ciip/info/#home">CIIP Home</a>
+          <form  method = "get">{% csrf_token %}
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as {{user_name}}<a href="/ciip/home/" class="navbar-link">{{ User}}</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/ciip/home/">My Account</a></li>
+              <li><a href="/ciip/send_email/">Contact Us</a></li>
+              <li><a href="/ciip/faq/">FAQ</a></li>
+              <li><a href="/ciip/info/#social">#CIIPLife</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse --></form>
+        </div>
+      </div>
+    </div>
+<br>
+   <br>
+
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Settings</li>
+              
+              <li><a href="/ciip/logout/">Logout</a></li>
+              
+        <li class="nav-header">User Info</li>
+              <li><a href="/ciip/profile_contact_info/">Personal Info</a></li>
+              <li><a href="/ciip/academic_info/">Academic Info</a></li>
+              <li><a href="/ciip/work_internship/">Work & Internship Info</a></li>
+              <li><a href="/ciip/skill_interest/">Skills & Interests</a></li>
+              <li><a href="/ciip/motivational_questions/">Motivational Questions</a></li>
+              <li><a href="/ciip/upload_file/">CV</a></li>
+              <li><a href="/ciip/cover_letter/">Cover Letter</a></li>
+              <li><a href="/ciip/interview/"><strong>NEW</strong> Interview</a></li>
+             <li><a href="/ciip/my_managers/"><strong>NEW</strong> My Managers</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+         <div class="span9">
+          <div class="hero-unit">
+           
+              <form  method = "get">{% csrf_token %}
+              <h2>Skills and Interests</h2>
+              
+            </form> 
+            <p><a href="/ciip/edit_skill_interest/" class="btn btn-primary btn-large">Edit Info &raquo;</a></p>
+          </div>
+          <div class="row-fluid">
+            <div class="span4">
+              
+ <form action="" method="get">{% csrf_token %}
+  <br>
+ <h3>Technical Skills</h3>
+ <p>Skill 1: {{skill_1}}      Level: {{skill_level_1}}</p>
+ <p>Skill 2: {{skill_2}}      Level: {{skill_level_2}}</p>
+ <p>Skill 3: {{skill_3}}      Level: {{skill_level_3}}</p>
+ <br>
+ <h3>Interests related to Business and/or Technology</h3>
+ <p>Interests 1: {{interest_1}} </p>
+ <p>Interests 2: {{interest_2}} </p>
+ <p>Interests 3: {{interest_3}} </p>
+
+
+
+
+
+      
+  </form>
+
+              
+            </div><!--/span-->
+            
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        
+        <p>&copy; Cisco 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+  </body>
+</html>

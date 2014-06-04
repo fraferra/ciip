@@ -1,0 +1,63 @@
+{% extends "ciip/layout_student.html" %}
+{% block content %}
+              <h1>Your managers</h1>
+              <h3>Your Status Offer: {{current_student.offer_states}}</h3>
+              <h3>Final interviews to be complete by <strong>April 25th</strong></h3>
+               
+     
+            
+          </div>
+          
+          <div class="row-fluid">
+            <div class="span4">
+              <h3>Interviews Scheduled</h3>
+              {% for interview in interviews_with_managers %}
+              <form action='/ciip/my_managers/?id={{interview.id}}' method='post' >{% csrf_token %}
+                <h4>Manager: {{ interview.manager.first_name }} {{ interview.manager.last_name }}</h4>
+                <p>Date: {{ interview.date }}<br><b>Confirm interview date and time: </b>
+                  <select name="interview_response">
+                   <option value="" disabled="disabled" selected="selected">{{interview.interview_response}}</option>
+                   <option value="accepted">Accept</option>
+                  <option value="declined">Decline</option>
+                  <option value="ask to reschedule">Ask to reschedule</option>
+                </select>  <input type="submit"  class="btn btn-primary btn-small" value="Confirm" ></p>
+                
+                <p> 
+                {% if interview.skype_name != 'Webex scheduled through email'%}           
+        <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
+          <div id="SkypeButton_Call_{{interview.skype_name}}_1">
+            <script type="text/javascript">
+             Skype.ui({
+              "name": "dropdown",
+              "element": "SkypeButton_Call_{{interview.skype_name}}_1",
+               "participants": ["{{interview.skype_name}}"],
+              "imageSize": 32
+              });
+           </script>
+          </div>
+          {% endif %}
+          {% if interview.skype_name == "Webex scheduled through email"%}
+          <b>Interview scheduled through Webex, please check your email.</b>
+          {% endif %}
+        </p>
+        <p><b>{{interview.manager.first_name}}'s info:</b></p>
+        <p><i>Skills requested:</i></p>
+        <ul>
+          <li>{{interview.manager.skill_1}}</li>
+          <li>{{interview.manager.skill_2}}</li>
+          <li>{{interview.manager.skill_3}}</li>
+        </ul>
+        <p><i>Interests:</i></p>
+        <ul>
+          <li>{{interview.manager.interest_1}}</li>
+          <li>{{interview.manager.interest_2}}</li>
+          <li>{{interview.manager.interest_3}}</li>
+        </ul>
+        <p><i>Job description:</i></p>
+        <p>{{interview.manager.work_description}}</p>
+                <p><a href="/ciip/student_send_message?id={{interview.manager.id}}">View Messages from {{interview.manager.first_name}}</a></p>
+        <hr class="featurette-divider">
+               </form>
+
+              {% endfor %}
+{% endblock %}

@@ -37,6 +37,9 @@ STATUS_UPDATES = (
     ('First Interview Passed', 'First Interview Passed'),
     ('Interview with Manager Scheduled', 'Interview with Manager Scheduled'),
     ('On Hold', 'On Hold'),
+    ('Withdrawn', 'Withdrawn'),
+    ('Accepted', 'Accepted'),
+    ('Declined', 'Declined'),
 )
 
 INTERVIEW_RESPONSE = (
