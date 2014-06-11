@@ -124,7 +124,7 @@ class UploadFileForm(ModelForm):
 class UploadVisaForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields =( 'ds_2019')
+        fields =( 'ds_2019', )
 
 
 
