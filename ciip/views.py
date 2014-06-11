@@ -184,6 +184,26 @@ def upload_file(request):
 '''
 
 
+def upload_visa(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/ciip/login/')
+    else:
+       current_pk = request.user.pk
+       user_name = User.objects.get(pk=current_pk).username
+       student=UserProfile.objects.get(user=request.user)
+       if student.status == 'Accepted':
+           if request.method == 'POST':
+               form = UploadVisaForm(request.POST, request.FILES, instance=student)
+               if form.is_valid():
+                # file is saved
+                   new_user=form.save()
+                   return HttpResponseRedirect('/ciip/upload_visa/')
+           else:
+               form = UploadVisaForm(instance=student)
+    return render(request, 'ciip/upload_visa.html', {'form': form,'user_name':user_name})
+
+
+
 def upload_file(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')

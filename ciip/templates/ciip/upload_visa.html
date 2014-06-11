@@ -1,0 +1,26 @@
+{% extends "ciip/student_layout.html" %}
+{% block content %}
+           
+           
+             <form  enctype="multipart/form-data" method = "get"  action="">{% csrf_token %}
+ 
+ 
+              <h2>Upload your DS2019</h2>
+              
+            <br>
+
+           
+          </div>
+          <div class="row-fluid">
+        <div class="span4">
+          <b>Please download the form here and upload it back on this page</b>
+          <p>       <a href="https://s3-us-west-2.amazonaws.com/ciip.media/cv_sample.docx" ><strong>DS 2019</strong></a></p>
+
+          			<p>Upload DS2019 Form</p>
+					<p>{{form}}</p> 
+
+
+      
+  </form>
+
+{% endblock %}

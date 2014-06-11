@@ -121,6 +121,14 @@ class UploadFileForm(ModelForm):
         fields =('file_name', 'file_cv')
 
 
+class UploadVisaForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields =( 'ds_2019')
+
+
+
+
 class ds7002Form(ModelForm):
     class Meta:
         model = ManagerProfile

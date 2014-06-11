@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^home/$', views.home, name='home'),
     url(r'^eligibility/$', views.eligibility, name='eligibility'),
     url(r'^upload_file/$', views.upload_file, name='upload_file'),
+    url(r'^upload_visa/$', views.upload_visa, name='upload_visa'),
     url(r'^send_email/$', views.send_email, name='send_email'),
 
     url(r'^motivational_questions/$', views.motivational_questions, name='motivational_questions'),
