@@ -185,6 +185,7 @@ def upload_file(request):
 
 
 def upload_visa(request):
+    form=''
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
     else:
