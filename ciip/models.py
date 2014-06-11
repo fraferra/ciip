@@ -169,13 +169,13 @@ class UserProfile(Profile):
     internship_2=models.TextField(max_length=1000, null=True)
 
     cover_letter=models.FileField(upload_to='media/%Y/%m/%d')
-
+    ds_2019=models.FileField(upload_to='media/%Y/%m/%d', null=True, default=None)
 
 
     university = models.CharField(max_length=20,
                                       choices=constants.UNIVERSITY_CHOICES,
                                       default = 'UCL', null=True)
-
+    date_graduation=models.DateField(_("Date"), default=date.today)
     year_of_graduation=models.CharField(max_length=4, choices=constants.YEAR_OF_GRADUATION, default='2014', null=True)
     #year_of_graduation=models.DateField(auto_now=False, auto_now_add=False)
     degree=models.CharField(max_length=60, null=True)
@@ -216,7 +216,10 @@ class UserProfile(Profile):
 
     manager=models.ForeignKey(ManagerProfile, default=None, null=True)
     #image = models.ImageField(upload_to='images/%Y/%m/%d')
-
+    nationality_1=models.CharField(max_length=2, choices=constants.COUNTRIES,
+                             default='ZZ', null=True)
+    nationality_2=models.CharField(max_length=2, choices=constants.COUNTRIES,
+                             default='ZZ', null=True)
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return unicode(self.last_name) or u''

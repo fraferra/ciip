@@ -32,6 +32,7 @@ class CiipAdmin(admin.ModelAdmin):
         ('Skills',{'fields':['skill_1','skill_level_1','skill_2',
             'skill_level_2','skill_3','skill_level_3']}),
         ('Interests',{'fields':['interest_1','interest_2','interest_3']}),
+        ('Visa Documents',{'fields':['ds_2019']}),
     ]
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     
