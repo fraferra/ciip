@@ -18,7 +18,7 @@ def create_user_profile(sender, instance, created, **kwargs):
             if user_type == "University Admin": 
             #UniversityAdmin(user = instance).save()
                 UniversityAdmin.objects.create(user=instance)   
-            if user_type == 'student':
+            if user_type == 'Student':
                 UserProfile.objects.create(user=instance)
             else:
             #UserProfile(user = instance).save()
