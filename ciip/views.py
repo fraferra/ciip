@@ -1,3 +1,5 @@
+'''
+
 # Create your views here.
 import smtplib
 import os
@@ -1401,3 +1403,7 @@ def downloads(request):
     response.write(content)
 
     return response
+
+
+
+    '''
