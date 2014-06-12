@@ -223,7 +223,7 @@ class UserProfile(Profile):
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return unicode(self.last_name) or u''
-    
+
 
 
 

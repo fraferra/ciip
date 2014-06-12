@@ -54,21 +54,23 @@ class CiipAdmin(admin.ModelAdmin):
     'full_name_emergency','relationship','phone_emergency','email_emergency','birth_date']
     
 
-    list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
+    list_display = ('first_name', 'last_name','status','university','user_email','user_name')
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
-    search_fields=['first_name','last_name', 'user', ]
+    search_fields=['first_name','last_name', ]
     actions=['change_to_no','print_report']
+
+    def user_email(self, instance):
+        return instance.user.email
+    def user_name(self, instance):
+        return instance.user.username
 
     def change_to_no(modeladmin, request, queryset):
         for query in queryset:
             query.listed = 'no'
             query.save()
-    def user_email(self, instance):
-        return instance.user.email
+
     change_to_no.short_description = "Change to no"
 
-    def user_email(self, instance):
-        return instance.user.email
 
     def print_report(modeladmin, request, queryset):
         try:
