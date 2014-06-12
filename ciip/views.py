@@ -106,6 +106,7 @@ def notregistered(request):
     return render(request, 'ciip/notregistered.html',{'user_name':user_name})
 
 def edit_contact_info(request):
+    form=''
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
 
@@ -113,16 +114,18 @@ def edit_contact_info(request):
         current_pk = request.user.pk
         user_name = User.objects.get(pk=current_pk).username
         profile = UserProfile.objects.get(user = request.user)
-
-        if request.method == 'POST':
-            form = UserProfileForm(request.POST or None, instance=request.user.get_profile())
-            #print("request user %s" % (request.user.id))
-            # form.user_id = request.user.id
-            if form.is_valid():
-                new_user = form.save()
-                return HttpResponseRedirect('/ciip/profile_contact_info/')
+        if profile.is_open is True:
+            if request.method == 'POST':
+                form = UserProfileForm(request.POST or None, instance=request.user.get_profile())
+                #print("request user %s" % (request.user.id))
+                # form.user_id = request.user.id
+                if form.is_valid():
+                    new_user = form.save()
+                    return HttpResponseRedirect('/ciip/profile_contact_info/')
+            else:
+                form = UserProfileForm(instance=request.user.get_profile())
         else:
-            form = UserProfileForm(instance=request.user.get_profile())
+            return HttpResponseRedirect('/ciip/profile_contact_info/')
     return render( request, 'ciip/edit_contact_info.html', {
         'form': form, 'user_name':user_name,
     })
@@ -165,23 +168,28 @@ def eligibility(request):
     except ObjectDoesNotExist:
         user_name='none'
     return render(request,'ciip/eligibility.html',{'user_name':user_name})
-'''
+
 def upload_file(request):
+    form='Only accepted students will be able to upload the DS2019'
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/ciip/login/')
     else: 
-       current_pk = request.user.pk
-       user_name = User.objects.get(pk=current_pk).username
-       if request.method == 'POST':
-           form = UploadFileForm(request.POST, request.FILES, instance=request.user.get_profile())
-           if form.is_valid():
-            # file is saved
-               new_user=form.save()
-               return HttpResponseRedirect('/ciip/upload_file/')
-       else:
-           form = UploadFileForm(instance=request.user.get_profile())
+        current_pk = request.user.pk
+        user_name = User.objects.get(pk=current_pk).username
+        profile=UserProfile.objects.get(user=request.user)
+        if profile.is_open is True:
+            if request.method == 'POST':
+                form = UploadFileForm(request.POST, request.FILES, instance=request.user.get_profile())
+                if form.is_valid():
+                 # file is saved
+                    new_user=form.save()
+                    return HttpResponseRedirect('/ciip/upload_file/')
+            else:
+                form = UploadFileForm(instance=request.user.get_profile())
+        else:
+            form=profile.file_cv
     return render(request, 'ciip/upload_file.html', {'form': form,'user_name':user_name})
-'''
+
 
 
 def upload_visa(request):
@@ -194,27 +202,16 @@ def upload_visa(request):
        student=UserProfile.objects.get(user=request.user)
        if student.status == 'Accepted':
            if request.method == 'POST':
-               form = UploadVisaForm(request.POST, request.FILES, instance=student)
+               form = UploadVisaForm(request.POST, request.FILES, instance=request.user.get_profile())
                if form.is_valid():
                 # file is saved
                    new_user=form.save()
+                   sendEmailNotification('automated-reply@cisco.com', ['fraferra@cisco.com',], 'uploaded', 'ciao')
                    return HttpResponseRedirect('/ciip/upload_visa/')
            else:
-               form = UploadVisaForm(instance=student)
+               form = UploadVisaForm(instance=request.user.get_profile())
     return render(request, 'ciip/upload_visa.html', {'form': form,'user_name':user_name})
 
-
-
-def upload_file(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/ciip/login/')
-    else: 
-       current_pk = request.user.pk
-       user_name = User.objects.get(pk=current_pk).username
-       if request.method == 'GET':
-           profile = UserProfile.objects.get(user = request.user)
-           cv=profile.file_cv
-    return render(request, 'ciip/upload_file.html', {'cv': cv,'user_name':user_name})
 
 
 

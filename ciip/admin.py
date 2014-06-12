@@ -14,7 +14,7 @@ class CiipAdmin(admin.ModelAdmin):
     model=UserProfile
     
     fieldsets = [
-        ('User',{'fields':['user','listed','offer_states']}),
+        ('User',{'fields':['user','listed','offer_states', 'is_open']}),
         ('Second Stage',{'fields':['technical_resume_screen_selection','technical_resume_screen_comment','technical_interview_screen_selection','technical_interview_screen_comment','master_or_undergrad']}),
         ('Interview',{'fields':['interviewer_comment','interviewer_name','position_suggested','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('Status Update',{'fields':['status','date_interview','interview_response']}),
@@ -36,20 +36,21 @@ class CiipAdmin(admin.ModelAdmin):
     ]
     #readonly_fields=['gender','first_name','last_name','passport_number','birth_date_day','birth_date_month','birth_date_year','email','phone','address_line1','address_line2','city','zip_code','country']
     
-    readonly_fields=['passport',# 'first_name','last_name','gender',
+    readonly_fields=['passport', 'first_name','last_name','gender',
     'interview_response',
-    #'offer_states','file_cv',
-    #'technical_resume_screen_selection','technical_resume_screen_comment','technical_interview_screen_selection','technical_interview_screen_comment',
-    #'interviewer_comment','interviewer_name',
+    'file_cv','ds_2019',
+    'offer_states','file_cv',
+    'technical_resume_screen_selection','technical_resume_screen_comment','technical_interview_screen_selection','technical_interview_screen_comment',
+    'interviewer_comment','interviewer_name',
     'date_interview',
-    #'university_role','university_role_name','uni_comment',
+    'university_role','university_role_name','uni_comment',
     'birth_date_day','birth_date_month','birth_date_year','phone',
     'address_line1','address_line2','city','zip_code','experience_1','experience_2','internship_1','internship_2',
-    #'average','question_1', 'question_2','question_3','file_name',
-    #'skill_1','skill_level_1','skill_2','skill_level_2','skill_3','skill_level_3',
+    'average','question_1', 'question_2','question_3','file_name',
+    'skill_1','skill_level_1','skill_2','skill_level_2','skill_3','skill_level_3',
     'good_university',
-    #'interest_1','interest_2','interest_3',
-    #'university_endorsement',
+    'interest_1','interest_2','interest_3',
+    'university_endorsement',
     'full_name_emergency','relationship','phone_emergency','email_emergency','birth_date']
     
 

@@ -73,7 +73,7 @@ class UserProfile(Profile):
     #user = models.OneToOneField(User)
     #user=models.ForeignKey(User, unique=True)
     #user=models.CharField(max_length=20, null=True)
-
+    is_open=models.BooleanField(default=True)
     # profile = models.ForeignKey('Profile')
     technical_resume_screen_selection =models.CharField(max_length=30, choices=constants.MANAGER_ENDORSEMENT,default='---', null=True)
     technical_resume_screen_comment=models.TextField(max_length=1000, null=True)
@@ -169,7 +169,7 @@ class UserProfile(Profile):
     internship_2=models.TextField(max_length=1000, null=True)
 
     cover_letter=models.FileField(upload_to='media/%Y/%m/%d')
-    ds_2019=models.FileField(upload_to='media/%Y/%m/%d', null=True, default=None)
+    ds_2019=models.FileField(upload_to='visa/ds2019/%Y/%m/%d', null=True, default=None)
 
 
     university = models.CharField(max_length=20,
