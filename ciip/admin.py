@@ -56,7 +56,7 @@ class CiipAdmin(admin.ModelAdmin):
 
     list_display = ('first_name', 'last_name','status','university','technical_resume_screen_selection','technical_resume_screen_comment')
     list_filter = ['university', 'status','university_endorsement', 'master_or_undergrad']
-    search_fields=['first_name','last_name', 'username', ]
+    search_fields=['first_name','last_name', 'user', ]
     actions=['change_to_no','print_report']
 
     def change_to_no(modeladmin, request, queryset):
