@@ -74,6 +74,7 @@ class UserProfile(Profile):
     #user=models.ForeignKey(User, unique=True)
     #user=models.CharField(max_length=20, null=True)
     is_open=models.BooleanField(default=True)
+    is_returning=models.BooleanField(default=False)
     # profile = models.ForeignKey('Profile')
     technical_resume_screen_selection =models.CharField(max_length=30, choices=constants.MANAGER_ENDORSEMENT,default='---', null=True)
     technical_resume_screen_comment=models.TextField(max_length=1000, null=True)

@@ -124,8 +124,9 @@ def manager_home(request):
                 query=request.GET['search']
 
                 ranking=request.GET['ranking']
+                returning=request.GET['returning']
                 university=request.GET['university']
-                results=search_student(query, offer_status, ranking, university)
+                results=search_student(query, offer_status, ranking, university, returning)
                 number_results=len(results)
                 time =datetime.now()
                 Search.objects.create(manager=manager_profile,date=time, search=query, university=university, ranking=ranking, offer_status=offer_status)

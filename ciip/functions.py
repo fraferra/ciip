@@ -95,54 +95,7 @@ class functions:
         top_3=sorted(tmp_students_score,key=itemgetter(1))[-3:]
         top_3.reverse()
         return top_3
-        '''
-    def matchingAlgorith(self,obj):
-        obj_skills=[obj.skill_1, obj.skill_2, obj.skill_3]
-        obj_field=obj.business_unit
-        field=''
-        technical_fields=['network','data center','engineering','gis','it']
-        business_fields=['marketing','sales','digital marketing']
-        if obj_field in technical_fields:
-            field='technical'
-        if obj_field in business_fields:
-            field='business'
-        obj_interests=[obj.interest_1, obj.interest_2, obj.interest_3]
-        obj_alls=obj_skills+obj_interests
-        top_3=[]
-        tmp_students_score=[]
-        max_score=0
-        for student in UserProfile.objects.all():
-            score=0
-            match_field = re.search(unicode(obj_field).lower() ,unicode(student.position_suggested).lower())
-            if match_field:
-                score=score+3
-            for skill in obj_skills:
-                match=re.search(unicode(student.degree).lower(), unicode(skill).lower())
-                if match:
-                    score=score+1
-            student_skills=[(student.skill_1,student.skill_level_1),(student.skill_2, student.skill_level_2),(student.skill_3,student.skill_level_3)]
-            student_interests=[student.interest_1, student.interest_2, student.interest_3]
-            for student_skill, student_level in student_skills:
-                for obj_skill in obj_alls:
-                    match=re.search(unicode(obj_skill).lower(), unicode(student_skill).lower())
-                    if match:
-                        if student_level == 'Advanced':
-                            score=2+score
-                        if student_level == 'Intermediate':
-                            score=1.5+score
-                        if student_level == 'Beginner':
-                            score=1+score
-                        #score=score+1
-            for student_interest in student_interests:
-               for obj_interest in obj_alls:
-                    match=re.search(unicode(obj_interest).lower(), unicode(student_interest).lower())
-                    if match:
-                        score=score+0.7
-            tmp_students_score.append((student, score))
-        top_3=sorted(tmp_students_score,key=itemgetter(1))[-3:]
-        top_3.reverse()
-        return top_3
-            '''
+
 def matchingAlgorith(obj):
     obj_skills=[obj.skill_1, obj.skill_2, obj.skill_3]
     obj_field=obj.business_unit
@@ -238,15 +191,17 @@ def sendEmailNotification(from_email, to_email, subject, message):
         return HttpResponse('Invalid header found.')
 
 
-def search_student(search, offer_status, ranking, university):
+def search_student(search, offer_status, ranking, university, returning):
     results=[]
     by_offer=returnConfirmedOrNot(offer_status)
     by_listed=UserProfile.objects.filter(listed='yes')
     by_ranking=returnRanking(ranking)
     by_university=returnUniversity(university)
+    by_returning=returnReturning(returning)
     tmp=list(set(by_offer) & set(by_ranking))
     tmp2=list(set(tmp) & set(by_university))
-    list_students=list(set(tmp2) & set(by_listed))
+    tmp3=list(set(tmp2) & set(by_listed))
+    list_students=list(set(tmp3) & set(by_returning))
     for user in list_students:
         fields = [user.skill_1, user.skill_2, user.skill_3,
                   user.degree, user.first_name, user.last_name,
@@ -261,6 +216,16 @@ def search_student(search, offer_status, ranking, university):
                     if user not in results:
                         results.append(user)
     return results 
+
+def returnReturning(returning):
+    results=[]
+    if returning=='yes':
+        results=UserProfile.objects.filter(is_returning=True)
+    if returning=='no':
+        results=UserProfile.objects.filter(is_returning=False)
+    if returning=='0':
+        results=UserProfile.objects.all()
+    return results
 
 def returnUniversity(university):
     results=[]

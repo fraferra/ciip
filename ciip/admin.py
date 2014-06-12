@@ -14,7 +14,7 @@ class CiipAdmin(admin.ModelAdmin):
     model=UserProfile
     
     fieldsets = [
-        ('User',{'fields':['user','listed','offer_states', 'is_open']}),
+        ('User',{'fields':['user','listed','offer_states', 'is_open', 'is_returning']}),
         ('Second Stage',{'fields':['technical_resume_screen_selection','technical_resume_screen_comment','technical_interview_screen_selection','technical_interview_screen_comment','master_or_undergrad']}),
         ('Interview',{'fields':['interviewer_comment','interviewer_name','position_suggested','leadership','initiative','innovation','adaptability','team_player','cisco_fit','technical_skill','motivation']}),
         ('Status Update',{'fields':['status','date_interview','interview_response']}),
